@@ -1,2 +1,2 @@
 # storyofmylife
-my life
+Welcome to the storyofmylife!
