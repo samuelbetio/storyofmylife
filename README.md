@@ -1,3 +1,3 @@
 # storyofmylife
 Welcome to the storyofmylife!
-Thank's to visit[# storyofmylife](https://github.com/samuelbetio/storyofmylife)
+Thank's to visit[Storyofmylife](https://github.com/samuelbetio/storyofmylife)
