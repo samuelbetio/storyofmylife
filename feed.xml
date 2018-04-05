@@ -1,31 +1,22 @@
 <?xml version="1.0"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
    <channel>
-      <title>JW.ORG Balita</title>
-      <link>https://www.jw.org/ceb/balita/jw/rss/NewsSubsectionRSSFeed/feed.xml</link>
-      <atom:link href="https://www.jw.org/ceb/balita/jw/rss/NewsSubsectionRSSFeed/feed.xml" rel="self" type="application/rss+xml" />
-      <description><![CDATA[Bag-ong mga balita ug mga update gikan sa jw.org, ang official website sa mga Saksi ni Jehova]]></description>
+      <title>https://goo.gl/8KacYq Balita</title>
+      <link>https://samuelbetio.github.io/storyofmylife/feed.xml</link>
+      <atom:link href="https://samuelbetio.github.io/storyofmylife/feed.xml" rel="self" type="application/rss+xml" />
+      <description><![CDATA[Bag-ong mga balita ug mga update gikan sa https://goo.gl/8KacYq, ang official website ni Samuel Rapana Betio]]></description>
 
       
       <item>
          <guid isPermaLink="false">4ed2a1f64e0bad86c5509833eb7bd9ac</guid>
-         <title>MGA BALITA | Kenneth Cook Gitudlo nga Membro sa Nagamandong Lawas</title>
-         <link>https://www.jw.org/ceb/balita/jw/rehiyon/tibuok-kalibotan/kenneth-cook-nagamandong-lawas/</link>
+         <title>MGA BALITA | Samuel Betio page</title>
+         <link>https://samuelbetio.github.io/storyofmylife/</link>
          
             <description><![CDATA[]]></description>
          
          <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
       </item>
       
-      <item>
-         <guid isPermaLink="false">fc171aa86502665162493cc911079e17</guid>
-         <title>MGA BALITA | Pilipinas Gihapak ug Duha ka Bagyo</title>
-         <link>https://www.jw.org/ceb/balita/jw/rehiyon/philippines/kalamidad-bagyo-20171229/</link>
-         
-            <description><![CDATA[]]></description>
-         
-         <pubDate>Fri, 12 Jan 2018 00:00:00 +0000</pubDate>
-      </item>
       
 
    </channel>
