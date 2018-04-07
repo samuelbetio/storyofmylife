@@ -1,6 +1,7 @@
 Welcome to the
 [Story Of My Life][6]
 ==================
+[![storyofmylife version][som-image]][som-url]
 Update Version
 ==================
          
@@ -15,7 +16,6 @@ Update Version
 | Edge       | No         | Streams, SW             |
 | IE         | No         | Everything (IE is dead) |
 
-[![storyofmylife version][som-image]][som-url]
 
 [1]: https://github.com/samuelbetio/storyofmylife/edit/master/feed.xml
 [2]: https://github.com/samuelbetio/storyofmylife/edit/master/LICENSE
