@@ -8,14 +8,14 @@ Update Version
          
 [Home Update][3]
 
-| [Feed][1]  |[LICENSE][2]|    :star: Features      |
+| [Feed][1]  |[:tv: Overview][2]|    :star: Features      |
 | ---------- | ---------  | ----------------------- |
-| Opera 39+  | Yes        |     [8] Parse Se        |
-| Chrome 52+ | Yes        |                         |
-| Firefox    | No         | Streams                 |
-| Safari     | No         | SW                      |
-| Edge       | No         | Streams, SW             |
-| IE         | No         | Everything (IE is dead) |
+|            |            |blank-page               |
+|            |            |blog-list                |
+|            |            |blog-single              |
+|            |            |contact                  |
+|            |            |features-accordions-tabs |
+|            |            | Everything (IE is dead) |
 
 
 
