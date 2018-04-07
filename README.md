@@ -8,9 +8,9 @@ Update Version
          
 [Home Update][3]
 
-| [Feed][1]  |[LICENSE][2]| Missing                 |
+| [Feed][1]  |[LICENSE][2]| ## :star: Features      |
 | ---------- | ---------  | ----------------------- |
-| Opera 39+  | Yes        |                         |
+| Opera 39+  | Yes        | - [x] Parse Se        |
 | Chrome 52+ | Yes        |                         |
 | Firefox    | No         | Streams                 |
 | Safari     | No         | SW                      |
