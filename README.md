@@ -8,9 +8,9 @@ Update Version
          
 [Home Update][3]
 
-| [Feed][1]  |[LICENSE][2]| ## :star: Features      |
+| [Feed][1]  |[LICENSE][2]|    :star: Features      |
 | ---------- | ---------  | ----------------------- |
-| Opera 39+  | Yes        | - [x] Parse Se        |
+| Opera 39+  | Yes        |     [8] Parse Se        |
 | Chrome 52+ | Yes        |                         |
 | Firefox    | No         | Streams                 |
 | Safari     | No         | SW                      |
@@ -27,7 +27,7 @@ Update Version
 [5]: https://developer.mozilla.org/en/docs/Web/HTML/Element/a#attr-download
 [6]: https://samuelbetio.github.io/storyofmylife
 [7]: https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel
-[8]: https://developer.mozilla.org/en-US/docs/Web/API/MessagePort/postMessage
+[8]: - [x]
 [9]: https://developer.mozilla.org/en/docs/Web/API/Fetch_API
 [10]: https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent/respondWith
 [11]: https://developer.mozilla.org/en/docs/Web/HTML/Element/iframe
