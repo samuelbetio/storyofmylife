@@ -8,7 +8,7 @@ Update Version
          
 [Home Update][3]
 
-| [Feed][1]  |[:tv: Overview][2]|    :star: Features      |
+| [Feed][1]  |[:tv: Overview][2]|[:star: Features][4]|
 | ---------- | ---------  | ----------------------- |
 |            |            |blank-page               |
 |            |            |blog-list                |
@@ -22,7 +22,7 @@ Update Version
 [1]: https://github.com/samuelbetio/storyofmylife/edit/master/feed.xml
 [2]: https://github.com/samuelbetio/storyofmylife/edit/master/LICENSE
 [3]: https://github.com/samuelbetio/storyofmylife/edit/master/index.html
-[4]: https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent/respondWith
+[4]: https://github.com/samuelbetio/storyofmylife/releases
 [5]: https://developer.mozilla.org/en/docs/Web/HTML/Element/a#attr-download
 [6]: https://samuelbetio.github.io/storyofmylife
 [7]: https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel
