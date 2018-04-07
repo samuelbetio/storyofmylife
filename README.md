@@ -2,7 +2,7 @@
 Welcome to the [Storyofmylife](https://samuelbetio.github.io/storyofmylife/)!
 
 # Update Version
-#### [Feed][1]       [LICENSE][2]      [Home Update][3]
+#### [Home Update][3]  [Feed][1]       [LICENSE][2] 
 
 [![storyofmylife version][som-image]][som-url]
 
