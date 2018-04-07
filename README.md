@@ -6,10 +6,7 @@ Welcome to the [Storyofmylife](https://samuelbetio.github.io/storyofmylife/)!
 #### [LICENSE](https://github.com/samuelbetio/storyofmylife/edit/master/LICENSE)
 #### [Home Update](https://github.com/samuelbetio/storyofmylife/edit/master/index.html)
 
-```bash
-[Home](https://github.com/samuelbetio/storyofmylife/edit/master/index.html) [FEATURES] [Home](https://github.com/samuelbetio/storyofmylife/edit/master/index.html) [FEATURES] [Home](https://github.com/samuelbetio/storyofmylife/edit/master/index.html) [FEATURES]
-```
-[![som version][som-image]][som-url]
+[![storyofmylife version][som-image]][som-url]
 
 [1]: https://github.com/eligrey
 [2]: https://github.com/eligrey/FileSaver.js
@@ -31,4 +28,4 @@ Welcome to the [Storyofmylife](https://samuelbetio.github.io/storyofmylife/)!
 [18]: https://bugzilla.mozilla.org/show_bug.cgi?id=1128959
 [19]: https://webtorrent.io
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/BackUp.Me/som.svg
-[som-url]: https://github.com/samuelbetio/storyofmylife
+[som-url]: https://github.com/samuelbetio/storyofmylife/releases
