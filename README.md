@@ -17,8 +17,7 @@ Update Version
 | Edge       | No         | Streams, SW             |
 | IE         | No         | Everything (IE is dead) |
 
-## :star: Features
-- [x] Parse Server with MongoDB
+
 
 [1]: https://github.com/samuelbetio/storyofmylife/edit/master/feed.xml
 [2]: https://github.com/samuelbetio/storyofmylife/edit/master/LICENSE
@@ -27,7 +26,7 @@ Update Version
 [5]: https://developer.mozilla.org/en/docs/Web/HTML/Element/a#attr-download
 [6]: https://samuelbetio.github.io/storyofmylife
 [7]: https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel
-[8]: - [x]
+[8]: https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel
 [9]: https://developer.mozilla.org/en/docs/Web/API/Fetch_API
 [10]: https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent/respondWith
 [11]: https://developer.mozilla.org/en/docs/Web/HTML/Element/iframe
