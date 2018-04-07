@@ -7,7 +7,7 @@ Welcome to the [Storyofmylife](https://samuelbetio.github.io/storyofmylife/)!
 #### [Home Update](https://github.com/samuelbetio/storyofmylife/edit/master/index.html)
 
 ```bash
-[Home](https://github.com/samuelbetio/storyofmylife/edit/master/index.html) [FEATURES]
+[Home](https://github.com/samuelbetio/storyofmylife/edit/master/index.html) [FEATURES] [Home](https://github.com/samuelbetio/storyofmylife/edit/master/index.html) [FEATURES] [Home](https://github.com/samuelbetio/storyofmylife/edit/master/index.html) [FEATURES]
 ```
 [![som version][som-image]][som-url]
 
@@ -30,5 +30,5 @@ Welcome to the [Storyofmylife](https://samuelbetio.github.io/storyofmylife/)!
 [17]: https://developer.microsoft.com/en-us/microsoft-edge/platform/status/serviceworker
 [18]: https://bugzilla.mozilla.org/show_bug.cgi?id=1128959
 [19]: https://webtorrent.io
-[som-image]: https://github.com/samuelbetio/storyofmylife/raw/BackUp.Me/som.svg
+[som-image]: https://github.com/samuelbetio/storyofmylife/blob/BackUp.Me/som.svg
 [som-url]: https://github.com/samuelbetio/storyofmylife
