@@ -25,7 +25,7 @@ Update Version
 - [x] contact 
 
 ## :see_no_evil: Preview Code
-[8]
+[![Commits][8]
 
 [1]: https://samuelbetio.github.io/storyofmylife
 [2]: https://github.com/samuelbetio/storyofmylife/edit/master/LICENSE
