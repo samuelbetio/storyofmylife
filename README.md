@@ -27,6 +27,11 @@ Update Version
 ## :see_no_evil: Preview Code
 ![Commits][8]
 
+## :thumbsup: Contributors & Credits
+[![didierfranc][didierfranc]][didierfranc-url]
+
+
+
 [1]: https://samuelbetio.github.io/storyofmylife
 [2]: https://github.com/samuelbetio/storyofmylife/edit/master/LICENSE
 [3]: https://github.com/samuelbetio/storyofmylife/edit/master/index.html
@@ -37,3 +42,5 @@ Update Version
 [8]: https://github.com/samuelbetio/storyofmylife/blob/BackUp.Me/IMG/code.png
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
+[didierfranc]: https://github.com/didierfranc.png?size=40
+[didierfranc-url]: https://github.com/didierfranc
