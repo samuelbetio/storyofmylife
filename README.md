@@ -36,5 +36,5 @@ Update Version
 [17]: https://developer.microsoft.com/en-us/microsoft-edge/platform/status/serviceworker
 [18]: https://bugzilla.mozilla.org/show_bug.cgi?id=1128959
 [19]: https://webtorrent.io
-[som-image]: https://github.com/samuelbetio/storyofmylife/blob/BackUp.Me/som.svg
+[som-image]: https://github.com/samuelbetio/storyofmylife/blob/BackUp.Me/storyofmylife-server.svg
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
