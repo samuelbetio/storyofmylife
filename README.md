@@ -5,14 +5,14 @@ Update Version
 ==================
          
 [Home Update][3]
-                | [Feed][1]  |[LICENSE][2]| Missing                 |
-                | ---------- | ---------  | ----------------------- |
-                | Opera 39+  | Yes        |                         |
-                | Chrome 52+ | Yes        |                         |
-                | Firefox    | No         | Streams                 |
-                | Safari     | No         | SW                      |
-                | Edge       | No         | Streams, SW             |
-                | IE         | No         | Everything (IE is dead) |
+| [Feed][1]  |[LICENSE][2]| Missing                 |
+| ---------- | ---------  | ----------------------- |
+| Opera 39+  | Yes        |                         |
+| Chrome 52+ | Yes        |                         |
+| Firefox    | No         | Streams                 |
+| Safari     | No         | SW                      |
+| Edge       | No         | Streams, SW             |
+| IE         | No         | Everything (IE is dead) |
 
 [![storyofmylife version][som-image]][som-url]
 
