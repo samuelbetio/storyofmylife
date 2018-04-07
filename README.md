@@ -17,6 +17,8 @@ Update Version
 | Edge       | No         | Streams, SW             |
 | IE         | No         | Everything (IE is dead) |
 
+## :star: Features
+- [x] Parse Server with MongoDB
 
 [1]: https://github.com/samuelbetio/storyofmylife/edit/master/feed.xml
 [2]: https://github.com/samuelbetio/storyofmylife/edit/master/LICENSE
