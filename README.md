@@ -28,7 +28,7 @@ Update Version
 ![Commits][8]
 
 ## :thumbsup: Contributors & Credits
-[![didierfranc][didierfranc]][didierfranc-url]
+[![NEWBAYAWANCITYPS][NEWBAYAWANCITYPS]][NEWBAYAWANCITYPS-url]
 
 
 
@@ -42,5 +42,5 @@ Update Version
 [8]: https://github.com/samuelbetio/storyofmylife/blob/BackUp.Me/IMG/code.png
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
-[didierfranc]: https://github.com/didierfranc.png?size=40
-[didierfranc-url]: https://github.com/didierfranc
+[NEWBAYAWANCITYPS]: https://github.com/NEWBAYAWANCITYPS.png?size=40
+[NEWBAYAWANCITYPS-url]: https://github.com/NEWBAYAWANCITYPS
