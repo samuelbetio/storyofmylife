@@ -5,6 +5,7 @@ Update Version
 ==================
          
 [Home Update][3]
+
 | [Feed][1]  |[LICENSE][2]| Missing                 |
 | ---------- | ---------  | ----------------------- |
 | Opera 39+  | Yes        |                         |
