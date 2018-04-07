@@ -17,6 +17,11 @@ Update Version
 |            |            |features-accordions-tabs   |
 |            |            |features-animate-on-scroll |
 
+## :star: Features
+- [x] blank-page
+- [x] blog-list 
+- [x] blog-single
+- [x] contact 
 
 
 [1]: https://samuelbetio.github.io/storyofmylife
