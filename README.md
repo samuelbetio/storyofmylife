@@ -7,12 +7,6 @@ Welcome to the [Storyofmylife](https://samuelbetio.github.io/storyofmylife/)!
 #### [Home Update](https://github.com/samuelbetio/storyofmylife/edit/master/index.html)
 
 ```bash
-[Home](https://github.com/samuelbetio/storyofmylife/edit/master/index.html) [|FEATURES|]
-                                                                             | ---------- | 
-                                                                             | Opera 39+  |
-                                                                             | Chrome 52+ | 
-                                                                             | Firefox    | 
-                                                                             | Safari     | 
-                                                                             | Edge       |
-                                                                             | IE         |
+[Home](https://github.com/samuelbetio/storyofmylife/edit/master/index.html) [FEATURES]
 ```
+[![storyofmylife version][storyofmylife-image]][storyofmylife-url]
