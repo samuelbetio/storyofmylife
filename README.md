@@ -12,14 +12,14 @@ Update Version
 
 
             
-| [Feed][5]       |[:tv: Online][1]|[:star: Features][4]       |
-| --------------- | -------------  | --------------------------|
-|[Index][3]       |                |blank-page                 |
-|                 |                |blog-list                  |
-|                 |                |blog-single                |
-|                 |                |contact                    |
-|                 |                |features-accordions-tabs   |
-|                 |                |features-animate-on-scroll |
+| [Feed][5]       |[:tv: On-screen display][1]|[:star: Features .html][4]       |
+|---------------- |---------------------------|---------------------------------|
+|[Index][3]       |                           |blank-page                       |
+|                 |                           |blog-list                        |
+|                 |                           |blog-single                      |
+|                 |                           |contact                          |
+|                 |                           |features-accordions-tabs         |
+|                 |                           |features-animate-on-scroll       |
 
 ## :star: Features
 - [x] blank-page
