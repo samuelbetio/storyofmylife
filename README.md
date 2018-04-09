@@ -10,7 +10,8 @@ Update Version
 
 | [Feed][5]  |[:tv: Online][1]|[:star: Features][4]|
 | ---------- | ---------  | --------------------------|
-|            |Index       |                           |
+|Index                                                |
+| ---------- | ---------  | --------------------------|
 |            |            |blank-page                 |
 |            |            |blog-list                  |
 |            |            |blog-single                |
