@@ -38,6 +38,7 @@ Index
 [![marysalva][marysalva]][marysalva-url]
 [![timeseariver][timeseariver]][timeseariver-url]
 [![jeanalyn][jeanalyn]][jeanalyn-url]
+[![marlondeposoy][marlondeposoy]][marlondeposoy-url]
 
 
 [1]: https://samuelbetio.github.io/storyofmylife
@@ -67,3 +68,4 @@ Index
 [jeanalyn]: https://github.com/jeanalyn.png?size=40
 [jeanalyn-url]: https://github.com/jeanalyn
 [marlondeposoy]: https://github.com/marlondeposoy.png?size=40
+[marlondeposoy-url]: https://github.com/marlondeposoy
