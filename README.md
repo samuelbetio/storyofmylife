@@ -14,7 +14,7 @@ Update Version
             
 |                 |[:tv: On-screen display][1]|[:star: Features .html][4]       |
 |---------------- |---------------------------|---------------------------------|
-|[Index][3]       |[Feed][5]                  |blank-page                       |
+|[Index][3]       |[RSS][5]                   |blank-page                       |
 |                 |                           |blog-list                        |
 |                 |                           |blog-single                      |
 |                 |                           |contact                          |
