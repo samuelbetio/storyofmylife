@@ -1,5 +1,5 @@
 Welcome to the
-[Story Of My Life][1] by: Samuel Betio
+[Story Of My Life][1] By:
 ==================
 [![storyofmylife version][som-image]][som-url]
 ==================
