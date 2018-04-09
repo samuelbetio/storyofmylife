@@ -1,10 +1,16 @@
 Welcome to the
 [Story Of My Life][1]
-==================
+=====================
+
+
 By: [![storyofmylife version][som-image]][som-url]
-==================
+==================================================
+
+
 Update Version
-==================
+==============
+
+
             
 | [Feed][5]       |[:tv: Online][1]|[:star: Features][4]       |
 | --------------- | -------------  | --------------------------|
@@ -16,13 +22,17 @@ Update Version
 |                 |                |features-animate-on-scroll |
 
 ## :star: Features
-- [x] blank-page
+- [x] blank-page - [x] features-animate-on-scroll
 - [x] blog-list 
 - [x] blog-single
 - [x] contact 
+- [x] features-accordions-tabs
+- [x] features-animate-on-scroll
 
 ## :see_no_evil: Preview Code
 ![Commits][8]
+
+
 
 ## :thumbsup: Contributors & Credits
 [![NEWBAYAWANCITYPS][NEWBAYAWANCITYPS]][NEWBAYAWANCITYPS-url]
@@ -34,6 +44,11 @@ Update Version
 [![timeseariver][timeseariver]][timeseariver-url]
 [![jeanalyn][jeanalyn]][jeanalyn-url]
 [![marlondeposoy][marlondeposoy]][marlondeposoy-url]
+
+
+
+
+
 
 
 [1]: https://samuelbetio.github.io/storyofmylife
