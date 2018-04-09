@@ -22,7 +22,7 @@ Update Version
 |                 |                |features-animate-on-scroll |
 
 ## :star: Features
-- [x] blank-page - [x] features-animate-on-scroll
+- [x] blank-page
 - [x] blog-list 
 - [x] blog-single
 - [x] contact 
