@@ -8,9 +8,10 @@ Update Version
          
 [Home Update][3]
 
-| [Feed][5]  |[:tv: Online][1]|[:star: Features][4]|
+| [Feed][5]   [:tv: Online][1] [:star: Features][4]   |
 | ---------- | ---------  | --------------------------|
 |Index                                                |
+| [Feed][5]  |[:tv: Online][1]|[:star: Features][4]|
 | ---------- | ---------  | --------------------------|
 |            |            |blank-page                 |
 |            |            |blog-list                  |
