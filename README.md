@@ -35,6 +35,7 @@ Update Version
 [![cityofbayawan][cityofbayawan]][cityofbayawan-url]
 [![marysalva][marysalva]][marysalva-url]
 [![timeseariver][timeseariver]][timeseariver-url]
+[![jeanalyn][jeanalyn]][jeanalyn-url]
 
 
 [1]: https://samuelbetio.github.io/storyofmylife
@@ -61,3 +62,6 @@ Update Version
 [marysalva-url]: https://github.com/marysalva
 [timeseariver]: https://github.com/timeseariver.png?size=40
 [timeseariver-url]: https://github.com/timeseariver
+[jeanalyn]: https://github.com/jeanalyn.png?size=40
+[jeanalyn-url]: https://github.com/jeanalyn
+[marlondeposoy]: https://github.com/marlondeposoy.png?size=40
