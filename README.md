@@ -12,7 +12,7 @@ Update Version
 
 
             
-|Index Version    |:tv: README.md   Version   | LICENSE   |[RSS][5]Version |
+|Index Version    |:tv: README.md   Version   | LICENSE   |[RSS][5] Version|
 |---------------- |---------------------------|-----------|----------------|
 |                 |                           |           |                |
 |                 |                           |           |                |
