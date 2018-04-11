@@ -12,14 +12,14 @@ Update Version
 
 
             
-|HTML              |[:tv: .md][1]|[:star: Features .html][4]       |
-|---------------- |---------------------------|---------------------------------|
-|[Index][3]       |[RSS][5]                   |blank-page                       |
-|                 |                           |blog-list                        |
-|                 |                           |blog-single                      |
-|                 |                           |contact                          |
-|                 |                           |features-accordions-tabs         |
-|                 |                           |features-animate-on-scroll       |
+|Index Version    |:tv: README.md   Version   | LICENSE   |[RSS][5]Version |
+|---------------- |---------------------------|-----------|----------------|
+|                 |[RSS][5]                   |           |                |
+|                 |                           |           |                |
+|                 |                           |           |                |
+|                 |                           |           |                |
+|                 |                           |           |                |
+|                 |                           |           |                |
 
 ## :star: Features
 - [x] blank-page
