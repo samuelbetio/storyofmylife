@@ -51,7 +51,7 @@ Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-
 [3]: #readmemd-version
 [4]: #license
 [5]: #rss-version
-[6]: https://github.com/samuelbetio/storyofmylife/edit/master/feed.xml
+[6]: #full-version
 [7]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.0.3
 [8]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.4
 [9]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.1
