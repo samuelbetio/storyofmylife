@@ -12,25 +12,21 @@ Update Version
 
 
             
-|Index Version    |:tv: README.md   Version   | LICENSE   |[RSS][5] Version|
-|---------------- |---------------------------|-----------|----------------|
-|V0.0.0.3         |V0.4                       |V0.0.1     |V01.00.00       |
-|                 |                           |           |                |
-|                 |                           |           |                |
-|                 |                           |           |                |
-|                 |                           |           |                |
+|[Index Version][2]    |:tv: [README.md Version][3]     | [LICENSE][4]   |[RSS][5] Version|
+|--------------------- |--------------------------------|----------------|----------------|
+|V0.0.0.3              |V0.4                            |V0.0.1          |V01.00.00       |
+|                      |                                |                |                |
 
 
-## :star: Features
-- [x] blank-page
-- [x] blog-list 
-- [x] blog-single
-- [x] contact 
-- [x] features-accordions-tabs
-- [x] features-animate-on-scroll
 
-## :see_no_evil: Preview Code
-![Commits][8]
+## Index Version
+
+
+## README.md Version
+
+## LICENSE
+
+## RSS Version
 
 
 
