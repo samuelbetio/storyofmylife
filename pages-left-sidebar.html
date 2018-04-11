@@ -7,11 +7,11 @@
     <!--<![endif]-->
     <head>
         <!-- Title -->
-        <title>Samuel Betio</title>
+        <title>Samuel Betio - A Professional Bootstrap Template</title>
         <!-- Meta -->
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="Website Bloger" content="assets/img/logo.png">
-        <meta name="Samuel Rapana Betio" content="assets/img/background.jpg">
+        <meta name="description" content="">
+        <meta name="author" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <!-- Favicon -->
         <link href="favicon.ico" rel="shortcut icon">
@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="assets/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/nexus.css" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/responsive.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/custom.css" rel="stylesheet">
         <!-- Google Fonts-->
         <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300" rel="stylesheet" type="text/css">
     </head>
@@ -64,7 +65,7 @@
                             <div class="visible-lg">
                                 <ul id="hornavmenu" class="nav navbar-nav">
                                     <li>
-                                        <a href="index.html" class="fa-home active">Home</a>
+                                        <a href="index.html" class="fa-home ">Home</a>
                                     </li>
                                     <li>
                                         <span class="fa-gears ">Features</span>
@@ -135,7 +136,7 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <span class="fa-copy ">Pages</span>
+                                        <span class="fa-copy active">Pages</span>
                                         <ul>
                                             <li>
                                                 <a href="pages-about-us.html">About Us</a>
@@ -209,13 +210,13 @@
                                     <a href="#" target="_blank" title="RSS"></a>
                                 </li>
                                 <li class="social-twitter">
-                                    <a href="https://twitter.com/samuelbetio" target="_blank" title="Twitter"></a>
+                                    <a href="#" target="_blank" title="Twitter"></a>
                                 </li>
                                 <li class="social-facebook">
-                                    <a href="https://www.facebook.com/samuelrapanabetio/" target="_blank" title="Facebook"></a>
+                                    <a href="#" target="_blank" title="Facebook"></a>
                                 </li>
                                 <li class="social-googleplus">
-                                    <a href="https://plus.google.com/+SamuelBetio" target="_blank" title="Google+"></a>
+                                    <a href="#" target="_blank" title="Google+"></a>
                                 </li>
                             </ul>
                         </div>
@@ -225,190 +226,109 @@
             <!-- End Top Menu -->
             <!-- === END HEADER === -->
             <!-- === BEGIN CONTENT === -->
-            <div id="slideshow" class="bottom-border-shadow">
-                <div class="container no-padding background-white bottom-border">
-                    <div class="row">
-                        <!-- Carousel Slideshow -->
-                        <div id="carousel-example" class="carousel slide" data-ride="carousel">
-                            <!-- Carousel Indicators -->
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example" data-slide-to="1"></li>
-                                <li data-target="#carousel-example" data-slide-to="2"></li>
-                            </ol>
-                            <div class="clearfix"></div>
-                            <!-- End Carousel Indicators -->
-                            <!-- Carousel Images -->
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img src="assets/img/slideshow/slide1.jpg">
+            <div id="content">
+                <div class="container background-white">
+                    <div class="row margin-vert-30">
+                        <!-- Side Column -->
+                        <div class="col-md-3">
+                            <!-- Recent Posts -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Recent Posts</h3>
                                 </div>
-                                <div class="item">
-                                    <img src="assets/img/slideshow/slide2.jpg">
-                                </div>
-                                <div class="item">
-                                    <img src="assets/img/slideshow/slide3.jpg">
-                                </div>
-                                <div class="item">
-                                    <img src="assets/img/slideshow/slide4.jpg">
-                                </div>
-                                <div class="item">
-                                    <img src="assets/img/slideshow/slide5.png">
+                                <div class="panel-body">
+                                    <ul class="posts-list margin-top-10">
+                                        <li>
+                                            <div class="recent-post">
+                                                <a href="">
+                                                    <img class="pull-left" src="assets/img/blog/thumbs/thumb1.jpg" alt="thumb1">
+                                                </a>
+                                                <a href="#" class="posts-list-title">Sidebar post example</a>
+                                                <br>
+                                                <span class="recent-post-date">
+                                                    July 30, 2013
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </li>
+                                        <li>
+                                            <div class="recent-post">
+                                                <a href="">
+                                                    <img class="pull-left" src="assets/img/blog/thumbs/thumb2.jpg" alt="thumb2">
+                                                </a>
+                                                <a href="#" class="posts-list-title">Sidebar post example</a>
+                                                <br>
+                                                <span class="recent-post-date">
+                                                    July 30, 2013
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </li>
+                                        <li>
+                                            <div class="recent-post">
+                                                <a href="">
+                                                    <img class="pull-left" src="assets/img/blog/thumbs/thumb3.jpg" alt="thumb3">
+                                                </a>
+                                                <a href="#" class="posts-list-title">Sidebar post example</a>
+                                                <br>
+                                                <span class="recent-post-date">
+                                                    July 30, 2013
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </li>
+                                        <li>
+                                            <div class="recent-post">
+                                                <a href="">
+                                                    <img class="pull-left" src="assets/img/blog/thumbs/thumb4.jpg" alt="thumb4">
+                                                </a>
+                                                <a href="#" class="posts-list-title">Sidebar post example</a>
+                                                <br>
+                                                <span class="recent-post-date">
+                                                    July 30, 2013
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <!-- End Carousel Images -->
-                            <!-- Carousel Controls -->
-                            <a class="left carousel-control" href="#carousel-example" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                            <!-- End Carousel Controls -->
+                            <!-- End recent Posts -->
+                            <!-- About -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">About</h3>
+                                </div>
+                                <div class="panel-body">
+                                    Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.
+                                </div>
+                            </div>
+                            <!-- End About -->
                         </div>
-                        <!-- End Carousel Slideshow -->
+                        <!-- End Side Column -->
+                        <!-- Main Column -->
+                        <div class="col-md-9">
+                            <!-- Main Content -->
+                            <h2>Left Side Column</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Integer sed arcu. At vero eos et accusamus
+                                et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+                                mollitia animi, id est laborum et dolorum fuga.</p>
+                            <p>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.
+                                Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
+                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+                                qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate
+                                non sit amet, consectetur adipiscing elit. Ut adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet.</p>
+                            <p>Iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non sit amet, consectetur adipiscing elit. Ut adipiscing elit magna.
+                                Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque lorem ipsum dolor sit amet. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat consectetur adipiscing elit.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Integer sed arcu. At vero eos et accusamus
+                                et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+                                mollitia animi, id est laborum et dolorum fuga.</p>
+                            <!-- End Main Content -->
+                        </div>
+                        <!-- End Main Column -->
                     </div>
                 </div>
             </div>
-            <div id="icons" class="bottom-border-shadow">
-                <div class="container background-grey bottom-border">
-                    <div class="row padding-vert-60">
-                        <!-- Icons -->
-                        <div class="col-md-4 text-center">
-                            <i class="fa-cogs fa-4x color-primary animate fadeIn"></i>
-                            <h2 class="padding-top-10 animate fadeIn">Velit esse molestie</h2>
-                            <p class="animate fadeIn">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer.</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <i class="fa-cloud-download fa-4x color-primary animate fadeIn"></i>
-                            <h2 class="padding-top-10 animate fadeIn">Quam nunc putamus</h2>
-                            <p class="animate fadeIn">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer.</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <i class="fa-bar-chart fa-4x color-primary animate fadeIn"></i>
-                            <h2 class="padding-top-10 animate fadeIn">Placerat facer possim</h2>
-                            <p class="animate fadeIn">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer.</p>
-                        </div>
-                        <!-- End Icons -->
-                    </div>
-                </div>
-            </div>
-            <div id="content" class="bottom-border-shadow">
-                <div class="container background-white bottom-border">
-                    <div class="row margin-vert-30">
-                        <!-- Main Text -->
-                        <div class="col-md-6">
-                            <h2>Welcome to Samuel Betio</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-                                lobortis nisl ut aliquip ex ea commodo consequat.</p>
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit
-                                augue duis dolore te feugait nulla facilisi. Cras non sem sem, at eleifend mi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Curabitur eget nisl
-                                a risus.</p>
-                        </div>
-                        <!-- End Main Text -->
-                        <div class="col-md-6">
-                            <h3 class="padding-vert-10">Key Features</h3>
-                            <p>Duis sit amet orci et lectus dictum auctor a nec enim. Donec suscipit fringilla elementum. Suspendisse nec justo ut felis ornare tincidunt vitae et lectus.</p>
-                            <ul class="tick animate fadeInRight">
-                                <li>Responsive Design</li>
-                                <li>Built with LESS</li>
-                                <li>Font Choosers</li>
-                                <li>Replaceable Background Image</li>
-                                <li>Custom Module Widths</li>
-                                <li>All Module Extensions Included</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Portfolio -->
-            <div id="portfolio" class="bottom-border-shadow">
-                <div class="container bottom-border">
-                    <div class="row padding-top-40">
-                        <ul class="portfolio-group">
-                            <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeInLeft">
-                                        <img alt="image1" src="assets/img/frontpage/image1.jpg">
-                                        <figcaption>
-                                            <h3>Velit esse molestie</h3>
-                                            <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </li>
-                            <!-- //Portfolio Item// -->
-                            <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeIn">
-                                        <img alt="image2" src="assets/img/frontpage/image2.jpg">
-                                        <figcaption>
-                                            <h3>Quam nunc putamus</h3>
-                                            <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </li>
-                            <!-- //Portfolio Item// -->
-                            <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeInRight">
-                                        <img alt="image3" src="assets/img/frontpage/image3.jpg">
-                                        <figcaption>
-                                            <h3>Placerat facer possim</h3>
-                                            <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </li>
-                            <!-- //Portfolio Item// -->
-                            <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeInLeft">
-                                        <img alt="image4" src="assets/img/frontpage/image4.jpg">
-                                        <figcaption>
-                                            <h3>Nam liber tempor</h3>
-                                            <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </li>
-                            <!-- //Portfolio Item// -->
-                            <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeIn">
-                                        <img alt="image5" src="assets/img/frontpage/image5.jpg">
-                                        <figcaption>
-                                            <h3>Donec non urna</h3>
-                                            <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </li>
-                            <!-- //Portfolio Item// -->
-                            <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeInRight">
-                                        <img alt="image6" src="assets/img/frontpage/image6.jpg">
-                                        <figcaption>
-                                            <h3>Nullam consectetur</h3>
-                                            <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </li>
-                            <!-- //Portfolio Item// -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- End Portfolio -->
             <!-- === END CONTENT === -->
             <!-- === BEGIN FOOTER === -->
             <div id="base">
@@ -426,17 +346,18 @@
                         <div class="col-md-4 margin-bottom-20">
                             <h3 class="margin-bottom-10">Contact Details</h3>
                             <p>
-                                <span class="fa-phone">Telephone:</span>+63-997-114-2894
+                                <span class="fa-phone">Telephone:</span>+63-997-114-2894 
                                 <br>
                                 <span class="fa-envelope">Email:</span>
                                 <a href="mailto:samuelbetio@gmail.com">samuelbetio@gmail.com</a>
                                 <br>
                                 <span class="fa-link">Website:</span>
                                 <a href="https://samuelbetio.github.io/storyofmylife/">www.example.com</a>
-                            <p>Samuel Betio,
-                                <br>Pasil, Brgy. Malabugas, Bayawan City 6221
-                                <br>Negros Oriental,
-                                <br>Philippines</p>
+                            </p>
+                            <p>The Dunes, Top Road,
+                                <br>Strandhill,
+                                <br>Co. Sligo,
+                                <br>Ireland</p>
                         </div>
                         <!-- End Contact Details -->
                         <!-- Sample Menu -->
@@ -470,23 +391,23 @@
                         <div id="footermenu" class="col-md-8">
                             <ul class="list-unstyled list-inline">
                                 <li>
-                                    <a href="https://goo.gl/cAyBy5" target="_blank">YouTube</a>
+                                    <a href="#" target="_blank">Sample Link</a>
                                 </li>
                                 <li>
-                                    <a href="https://goo.gl/RTa9N3" target="_blank">Facebook</a>
+                                    <a href="#" target="_blank">Sample Link</a>
                                 </li>
                                 <li>
-                                    <a href="https://goo.gl/3kspzx" target="_blank">JW Broadcasting</a>
+                                    <a href="#" target="_blank">Sample Link</a>
                                 </li>
                                 <li>
-                                    <a href="https://goo.gl/" target="_blank">Simplify your links</a>
+                                    <a href="#" target="_blank">Sample Link</a>
                                 </li>
                             </ul>
                         </div>
                         <!-- End Footer Menu -->
                         <!-- Copyright -->
                         <div id="copyright" class="col-md-4">
-                            <p class="pull-right"><a href="https://goo.gl/8KacYq">Copyright</a> © 2018 Samuel Rapana Betio.
+                            <p class="pull-right">(c) 2014 Your Copyright Info</p>
                         </div>
                         <!-- End Copyright -->
                     </div>
