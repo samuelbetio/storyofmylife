@@ -48,10 +48,10 @@ Update Version
 
 
 [1]: https://samuelbetio.github.io/storyofmylife
-[2]: https://github.com/samuelbetio/storyofmylife/edit/master/LICENSE
-[3]: https://github.com/samuelbetio/storyofmylife/edit/master/index.html
-[4]: #star-features
-[5]: https://samuelbetio.github.io/storyofmylife/feed.xml
+[2]: #index-version
+[3]: #readmemd-version
+[4]: #license
+[5]: #rss-version
 [6]: https://github.com/samuelbetio/storyofmylife/edit/master/feed.xml
 [7]: https://github.com/samuelbetio/storyofmylife/releases
 [8]: https://github.com/samuelbetio/storyofmylife/blob/BackUp.Me/IMG/code.png
