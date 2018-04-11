@@ -14,12 +14,12 @@ Update Version
             
 |Index Version    |:tv: README.md   Version   | LICENSE   |[RSS][5] Version|
 |---------------- |---------------------------|-----------|----------------|
+|V0.0.0.3         |V0.4                       |V0.0.1     |V01.00.00       |
 |                 |                           |           |                |
 |                 |                           |           |                |
 |                 |                           |           |                |
 |                 |                           |           |                |
-|                 |                           |           |                |
-|Index Version    |:tv: README.md   Version   | LICENSE   |[RSS][5] Version|
+
 
 ## :star: Features
 - [x] blank-page
