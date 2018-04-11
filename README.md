@@ -9,13 +9,11 @@ By: [![storyofmylife version][som-image]][som-url]
 
 Update Version
 ==============
-
-
             
-|[Index Version][2]    |:tv: [README.md Version][3]     | [LICENSE][4]   |[RSS][5] Version|Full Version   |
-|--------------------- |--------------------------------|----------------|----------------|---------------|
-|V0.0.0.3              |V0.4                            |V0.0.1          |V01.00.00       |v5.80.3462.5836|
-|                      |                                |                |                |               |
+|[Index Version][2]    |:tv: [README.md Version][3]     | [LICENSE][4]   |[RSS][5] Version       |[Full Version][6]    |
+|--------------------- |--------------------------------|----------------|-----------------------|---------------------|
+|[V0.0.0.3][7]         |[V0.4][8]                       |[V0.0.1][9]     |[v01.80.3462.5836][10] |[v5.80.3462.5836][11]|
+|                      |                                |                |                       |                     |
 
 
 
@@ -28,6 +26,7 @@ Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-
 
 ## RSS Version
 
+## Full Version
 
 
 ## :thumbsup: Contributors & Credits
@@ -53,8 +52,11 @@ Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-
 [4]: #license
 [5]: #rss-version
 [6]: https://github.com/samuelbetio/storyofmylife/edit/master/feed.xml
-[7]: https://github.com/samuelbetio/storyofmylife/releases
-[8]: https://github.com/samuelbetio/storyofmylife/blob/BackUp.Me/IMG/code.png
+[7]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.0.3
+[8]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.4
+[9]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.1
+[10]: https://github.com/samuelbetio/storyofmylife/releases/tag/v01.80.3462.5836
+[11]: https://github.com/samuelbetio/storyofmylife/releases/tag/v5.80.3462.5836
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
 [samuelbetio]: https://github.com/samuelbetio.png?size=40
