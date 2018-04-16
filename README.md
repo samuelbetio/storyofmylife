@@ -1,4 +1,4 @@
-# CaledarMo[1]
+# [CaledarMo][1]
 Full-sized drag &amp; drop event calendar
 [Full Version][2]
 
