@@ -10,9 +10,9 @@ let a = 3
 Update Version
 ==============
 
-|[![Vuejsfeed][Vuejsfeed]][Vuejsfeed]| .js Version All update Default   |vue.js |
+|[![Vuejsfeed][Vuejsfeed]][Vuejsfeed]| .js Version All update Default   |[vue.js Default Update][2] |
 |------------------------------------|----------------------------------|-------|
-|[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][2]|   |[v1.0.10][3] |
+|[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][3]|   |[v1.0.10][4] |
 
 
 
@@ -34,8 +34,9 @@ Update Version
 
 
 [1]: https://samuelbetio.github.io/storyofmylife
-[2]: https://youtu.be/r4pNEdIt_l4
-[3]: https://raw.githubusercontent.com/samuelbetio/storyofmylife/970fff4efee1f55aefc251088afdf948fa37f6f1/vue.js
+[2]: https://raw.githubusercontent.com/samuelbetio/storyofmylife/js-update/vue.js
+[3]: https://youtu.be/r4pNEdIt_l4
+[4]: https://raw.githubusercontent.com/samuelbetio/storyofmylife/970fff4efee1f55aefc251088afdf948fa37f6f1/vue.js
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
 [samuelbetio]: https://github.com/samuelbetio.png?size=40
