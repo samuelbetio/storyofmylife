@@ -10,9 +10,10 @@ let a = 3
 Update Version
 ==============
 
-|[![Vuejsfeed][Vuejsfeed]][Vuejsfeed]| .js Version All update Default   |[vue.js Default Update][2] |
-|------------------------------------|----------------------------------|-------|
-|[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][3]|   |[v1.0.10][4] |
+|[![Vuejsfeed][Vuejsfeed]][Vuejsfeed]| .js Version All update Default   |
+|------------------------------------|----------------------------------|
+|[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][3]|[vue.js Default Update][2]|
+|                                    |vue.js Start update [v1.0.10][4]|
 
 
 
