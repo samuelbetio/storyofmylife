@@ -17,7 +17,7 @@ Watch Evan You - Reactivity in Frontend JavaScript Frameworks in DotJs Conferenc
 
 
 [![Vuejsfeed][Vuejsfeed]][Vuejsfeed]
-
+[![GetBadges Game](https://samuelbetio-caledarmo.getbadges.io/shield/company/samuelbetio-caledarmo)](https://samuelbetio-caledarmo.getbadges.io/?ref=shield-game)
 
 ## Vue.js Start update @[v1.0.10][4]
 
