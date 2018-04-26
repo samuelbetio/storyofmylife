@@ -10,7 +10,7 @@ let a = 3
 Watch Evan You - Reactivity in Frontend JavaScript Frameworks in DotJs Conference!
 ==============
 
-|RSS                                 |.js Version All update Default    |
+|All Update News                         |.js Version All update Default    |
 |------------------------------------|----------------------------------|
 |[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][3]|[vue.js Default Update][2]|
 |                                    |vue.js Start update [v1.0.10][4]|
