@@ -10,10 +10,10 @@ let a = 3
 Update Version
 ==============
 
-|NAME Full Version              |[Index Version][2] Default    |:tv: [README.md Version][3] Default     | [LICENSE][4] Default  |[RSS][5] Version Default      |[Full Version][6] Default    |
+|[![Vuejsfeed][Vuejsfeed]][Vuejsfeed]|[Index Version][2] Default    |:tv: [README.md Version][3] Default     | [LICENSE][4] Default  |[RSS][5] Version Default      |[Full Version][6] Default    |
 |-------------------------------|--------------------- |--------------------------------|----------------|-----------------------|---------------------|
 |[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][7]|V0.0.0.3     |               |                 |      |                      |
-|[![Vuejsfeed][Vuejsfeed]][Vuejsfeed]| |               |                 |      |                      |
+
 
 
 
