@@ -14,6 +14,8 @@ Watch Evan You - Reactivity in Frontend JavaScript Frameworks in DotJs Conferenc
 |------------------------------------|----------------------------------|
 |[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][3]|[vue.js Default Update][2]|
 |                                    |vue.js Start update [v1.0.10][4]|
+
+
 [![Vuejsfeed][Vuejsfeed]][Vuejsfeed]
 
 
