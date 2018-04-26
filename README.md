@@ -7,14 +7,14 @@ By: [![storyofmylife version][som-image]][som-url]
 
 let a = 3
 
-[![Vuejsfeed][Vuejsfeed]][Vuejsfeed]
+Watch Evan You - Reactivity in Frontend JavaScript Frameworks in DotJs Conference!
 ==============
 
 |RSS                                 |.js Version All update Default    |
 |------------------------------------|----------------------------------|
 |[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][3]|[vue.js Default Update][2]|
 |                                    |vue.js Start update [v1.0.10][4]|
-
+[![Vuejsfeed][Vuejsfeed]][Vuejsfeed]
 
 
 ## :thumbsup: Contributors & Credits
