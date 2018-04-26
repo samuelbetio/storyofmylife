@@ -68,7 +68,7 @@
                                         <a href="index.html" class="fa-home ">Home</a>
                                     </li>
                                     <li>
-                                        <span class="fa-gears ">Features</span>
+                                        <span class="fa-gears active">Features</span>
                                         <ul>
                                             <li class="parent">
                                                 <span>Typography</span>
@@ -171,7 +171,7 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <span class="fa-th active">Portfolio</span>
+                                        <span class="fa-th ">Portfolio</span>
                                         <ul>
                                             <li>
                                                 <a href="portfolio-2-column.html">2 Column</a>
@@ -228,205 +228,193 @@
             <!-- === BEGIN CONTENT === -->
             <div id="content">
                 <div class="container background-white">
-                    <div class="row margin-vert-30">
-                        <div class="col-md-12">
-                            <h2>6 Column Portfolio</h2>
-                            <!-- Filter Buttons -->
-                            <div class="portfolio-filter-container margin-top-20">
-                                <ul class="portfolio-filter">
-                                    <li class="portfolio-filter-label label label-primary">
-                                        filter by:
-                                    </li>
-                                    <li>
-                                        <a href="#" class="portfolio-selected btn btn-default" data-filter="*">All</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-default" data-filter=".code">Coding</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-default" data-filter=".design">Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-default" data-filter=".audio">Audio</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-default" data-filter=".video">Video</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- End Filter Buttons -->
+                    <div class="row margin-vert-40">
+                        <!-- Begin Sidebar Menu -->
+                        <div class="col-md-3">
+                            <ul class="list-group sidebar-nav" id="sidebar-nav">
+                                <!-- Typography -->
+                                <li class="list-group-item list-toggle">
+                                    <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-typography">Typography</a>
+                                    <ul id="collapse-typography" class="collapse">
+                                        <li>
+                                            <a href="features-typo-basic.html">
+                                                <i class="fa fa-sort-alpha-asc"></i>Basic Typography</a>
+                                        </li>
+                                        <li>
+                                            <a href="features-typo-blockquotes.html">
+                                                <i class="fa fa-magic"></i>Blockquotes</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- End Typography -->
+                                <!-- Components -->
+                                <li class="list-group-item list-toggle">
+                                    <a class="accordion-toggle" href="#collapse-components" data-toggle="collapse">Components</a>
+                                    <ul id="collapse-components" class="collapse">
+                                        <li>
+                                            <span class="badge">New</span>
+                                            <a href="features-labels.html">
+                                                <i class="fa fa-tags"></i>Labels</a>
+                                        </li>
+                                        <li>
+                                            <span class="badge">New</span>
+                                            <a href="features-progress-bars.html">
+                                                <i class="fa fa-align-left"></i>Progress Bars</a>
+                                        </li>
+                                        <li>
+                                            <a href="features-panels.html">
+                                                <i class="fa fa-columns"></i>Panels</a>
+                                        </li>
+                                        <li>
+                                            <a href="features-pagination.html">
+                                                <i class="fa fa-arrows-h"></i>Pagination</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- End Components -->
+                                <!-- Icons -->
+                                <li class="list-group-item list-toggle">
+                                    <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-icons">Icons</a>
+                                    <ul id="collapse-icons" class="collapse">
+                                        <li>
+                                            <span class="badge badge-u">New</span>
+                                            <a href="features-icons.html">
+                                                <i class="fa fa-chevron-circle-right"></i>Icon Styling</a>
+                                        </li>
+                                        <li>
+                                            <a href="features-icons-font-awesome.html">
+                                                <i class="fa fa-chevron-circle-right"></i>Font Awesome Icons</a>
+                                        </li>
+                                        <li>
+                                            <a href="features-icons-social.html">
+                                                <i class="fa fa-chevron-circle-right"></i>Social Icons</a>
+                                        </li>
+                                        <li>
+                                            <a href="features-icons-glyphicons.html">
+                                                <i class="fa fa-chevron-circle-right"></i>Glyphicons</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- End Icons -->
+                                <!-- Testimonials -->
+                                <li class="list-group-item">
+                                    <a href="features-testimonials.html">Testimonials</a>
+                                </li>
+                                <!-- End Testimonials -->
+                                <!-- Accordion and Tabs -->
+                                <li class="list-group-item">
+                                    <a href="features-accordions-tabs.html">Accordions & Tabs</a>
+                                </li>
+                                <!-- End Accordion and Tabs -->
+                                <!-- Buttons -->
+                                <li class="list-group-item">
+                                    <a href="features-buttons.html">Buttons</a>
+                                </li>
+                                <!-- End Buttons -->
+                                <!-- Carousels -->
+                                <li class="list-group-item">
+                                    <a href="features-carousels.html">Carousels</a>
+                                </li>
+                                <!-- End Accordion and Tabs -->
+                                <!-- Animate On Scroll -->
+                                <li class="list-group-item">
+                                    <a href="features-animate-on-scroll.html">Animate On Scroll</a>
+                                </li>
+                                <!-- End Animate On Scroll -->
+                                <!-- Grid System -->
+                                <li class="list-group-item">
+                                    <a href="features-grid.html">Grid System</a>
+                                </li>
+                                <!-- End Grid System -->
+                            </ul>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 portfolio-group no-padding">
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 audio">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image1.jpg" alt="image1">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Velit</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
+                        <!-- End Sidebar Menu -->
+                        <div class="col-md-9">
+                            <!-- Default Labels -->
+                            <h3 class="margin-bottom-20">Default Labels</h3>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p>
+                                        <span class="label label-default">Default</span>label-default</p>
+                                    <p>
+                                        <span class="label label-primary">Primary</span>label-primary</p>
+                                    <p>
+                                        <span class="label label-info">Info</span>label-info</p>
+                                    <p>
+                                        <span class="label label-success">Success</span>label-success</p>
+                                    <p>
+                                        <span class="label label-warning">Warning</span>label-warning</p>
+                                    <p>
+                                        <span class="label label-danger">Danger</span>label-danger</p>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>All the default span classes you expect to find with Bootstrap are included.</p>
+                                    <pre><code class="html">&lt;span type=&quot;span&quot; class=&quot;label label-default&quot;&gt;span&lt;/span&gt;
+&lt;span type=&quot;span&quot; class=&quot;label label-primary&quot;&gt;span&lt;/span&gt;
+&lt;span type=&quot;span&quot; class=&quot;label label-info&quot;&gt;span&lt;/span&gt;
+&lt;span type=&quot;span&quot; class=&quot;label label-success&quot;&gt;span&lt;/span&gt;
+&lt;span type=&quot;span&quot; class=&quot;label label-warning&quot;&gt;span&lt;/span&gt;
+&lt;span type=&quot;span&quot; class=&quot;label label-danger&quot;&gt;span&lt;/span&gt;
+&lt;span type=&quot;span&quot; class=&quot;label label-link&quot;&gt;span&lt;/span&gt;</code></pre>
                                 </div>
                             </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 design">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image2.jpg" alt="image2">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Quam</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
+                            <!-- End Default Labels -->
+                            <hr>
+                            <!-- Label Icons -->
+                            <h3 class="margin-bottom-20">Label Icons</h3>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p>
+                                        <span class="label label-primary" type="span">
+                                            <i class="fa fa-picture-o"></i>Icon span
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <span class="label label-primary" type="span">
+                                            <i class="fa fa-database"></i>Icon span
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <span class="label label-primary" type="span">
+                                            <i class="fa fa-bar-chart-o"></i>Icon span
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <span class="label label-lg label-primary" type="span">
+                                            <i class="fa fa-cogs"></i>
+                                        </span>&nbsp;
+                                        <span class="label label-primary" type="span">
+                                            <i class="fa fa-coffee"></i>
+                                        </span>&nbsp;
+                                        <span class="label label-sm label-primary" type="span">
+                                            <i class="fa fa-camera"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>With the integration of Font Awesome with your template you can add any icon from a collection of over 400 icons to your spans.</p>
+                                    <pre><code class="html">&lt;span class=&quot;label label-primary&quot; type=&quot;span&quot;&gt;
+	&lt;i class=&quot;fa fa-picture-o&quot;&gt;&lt;/i&gt; Icon span
+&lt;/span&gt;
+&lt;span class=&quot;label label-primary&quot; type=&quot;span&quot;&gt;
+	&lt;i class=&quot;fa fa-database&quot;&gt;&lt;/i&gt; Icon span
+&lt;/span&gt;
+&lt;span class=&quot;label label-primary&quot; type=&quot;span&quot;&gt;
+	&lt;i class=&quot;fa fa-bar-chart-o&quot;&gt;&lt;/i&gt; Icon span
+&lt;/span&gt;
+&lt;span class=&quot;label label-lg label-primary&quot; type=&quot;span&quot;&gt;
+	&lt;i class=&quot;fa fa-cogs&quot;&gt;&lt;/i&gt;
+&lt;/span&gt;
+&lt;span class=&quot;label label-primary&quot; type=&quot;span&quot;&gt;
+	&lt;i class=&quot;fa fa-coffee&quot;&gt;&lt;/i&gt;
+&lt;/span&gt;
+&lt;span class=&quot;label label-sm label-primary&quot; type=&quot;span&quot;&gt;
+	&lt;i class=&quot;fa fa-camera&quot;&gt;&lt;/i&gt;
+&lt;/span&gt;</code></pre>
                                 </div>
                             </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 video">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image3.jpg" alt="image3">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Place</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 audio">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image4.jpg" alt="image4">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Nam</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 audio">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image5.jpg" alt="image5">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Donec</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 code">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image6.jpg" alt="image6">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Nulla</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 design">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image7.jpg" alt="image7">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Velit</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 code">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image8.jpg" alt="image8">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Quam</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 code">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image9.jpg" alt="image9">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Nobis</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 audio">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image10.jpg" alt="image10">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Solut</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 audio">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image11.jpg" alt="image11">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Aenea</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 design">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image12.jpg" alt="image12">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Sed</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
+                            <!-- End Label Icons -->
+                            <hr>
                         </div>
                     </div>
                 </div>
