@@ -19,7 +19,7 @@ Watch Evan You - Reactivity in Frontend JavaScript Frameworks in DotJs Conferenc
 [![Vuejsfeed][Vuejsfeed]][Vuejsfeed]
 
 
-## Vue.js Start update [v1.0.10][4]
+## Vue.js Start update @[v1.0.10][4]
 
 
 ## :thumbsup: Contributors & Credits
