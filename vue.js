@@ -1,5 +1,5 @@
 /*!
- * Vue.js v1.0.21
+ * Vue.js v1.0.22
  * (c) 2016 Evan You
  * Released under the MIT License.
  */
@@ -50,6 +50,10 @@
     delete obj[key];
     var ob = obj.__ob__;
     if (!ob) {
+      if (obj._isVue) {
+        delete obj._data[key];
+        obj._digest();
+      }
       return;
     }
     ob.dep.notify();
@@ -400,6 +404,8 @@
   var UA = inBrowser && window.navigator.userAgent.toLowerCase();
   var isIE9 = UA && UA.indexOf('msie 9.0') > 0;
   var isAndroid = UA && UA.indexOf('android') > 0;
+  var isIos = UA && /(iphone|ipad|ipod|ios)/i.test(UA);
+  var isWechat = UA && UA.indexOf('micromessenger') > 0;
 
   var transitionProp = undefined;
   var transitionEndEvent = undefined;
@@ -440,7 +446,7 @@
     }
 
     /* istanbul ignore if */
-    if (typeof MutationObserver !== 'undefined') {
+    if (typeof MutationObserver !== 'undefined' && !(isWechat && isIos)) {
       var counter = 1;
       var observer = new MutationObserver(nextTickHandler);
       var textNode = document.createTextNode(counter);
@@ -468,6 +474,27 @@
       timerFunc(nextTickHandler, 0);
     };
   })();
+
+  var _Set = undefined;
+  /* istanbul ignore if */
+  if (typeof Set !== 'undefined' && Set.toString().match(/native code/)) {
+    // use native Set when available.
+    _Set = Set;
+  } else {
+    // a non-standard Set polyfill that only works with primitive keys.
+    _Set = function () {
+      this.set = Object.create(null);
+    };
+    _Set.prototype.has = function (key) {
+      return this.set[key] !== undefined;
+    };
+    _Set.prototype.add = function (key) {
+      this.set[key] = 1;
+    };
+    _Set.prototype.clear = function () {
+      this.set = Object.create(null);
+    };
+  }
 
   function Cache(limit) {
     this.size = 0;
@@ -1549,7 +1576,7 @@ var transition = Object.freeze({
       if (resolveAsset(options, 'components', tag)) {
         return { id: tag };
       } else {
-        var is = hasAttrs && getIsBinding(el);
+        var is = hasAttrs && getIsBinding(el, options);
         if (is) {
           return is;
         } else if ('development' !== 'production') {
@@ -1562,7 +1589,7 @@ var transition = Object.freeze({
         }
       }
     } else if (hasAttrs) {
-      return getIsBinding(el);
+      return getIsBinding(el, options);
     }
   }
 
@@ -1570,14 +1597,18 @@ var transition = Object.freeze({
    * Get "is" binding from an element.
    *
    * @param {Element} el
+   * @param {Object} options
    * @return {Object|undefined}
    */
 
-  function getIsBinding(el) {
+  function getIsBinding(el, options) {
     // dynamic syntax
-    var exp = getAttr(el, 'is');
+    var exp = el.getAttribute('is');
     if (exp != null) {
-      return { id: exp };
+      if (resolveAsset(options, 'components', exp)) {
+        el.removeAttribute('is');
+        return { id: exp };
+      }
     } else {
       exp = getBindAttr(el, 'is');
       if (exp != null) {
@@ -1688,7 +1719,7 @@ var transition = Object.freeze({
    */
 
   function mergeAssets(parentVal, childVal) {
-    var res = Object.create(parentVal);
+    var res = Object.create(parentVal || null);
     return childVal ? extend(res, guardArrayAssets(childVal)) : res;
   }
 
@@ -1847,8 +1878,16 @@ var transition = Object.freeze({
   function mergeOptions(parent, child, vm) {
     guardComponents(child);
     guardProps(child);
+    if ('development' !== 'production') {
+      if (child.propsData && !vm) {
+        warn('propsData can only be used as an instantiation option.');
+      }
+    }
     var options = {};
     var key;
+    if (child['extends']) {
+      parent = typeof child['extends'] === 'function' ? mergeOptions(parent, child['extends'].options, vm) : mergeOptions(parent, child['extends'], vm);
+    }
     if (child.mixins) {
       for (var i = 0, l = child.mixins.length; i < l; i++) {
         parent = mergeOptions(parent, child.mixins[i], vm);
@@ -2281,11 +2320,14 @@ var transition = Object.freeze({
   	devtools: devtools,
   	isIE9: isIE9,
   	isAndroid: isAndroid,
+  	isIos: isIos,
+  	isWechat: isWechat,
   	get transitionProp () { return transitionProp; },
   	get transitionEndEvent () { return transitionEndEvent; },
   	get animationProp () { return animationProp; },
   	get animationEndEvent () { return animationEndEvent; },
   	nextTick: nextTick,
+  	get _Set () { return _Set; },
   	query: query,
   	inDoc: inDoc,
   	getAttr: getAttr,
@@ -2398,13 +2440,8 @@ var transition = Object.freeze({
       this._updateRef();
 
       // initialize data as empty object.
-      // it will be filled up in _initScope().
+      // it will be filled up in _initData().
       this._data = {};
-
-      // save raw constructor data before merge
-      // so that we know which properties are provided at
-      // instantiation.
-      this._runtimeData = options.data;
 
       // call init hook
       this._callHook('init');
@@ -2955,24 +2992,22 @@ var expression = Object.freeze({
   // triggered, the DOM would have already been in updated
   // state.
 
-  var queueIndex;
   var queue = [];
   var userQueue = [];
   var has = {};
   var circular = {};
   var waiting = false;
-  var internalQueueDepleted = false;
 
   /**
    * Reset the batcher's state.
    */
 
   function resetBatcherState() {
-    queue = [];
-    userQueue = [];
+    queue.length = 0;
+    userQueue.length = 0;
     has = {};
     circular = {};
-    waiting = internalQueueDepleted = false;
+    waiting = false;
   }
 
   /**
@@ -2981,8 +3016,12 @@ var expression = Object.freeze({
 
   function flushBatcherQueue() {
     runBatcherQueue(queue);
-    internalQueueDepleted = true;
+    queue.length = 0;
     runBatcherQueue(userQueue);
+    // user watchers triggered more internal watchers
+    if (queue.length) {
+      runBatcherQueue(queue);
+    }
     // dev tool hook
     /* istanbul ignore if */
     if (devtools && config.devtools) {
@@ -3000,8 +3039,8 @@ var expression = Object.freeze({
   function runBatcherQueue(queue) {
     // do not cache length because more watchers might be pushed
     // as we run existing watchers
-    for (queueIndex = 0; queueIndex < queue.length; queueIndex++) {
-      var watcher = queue[queueIndex];
+    for (var i = 0; i < queue.length; i++) {
+      var watcher = queue[i];
       var id = watcher.id;
       has[id] = null;
       watcher.run();
@@ -3030,20 +3069,14 @@ var expression = Object.freeze({
   function pushWatcher(watcher) {
     var id = watcher.id;
     if (has[id] == null) {
-      if (internalQueueDepleted && !watcher.user) {
-        // an internal watcher triggered by a user watcher...
-        // let's run it immediately after current user watcher is done.
-        userQueue.splice(queueIndex + 1, 0, watcher);
-      } else {
-        // push watcher into appropriate queue
-        var q = watcher.user ? userQueue : queue;
-        has[id] = q.length;
-        q.push(watcher);
-        // queue the flush
-        if (!waiting) {
-          waiting = true;
-          nextTick(flushBatcherQueue);
-        }
+      // push watcher into appropriate queue
+      var q = watcher.user ? userQueue : queue;
+      has[id] = q.length;
+      q.push(watcher);
+      // queue the flush
+      if (!waiting) {
+        waiting = true;
+        nextTick(flushBatcherQueue);
       }
     }
   }
@@ -3084,8 +3117,8 @@ var expression = Object.freeze({
     this.dirty = this.lazy; // for lazy watchers
     this.deps = [];
     this.newDeps = [];
-    this.depIds = Object.create(null);
-    this.newDepIds = null;
+    this.depIds = new _Set();
+    this.newDepIds = new _Set();
     this.prevError = null; // for async error stacks
     // parse expression for getter/setter
     if (isFn) {
@@ -3177,8 +3210,6 @@ var expression = Object.freeze({
 
   Watcher.prototype.beforeGet = function () {
     Dep.target = this;
-    this.newDepIds = Object.create(null);
-    this.newDeps.length = 0;
   };
 
   /**
@@ -3189,10 +3220,10 @@ var expression = Object.freeze({
 
   Watcher.prototype.addDep = function (dep) {
     var id = dep.id;
-    if (!this.newDepIds[id]) {
-      this.newDepIds[id] = true;
+    if (!this.newDepIds.has(id)) {
+      this.newDepIds.add(id);
       this.newDeps.push(dep);
-      if (!this.depIds[id]) {
+      if (!this.depIds.has(id)) {
         dep.addSub(this);
       }
     }
@@ -3207,14 +3238,18 @@ var expression = Object.freeze({
     var i = this.deps.length;
     while (i--) {
       var dep = this.deps[i];
-      if (!this.newDepIds[dep.id]) {
+      if (!this.newDepIds.has(dep.id)) {
         dep.removeSub(this);
       }
     }
+    var tmp = this.depIds;
     this.depIds = this.newDepIds;
-    var tmp = this.deps;
+    this.newDepIds = tmp;
+    this.newDepIds.clear();
+    tmp = this.deps;
     this.deps = this.newDeps;
     this.newDeps = tmp;
+    this.newDeps.length = 0;
   };
 
   /**
@@ -3338,15 +3373,33 @@ var expression = Object.freeze({
    * @param {*} val
    */
 
-  function traverse(val) {
-    var i, keys;
-    if (isArray(val)) {
-      i = val.length;
-      while (i--) traverse(val[i]);
-    } else if (isObject(val)) {
-      keys = Object.keys(val);
-      i = keys.length;
-      while (i--) traverse(val[keys[i]]);
+  var seenObjects = new _Set();
+  function traverse(val, seen) {
+    var i = undefined,
+        keys = undefined;
+    if (!seen) {
+      seen = seenObjects;
+      seen.clear();
+    }
+    var isA = isArray(val);
+    var isO = isObject(val);
+    if (isA || isO) {
+      if (val.__ob__) {
+        var depId = val.__ob__.dep.id;
+        if (seen.has(depId)) {
+          return;
+        } else {
+          seen.add(depId);
+        }
+      }
+      if (isA) {
+        i = val.length;
+        while (i--) traverse(val[i], seen);
+      } else if (isO) {
+        keys = Object.keys(val);
+        i = keys.length;
+        while (i--) traverse(val[keys[i]], seen);
+      }
     }
   }
 
@@ -3455,10 +3508,13 @@ var expression = Object.freeze({
 
   function nodeToFragment(node) {
     // if its a template tag and the browser supports it,
-    // its content is already a document fragment.
+    // its content is already a document fragment. However, iOS Safari has
+    // bug when using directly cloned template content with touch
+    // events and can cause crashes when the nodes are removed from DOM, so we
+    // have to treat template elements as string templates. (#2805)
+    /* istanbul ignore if */
     if (isRealTemplate(node)) {
-      trimNode(node.content);
-      return node.content;
+      return stringToFragment(node.innerHTML);
     }
     // script template
     if (node.tagName === 'SCRIPT') {
@@ -3854,7 +3910,7 @@ var template = Object.freeze({
     this.vm = vm;
     var template;
     var isString = typeof el === 'string';
-    if (isString || isTemplate(el)) {
+    if (isString || isTemplate(el) && !el.hasAttribute('v-if')) {
       template = parseTemplate(el, true);
     } else {
       template = document.createDocumentFragment();
@@ -4196,7 +4252,15 @@ var template = Object.freeze({
         });
         setTimeout(op, staggerAmount);
       } else {
-        frag.before(prevEl.nextSibling);
+        var target = prevEl.nextSibling;
+        /* istanbul ignore if */
+        if (!target) {
+          // reset end anchor position in case the position was messed up
+          // by an external drag-n-drop library.
+          after(this.end, prevEl);
+          target = this.end;
+        }
+        frag.before(target);
       }
     },
 
@@ -4267,7 +4331,7 @@ var template = Object.freeze({
       var primitive = !isObject(value);
       var id;
       if (key || trackByKey || primitive) {
-        id = trackByKey ? trackByKey === '$index' ? index : getPath(value, trackByKey) : key || value;
+        id = getTrackByKey(index, key, value, trackByKey);
         if (!cache[id]) {
           cache[id] = frag;
         } else if (trackByKey !== '$index') {
@@ -4281,8 +4345,10 @@ var template = Object.freeze({
           } else {
             'development' !== 'production' && this.warnDuplicate(value);
           }
-        } else {
+        } else if (Object.isExtensible(value)) {
           def(value, id, frag);
+        } else if ('development' !== 'production') {
+          warn('Frozen v-for objects cannot be automatically tracked, make sure to ' + 'provide a track-by key.');
         }
       }
       frag.raw = value;
@@ -4302,7 +4368,7 @@ var template = Object.freeze({
       var primitive = !isObject(value);
       var frag;
       if (key || trackByKey || primitive) {
-        var id = trackByKey ? trackByKey === '$index' ? index : getPath(value, trackByKey) : key || value;
+        var id = getTrackByKey(index, key, value, trackByKey);
         frag = this.cache[id];
       } else {
         frag = value[this.id];
@@ -4329,7 +4395,7 @@ var template = Object.freeze({
       var key = hasOwn(scope, '$key') && scope.$key;
       var primitive = !isObject(value);
       if (trackByKey || key || primitive) {
-        var id = trackByKey ? trackByKey === '$index' ? index : getPath(value, trackByKey) : key || value;
+        var id = getTrackByKey(index, key, value, trackByKey);
         this.cache[id] = null;
       } else {
         value[this.id] = null;
@@ -4477,6 +4543,19 @@ var template = Object.freeze({
       ret[i] = i;
     }
     return ret;
+  }
+
+  /**
+   * Get the track by key for an item.
+   *
+   * @param {Number} index
+   * @param {String} key
+   * @param {*} value
+   * @param {String} [trackByKey]
+   */
+
+  function getTrackByKey(index, key, value, trackByKey) {
+    return trackByKey ? trackByKey === '$index' ? index : trackByKey.charAt(0).match(/\w/) ? getPath(value, trackByKey) : value[trackByKey] : key || value;
   }
 
   if ('development' !== 'production') {
@@ -5080,7 +5159,7 @@ var template = Object.freeze({
       }
       // key filter
       var keys = Object.keys(this.modifiers).filter(function (key) {
-        return key !== 'stop' && key !== 'prevent' && key !== 'self';
+        return key !== 'stop' && key !== 'prevent' && key !== 'self' && key !== 'capture';
       });
       if (keys.length) {
         handler = keyFilter(handler, keys);
@@ -5209,6 +5288,12 @@ var template = Object.freeze({
     }
     var i = prefixes.length;
     var prefixed;
+    if (camel !== 'filter' && camel in testEl.style) {
+      return {
+        kebab: prop,
+        camel: camel
+      };
+    }
     while (i--) {
       prefixed = camelPrefixes[i] + upper;
       if (prefixed in testEl.style) {
@@ -5217,12 +5302,6 @@ var template = Object.freeze({
           camel: prefixed
         };
       }
-    }
-    if (camel in testEl.style) {
-      return {
-        kebab: prop,
-        camel: camel
-      };
     }
   }
 
@@ -5312,8 +5391,12 @@ var template = Object.freeze({
         attr = camelize(attr);
       }
       if (!interp && attrWithPropsRE.test(attr) && attr in el) {
-        el[attr] = attr === 'value' ? value == null // IE9 will set input.value to "null" for null...
+        var attrValue = attr === 'value' ? value == null // IE9 will set input.value to "null" for null...
         ? '' : value : value;
+
+        if (el[attr] !== attrValue) {
+          el[attr] = attrValue;
+        }
       }
       // set model props
       var modelProp = modelProps[attr];
@@ -5413,66 +5496,66 @@ var template = Object.freeze({
     deep: true,
 
     update: function update(value) {
-      if (value && typeof value === 'string') {
-        this.handleObject(stringToObject(value));
-      } else if (isPlainObject(value)) {
-        this.handleObject(value);
-      } else if (isArray(value)) {
-        this.handleArray(value);
-      } else {
+      if (!value) {
         this.cleanup();
+      } else if (typeof value === 'string') {
+        this.setClass(value.trim().split(/\s+/));
+      } else {
+        this.setClass(normalize$1(value));
       }
     },
 
-    handleObject: function handleObject(value) {
-      this.cleanup(value);
-      this.prevKeys = Object.keys(value);
-      setObjectClasses(this.el, value);
-    },
-
-    handleArray: function handleArray(value) {
+    setClass: function setClass(value) {
       this.cleanup(value);
       for (var i = 0, l = value.length; i < l; i++) {
         var val = value[i];
-        if (val && isPlainObject(val)) {
-          setObjectClasses(this.el, val);
-        } else if (val && typeof val === 'string') {
-          addClass(this.el, val);
+        if (val) {
+          apply(this.el, val, addClass);
         }
       }
-      this.prevKeys = value.slice();
+      this.prevKeys = value;
     },
 
     cleanup: function cleanup(value) {
-      if (!this.prevKeys) return;
-
-      var i = this.prevKeys.length;
+      var prevKeys = this.prevKeys;
+      if (!prevKeys) return;
+      var i = prevKeys.length;
       while (i--) {
-        var key = this.prevKeys[i];
-        if (!key) continue;
-
-        var keys = isPlainObject(key) ? Object.keys(key) : [key];
-        for (var j = 0, l = keys.length; j < l; j++) {
-          toggleClasses(this.el, keys[j], removeClass);
+        var key = prevKeys[i];
+        if (!value || value.indexOf(key) < 0) {
+          apply(this.el, key, removeClass);
         }
       }
     }
   };
 
-  function setObjectClasses(el, obj) {
-    var keys = Object.keys(obj);
-    for (var i = 0, l = keys.length; i < l; i++) {
-      var key = keys[i];
-      if (!obj[key]) continue;
-      toggleClasses(el, key, addClass);
-    }
-  }
+  /**
+   * Normalize objects and arrays (potentially containing objects)
+   * into array of strings.
+   *
+   * @param {Object|Array<String|Object>} value
+   * @return {Array<String>}
+   */
 
-  function stringToObject(value) {
-    var res = {};
-    var keys = value.trim().split(/\s+/);
-    for (var i = 0, l = keys.length; i < l; i++) {
-      res[keys[i]] = true;
+  function normalize$1(value) {
+    var res = [];
+    if (isArray(value)) {
+      for (var i = 0, l = value.length; i < l; i++) {
+        var _key = value[i];
+        if (_key) {
+          if (typeof _key === 'string') {
+            res.push(_key);
+          } else {
+            for (var k in _key) {
+              if (_key[k]) res.push(k);
+            }
+          }
+        }
+      }
+    } else if (isObject(value)) {
+      for (var key in value) {
+        if (value[key]) res.push(key);
+      }
     }
     return res;
   }
@@ -5488,14 +5571,12 @@ var template = Object.freeze({
    * @param {Function} fn
    */
 
-  function toggleClasses(el, key, fn) {
+  function apply(el, key, fn) {
     key = key.trim();
-
     if (key.indexOf(' ') === -1) {
       fn(el, key);
       return;
     }
-
     // The key contains one or more space characters.
     // Since a class name doesn't accept such characters, we
     // treat it as multiple classes.
@@ -5546,6 +5627,7 @@ var template = Object.freeze({
         // cached, when the component is used elsewhere this attribute
         // will remain at link time.
         this.el.removeAttribute('is');
+        this.el.removeAttribute(':is');
         // remove ref, same as above
         if (this.descriptor.ref) {
           this.el.removeAttribute('v-ref:' + hyphenate(this.descriptor.ref));
@@ -5980,6 +6062,7 @@ var template = Object.freeze({
     return function propsLinkFn(vm, scope) {
       // store resolved props info
       vm._props = {};
+      var inlineProps = vm.$options.propsData;
       var i = props.length;
       var prop, path, options, value, raw;
       while (i--) {
@@ -5988,7 +6071,9 @@ var template = Object.freeze({
         path = prop.path;
         options = prop.options;
         vm._props[path] = prop;
-        if (raw === null) {
+        if (inlineProps && hasOwn(inlineProps, path)) {
+          initProp(vm, prop, inlineProps[path]);
+        }if (raw === null) {
           // initialize absent prop
           initProp(vm, prop, undefined);
         } else if (prop.dynamic) {
@@ -6749,7 +6834,7 @@ var template = Object.freeze({
     // link function for the node itself.
     var nodeLinkFn = partial || !options._asComponent ? compileNode(el, options) : null;
     // link function for the childNodes
-    var childLinkFn = !(nodeLinkFn && nodeLinkFn.terminal) && el.tagName !== 'SCRIPT' && el.hasChildNodes() ? compileNodeList(el.childNodes, options) : null;
+    var childLinkFn = !(nodeLinkFn && nodeLinkFn.terminal) && !isScript(el) && el.hasChildNodes() ? compileNodeList(el.childNodes, options) : null;
 
     /**
      * A composite linker function to be called on a already
@@ -6925,7 +7010,7 @@ var template = Object.freeze({
       });
       if (names.length) {
         var plural = names.length > 1;
-        warn('Attribute' + (plural ? 's ' : ' ') + names.join(', ') + (plural ? ' are' : ' is') + ' ignored on component ' + '<' + options.el.tagName.toLowerCase() + '> because ' + 'the component is a fragment instance: ' + 'http://vuejs.org/guide/components.html#Fragment_Instance');
+        warn('Attribute' + (plural ? 's ' : ' ') + names.join(', ') + (plural ? ' are' : ' is') + ' ignored on component ' + '<' + options.el.tagName.toLowerCase() + '> because ' + 'the component is a fragment instance: ' + 'http://vuejs.org/guide/components.html#Fragment-Instance');
       }
     }
 
@@ -6962,7 +7047,7 @@ var template = Object.freeze({
 
   function compileNode(node, options) {
     var type = node.nodeType;
-    if (type === 1 && node.tagName !== 'SCRIPT') {
+    if (type === 1 && !isScript(node)) {
       return compileElement(node, options);
     } else if (type === 3 && node.data.trim()) {
       return compileTextNode(node, options);
@@ -7257,7 +7342,6 @@ var template = Object.freeze({
     var attr, name, value, modifiers, matched, dirName, rawName, arg, def, termDef;
     for (var i = 0, j = attrs.length; i < j; i++) {
       attr = attrs[i];
-      modifiers = parseModifiers(attr.name);
       name = attr.name.replace(modifierRE, '');
       if (matched = name.match(dirAttrRE)) {
         def = resolveAsset(options, 'directives', matched[1]);
@@ -7265,6 +7349,7 @@ var template = Object.freeze({
           if (!termDef || (def.priority || DEFAULT_TERMINAL_PRIORITY) > termDef.priority) {
             termDef = def;
             rawName = attr.name;
+            modifiers = parseModifiers(attr.name);
             value = attr.value;
             dirName = matched[1];
             arg = matched[2];
@@ -7485,6 +7570,10 @@ var template = Object.freeze({
     }
   }
 
+  function isScript(el) {
+    return el.tagName === 'SCRIPT' && (!el.hasAttribute('type') || el.getAttribute('type') === 'text/javascript');
+  }
+
   var specialCharRE = /[^\w\-:\.]/;
 
   /**
@@ -7614,8 +7703,8 @@ var template = Object.freeze({
       value = attrs[i].value;
       if (!to.hasAttribute(name) && !specialCharRE.test(name)) {
         to.setAttribute(name, value);
-      } else if (name === 'class' && !parseText(value)) {
-        value.trim().split(/\s+/).forEach(function (cls) {
+      } else if (name === 'class' && !parseText(value) && (value = value.trim())) {
+        value.split(/\s+/).forEach(function (cls) {
           addClass(to, cls);
         });
       }
@@ -7654,6 +7743,10 @@ var template = Object.freeze({
       contents[name] = extractFragment(contents[name], content);
     }
     if (content.hasChildNodes()) {
+      var nodes = content.childNodes;
+      if (nodes.length === 1 && nodes[0].nodeType === 3 && !nodes[0].data.trim()) {
+        return;
+      }
       contents['default'] = extractFragment(content.childNodes, content);
     }
   }
@@ -7753,7 +7846,6 @@ var template = Object.freeze({
         'development' !== 'production' && warn('data functions should return an object.', this);
       }
       var props = this._props;
-      var runtimeData = this._runtimeData ? typeof this._runtimeData === 'function' ? this._runtimeData() : this._runtimeData : null;
       // proxy data on instance
       var keys = Object.keys(data);
       var i, key;
@@ -7764,10 +7856,10 @@ var template = Object.freeze({
         // 1. it's not already defined as a prop
         // 2. it's provided via a instantiation option AND there are no
         //    template prop present
-        if (!props || !hasOwn(props, key) || runtimeData && hasOwn(runtimeData, key) && props[key].raw === null) {
+        if (!props || !hasOwn(props, key)) {
           this._proxy(key);
         } else if ('development' !== 'production') {
-          warn('Data field "' + key + '" is already defined ' + 'as a prop. Use prop default value instead.', this);
+          warn('Data field "' + key + '" is already defined ' + 'as a prop. To provide default value for a prop, use the "default" ' + 'prop option; if you want to pass prop values to an instantiation ' + 'call, use the "propsData" option.', this);
         }
       }
       // observe data
@@ -7957,18 +8049,21 @@ var template = Object.freeze({
 
     function registerComponentEvents(vm, el) {
       var attrs = el.attributes;
-      var name, handler;
+      var name, value, handler;
       for (var i = 0, l = attrs.length; i < l; i++) {
         name = attrs[i].name;
         if (eventRE.test(name)) {
           name = name.replace(eventRE, '');
-          handler = (vm._scope || vm._context).$eval(attrs[i].value, true);
-          if (typeof handler === 'function') {
-            handler._fromParent = true;
-            vm.$on(name.replace(eventRE), handler);
-          } else if ('development' !== 'production') {
-            warn('v-on:' + name + '="' + attrs[i].value + '" ' + 'expects a function value, got ' + handler, vm);
+          // force the expression into a statement so that
+          // it always dynamically resolves the method to call (#2670)
+          // kinda ugly hack, but does the job.
+          value = attrs[i].value;
+          if (isSimplePath(value)) {
+            value += '.apply(this, $arguments)';
           }
+          handler = (vm._scope || vm._context).$eval(value, true);
+          handler._fromParent = true;
+          vm.$on(name.replace(eventRE), handler);
         }
       }
     }
@@ -8205,4 +8300,1721 @@ var template = Object.freeze({
         twoWay: this.twoWay,
         deep: this.deep,
         preProcess: preProcess,
-        postProcess: postProcess
+        postProcess: postProcess,
+        scope: this._scope
+      });
+      // v-model with inital inline value need to sync back to
+      // model instead of update to DOM on init. They would
+      // set the afterBind hook to indicate that.
+      if (this.afterBind) {
+        this.afterBind();
+      } else if (this.update) {
+        this.update(watcher.value);
+      }
+    }
+  };
+
+  /**
+   * Setup all param attributes, e.g. track-by,
+   * transition-mode, etc...
+   */
+
+  Directive.prototype._setupParams = function () {
+    if (!this.params) {
+      return;
+    }
+    var params = this.params;
+    // swap the params array with a fresh object.
+    this.params = Object.create(null);
+    var i = params.length;
+    var key, val, mappedKey;
+    while (i--) {
+      key = hyphenate(params[i]);
+      mappedKey = camelize(key);
+      val = getBindAttr(this.el, key);
+      if (val != null) {
+        // dynamic
+        this._setupParamWatcher(mappedKey, val);
+      } else {
+        // static
+        val = getAttr(this.el, key);
+        if (val != null) {
+          this.params[mappedKey] = val === '' ? true : val;
+        }
+      }
+    }
+  };
+
+  /**
+   * Setup a watcher for a dynamic param.
+   *
+   * @param {String} key
+   * @param {String} expression
+   */
+
+  Directive.prototype._setupParamWatcher = function (key, expression) {
+    var self = this;
+    var called = false;
+    var unwatch = (this._scope || this.vm).$watch(expression, function (val, oldVal) {
+      self.params[key] = val;
+      // since we are in immediate mode,
+      // only call the param change callbacks if this is not the first update.
+      if (called) {
+        var cb = self.paramWatchers && self.paramWatchers[key];
+        if (cb) {
+          cb.call(self, val, oldVal);
+        }
+      } else {
+        called = true;
+      }
+    }, {
+      immediate: true,
+      user: false
+    });(this._paramUnwatchFns || (this._paramUnwatchFns = [])).push(unwatch);
+  };
+
+  /**
+   * Check if the directive is a function caller
+   * and if the expression is a callable one. If both true,
+   * we wrap up the expression and use it as the event
+   * handler.
+   *
+   * e.g. on-click="a++"
+   *
+   * @return {Boolean}
+   */
+
+  Directive.prototype._checkStatement = function () {
+    var expression = this.expression;
+    if (expression && this.acceptStatement && !isSimplePath(expression)) {
+      var fn = parseExpression(expression).get;
+      var scope = this._scope || this.vm;
+      var handler = function handler(e) {
+        scope.$event = e;
+        fn.call(scope, scope);
+        scope.$event = null;
+      };
+      if (this.filters) {
+        handler = scope._applyFilters(handler, null, this.filters);
+      }
+      this.update(handler);
+      return true;
+    }
+  };
+
+  /**
+   * Set the corresponding value with the setter.
+   * This should only be used in two-way directives
+   * e.g. v-model.
+   *
+   * @param {*} value
+   * @public
+   */
+
+  Directive.prototype.set = function (value) {
+    /* istanbul ignore else */
+    if (this.twoWay) {
+      this._withLock(function () {
+        this._watcher.set(value);
+      });
+    } else if ('development' !== 'production') {
+      warn('Directive.set() can only be used inside twoWay' + 'directives.');
+    }
+  };
+
+  /**
+   * Execute a function while preventing that function from
+   * triggering updates on this directive instance.
+   *
+   * @param {Function} fn
+   */
+
+  Directive.prototype._withLock = function (fn) {
+    var self = this;
+    self._locked = true;
+    fn.call(self);
+    nextTick(function () {
+      self._locked = false;
+    });
+  };
+
+  /**
+   * Convenience method that attaches a DOM event listener
+   * to the directive element and autometically tears it down
+   * during unbind.
+   *
+   * @param {String} event
+   * @param {Function} handler
+   * @param {Boolean} [useCapture]
+   */
+
+  Directive.prototype.on = function (event, handler, useCapture) {
+    on(this.el, event, handler, useCapture);(this._listeners || (this._listeners = [])).push([event, handler]);
+  };
+
+  /**
+   * Teardown the watcher and call unbind.
+   */
+
+  Directive.prototype._teardown = function () {
+    if (this._bound) {
+      this._bound = false;
+      if (this.unbind) {
+        this.unbind();
+      }
+      if (this._watcher) {
+        this._watcher.teardown();
+      }
+      var listeners = this._listeners;
+      var i;
+      if (listeners) {
+        i = listeners.length;
+        while (i--) {
+          off(this.el, listeners[i][0], listeners[i][1]);
+        }
+      }
+      var unwatchFns = this._paramUnwatchFns;
+      if (unwatchFns) {
+        i = unwatchFns.length;
+        while (i--) {
+          unwatchFns[i]();
+        }
+      }
+      if ('development' !== 'production' && this.el) {
+        this.el._vue_directives.$remove(this);
+      }
+      this.vm = this.el = this._watcher = this._listeners = null;
+    }
+  };
+
+  function lifecycleMixin (Vue) {
+    /**
+     * Update v-ref for component.
+     *
+     * @param {Boolean} remove
+     */
+
+    Vue.prototype._updateRef = function (remove) {
+      var ref = this.$options._ref;
+      if (ref) {
+        var refs = (this._scope || this._context).$refs;
+        if (remove) {
+          if (refs[ref] === this) {
+            refs[ref] = null;
+          }
+        } else {
+          refs[ref] = this;
+        }
+      }
+    };
+
+    /**
+     * Transclude, compile and link element.
+     *
+     * If a pre-compiled linker is available, that means the
+     * passed in element will be pre-transcluded and compiled
+     * as well - all we need to do is to call the linker.
+     *
+     * Otherwise we need to call transclude/compile/link here.
+     *
+     * @param {Element} el
+     */
+
+    Vue.prototype._compile = function (el) {
+      var options = this.$options;
+
+      // transclude and init element
+      // transclude can potentially replace original
+      // so we need to keep reference; this step also injects
+      // the template and caches the original attributes
+      // on the container node and replacer node.
+      var original = el;
+      el = transclude(el, options);
+      this._initElement(el);
+
+      // handle v-pre on root node (#2026)
+      if (el.nodeType === 1 && getAttr(el, 'v-pre') !== null) {
+        return;
+      }
+
+      // root is always compiled per-instance, because
+      // container attrs and props can be different every time.
+      var contextOptions = this._context && this._context.$options;
+      var rootLinker = compileRoot(el, options, contextOptions);
+
+      // resolve slot distribution
+      resolveSlots(this, options._content);
+
+      // compile and link the rest
+      var contentLinkFn;
+      var ctor = this.constructor;
+      // component compilation can be cached
+      // as long as it's not using inline-template
+      if (options._linkerCachable) {
+        contentLinkFn = ctor.linker;
+        if (!contentLinkFn) {
+          contentLinkFn = ctor.linker = compile(el, options);
+        }
+      }
+
+      // link phase
+      // make sure to link root with prop scope!
+      var rootUnlinkFn = rootLinker(this, el, this._scope);
+      var contentUnlinkFn = contentLinkFn ? contentLinkFn(this, el) : compile(el, options)(this, el);
+
+      // register composite unlink function
+      // to be called during instance destruction
+      this._unlinkFn = function () {
+        rootUnlinkFn();
+        // passing destroying: true to avoid searching and
+        // splicing the directives
+        contentUnlinkFn(true);
+      };
+
+      // finally replace original
+      if (options.replace) {
+        replace(original, el);
+      }
+
+      this._isCompiled = true;
+      this._callHook('compiled');
+    };
+
+    /**
+     * Initialize instance element. Called in the public
+     * $mount() method.
+     *
+     * @param {Element} el
+     */
+
+    Vue.prototype._initElement = function (el) {
+      if (isFragment(el)) {
+        this._isFragment = true;
+        this.$el = this._fragmentStart = el.firstChild;
+        this._fragmentEnd = el.lastChild;
+        // set persisted text anchors to empty
+        if (this._fragmentStart.nodeType === 3) {
+          this._fragmentStart.data = this._fragmentEnd.data = '';
+        }
+        this._fragment = el;
+      } else {
+        this.$el = el;
+      }
+      this.$el.__vue__ = this;
+      this._callHook('beforeCompile');
+    };
+
+    /**
+     * Create and bind a directive to an element.
+     *
+     * @param {Object} descriptor - parsed directive descriptor
+     * @param {Node} node   - target node
+     * @param {Vue} [host] - transclusion host component
+     * @param {Object} [scope] - v-for scope
+     * @param {Fragment} [frag] - owner fragment
+     */
+
+    Vue.prototype._bindDir = function (descriptor, node, host, scope, frag) {
+      this._directives.push(new Directive(descriptor, this, node, host, scope, frag));
+    };
+
+    /**
+     * Teardown an instance, unobserves the data, unbind all the
+     * directives, turn off all the event listeners, etc.
+     *
+     * @param {Boolean} remove - whether to remove the DOM node.
+     * @param {Boolean} deferCleanup - if true, defer cleanup to
+     *                                 be called later
+     */
+
+    Vue.prototype._destroy = function (remove, deferCleanup) {
+      if (this._isBeingDestroyed) {
+        if (!deferCleanup) {
+          this._cleanup();
+        }
+        return;
+      }
+
+      var destroyReady;
+      var pendingRemoval;
+
+      var self = this;
+      // Cleanup should be called either synchronously or asynchronoysly as
+      // callback of this.$remove(), or if remove and deferCleanup are false.
+      // In any case it should be called after all other removing, unbinding and
+      // turning of is done
+      var cleanupIfPossible = function cleanupIfPossible() {
+        if (destroyReady && !pendingRemoval && !deferCleanup) {
+          self._cleanup();
+        }
+      };
+
+      // remove DOM element
+      if (remove && this.$el) {
+        pendingRemoval = true;
+        this.$remove(function () {
+          pendingRemoval = false;
+          cleanupIfPossible();
+        });
+      }
+
+      this._callHook('beforeDestroy');
+      this._isBeingDestroyed = true;
+      var i;
+      // remove self from parent. only necessary
+      // if parent is not being destroyed as well.
+      var parent = this.$parent;
+      if (parent && !parent._isBeingDestroyed) {
+        parent.$children.$remove(this);
+        // unregister ref (remove: true)
+        this._updateRef(true);
+      }
+      // destroy all children.
+      i = this.$children.length;
+      while (i--) {
+        this.$children[i].$destroy();
+      }
+      // teardown props
+      if (this._propsUnlinkFn) {
+        this._propsUnlinkFn();
+      }
+      // teardown all directives. this also tearsdown all
+      // directive-owned watchers.
+      if (this._unlinkFn) {
+        this._unlinkFn();
+      }
+      i = this._watchers.length;
+      while (i--) {
+        this._watchers[i].teardown();
+      }
+      // remove reference to self on $el
+      if (this.$el) {
+        this.$el.__vue__ = null;
+      }
+
+      destroyReady = true;
+      cleanupIfPossible();
+    };
+
+    /**
+     * Clean up to ensure garbage collection.
+     * This is called after the leave transition if there
+     * is any.
+     */
+
+    Vue.prototype._cleanup = function () {
+      if (this._isDestroyed) {
+        return;
+      }
+      // remove self from owner fragment
+      // do it in cleanup so that we can call $destroy with
+      // defer right when a fragment is about to be removed.
+      if (this._frag) {
+        this._frag.children.$remove(this);
+      }
+      // remove reference from data ob
+      // frozen object may not have observer.
+      if (this._data && this._data.__ob__) {
+        this._data.__ob__.removeVm(this);
+      }
+      // Clean up references to private properties and other
+      // instances. preserve reference to _data so that proxy
+      // accessors still work. The only potential side effect
+      // here is that mutating the instance after it's destroyed
+      // may affect the state of other components that are still
+      // observing the same object, but that seems to be a
+      // reasonable responsibility for the user rather than
+      // always throwing an error on them.
+      this.$el = this.$parent = this.$root = this.$children = this._watchers = this._context = this._scope = this._directives = null;
+      // call the last hook...
+      this._isDestroyed = true;
+      this._callHook('destroyed');
+      // turn off all instance listeners.
+      this.$off();
+    };
+  }
+
+  function miscMixin (Vue) {
+    /**
+     * Apply a list of filter (descriptors) to a value.
+     * Using plain for loops here because this will be called in
+     * the getter of any watcher with filters so it is very
+     * performance sensitive.
+     *
+     * @param {*} value
+     * @param {*} [oldValue]
+     * @param {Array} filters
+     * @param {Boolean} write
+     * @return {*}
+     */
+
+    Vue.prototype._applyFilters = function (value, oldValue, filters, write) {
+      var filter, fn, args, arg, offset, i, l, j, k;
+      for (i = 0, l = filters.length; i < l; i++) {
+        filter = filters[write ? l - i - 1 : i];
+        fn = resolveAsset(this.$options, 'filters', filter.name, true);
+        if (!fn) continue;
+        fn = write ? fn.write : fn.read || fn;
+        if (typeof fn !== 'function') continue;
+        args = write ? [value, oldValue] : [value];
+        offset = write ? 2 : 1;
+        if (filter.args) {
+          for (j = 0, k = filter.args.length; j < k; j++) {
+            arg = filter.args[j];
+            args[j + offset] = arg.dynamic ? this.$get(arg.value) : arg.value;
+          }
+        }
+        value = fn.apply(this, args);
+      }
+      return value;
+    };
+
+    /**
+     * Resolve a component, depending on whether the component
+     * is defined normally or using an async factory function.
+     * Resolves synchronously if already resolved, otherwise
+     * resolves asynchronously and caches the resolved
+     * constructor on the factory.
+     *
+     * @param {String|Function} value
+     * @param {Function} cb
+     */
+
+    Vue.prototype._resolveComponent = function (value, cb) {
+      var factory;
+      if (typeof value === 'function') {
+        factory = value;
+      } else {
+        factory = resolveAsset(this.$options, 'components', value, true);
+      }
+      /* istanbul ignore if */
+      if (!factory) {
+        return;
+      }
+      // async component factory
+      if (!factory.options) {
+        if (factory.resolved) {
+          // cached
+          cb(factory.resolved);
+        } else if (factory.requested) {
+          // pool callbacks
+          factory.pendingCallbacks.push(cb);
+        } else {
+          factory.requested = true;
+          var cbs = factory.pendingCallbacks = [cb];
+          factory.call(this, function resolve(res) {
+            if (isPlainObject(res)) {
+              res = Vue.extend(res);
+            }
+            // cache resolved
+            factory.resolved = res;
+            // invoke callbacks
+            for (var i = 0, l = cbs.length; i < l; i++) {
+              cbs[i](res);
+            }
+          }, function reject(reason) {
+            'development' !== 'production' && warn('Failed to resolve async component' + (typeof value === 'string' ? ': ' + value : '') + '. ' + (reason ? '\nReason: ' + reason : ''));
+          });
+        }
+      } else {
+        // normal component
+        cb(factory);
+      }
+    };
+  }
+
+  var filterRE$1 = /[^|]\|[^|]/;
+
+  function dataAPI (Vue) {
+    /**
+     * Get the value from an expression on this vm.
+     *
+     * @param {String} exp
+     * @param {Boolean} [asStatement]
+     * @return {*}
+     */
+
+    Vue.prototype.$get = function (exp, asStatement) {
+      var res = parseExpression(exp);
+      if (res) {
+        if (asStatement) {
+          var self = this;
+          return function statementHandler() {
+            self.$arguments = toArray(arguments);
+            var result = res.get.call(self, self);
+            self.$arguments = null;
+            return result;
+          };
+        } else {
+          try {
+            return res.get.call(this, this);
+          } catch (e) {}
+        }
+      }
+    };
+
+    /**
+     * Set the value from an expression on this vm.
+     * The expression must be a valid left-hand
+     * expression in an assignment.
+     *
+     * @param {String} exp
+     * @param {*} val
+     */
+
+    Vue.prototype.$set = function (exp, val) {
+      var res = parseExpression(exp, true);
+      if (res && res.set) {
+        res.set.call(this, this, val);
+      }
+    };
+
+    /**
+     * Delete a property on the VM
+     *
+     * @param {String} key
+     */
+
+    Vue.prototype.$delete = function (key) {
+      del(this._data, key);
+    };
+
+    /**
+     * Watch an expression, trigger callback when its
+     * value changes.
+     *
+     * @param {String|Function} expOrFn
+     * @param {Function} cb
+     * @param {Object} [options]
+     *                 - {Boolean} deep
+     *                 - {Boolean} immediate
+     * @return {Function} - unwatchFn
+     */
+
+    Vue.prototype.$watch = function (expOrFn, cb, options) {
+      var vm = this;
+      var parsed;
+      if (typeof expOrFn === 'string') {
+        parsed = parseDirective(expOrFn);
+        expOrFn = parsed.expression;
+      }
+      var watcher = new Watcher(vm, expOrFn, cb, {
+        deep: options && options.deep,
+        sync: options && options.sync,
+        filters: parsed && parsed.filters,
+        user: !options || options.user !== false
+      });
+      if (options && options.immediate) {
+        cb.call(vm, watcher.value);
+      }
+      return function unwatchFn() {
+        watcher.teardown();
+      };
+    };
+
+    /**
+     * Evaluate a text directive, including filters.
+     *
+     * @param {String} text
+     * @param {Boolean} [asStatement]
+     * @return {String}
+     */
+
+    Vue.prototype.$eval = function (text, asStatement) {
+      // check for filters.
+      if (filterRE$1.test(text)) {
+        var dir = parseDirective(text);
+        // the filter regex check might give false positive
+        // for pipes inside strings, so it's possible that
+        // we don't get any filters here
+        var val = this.$get(dir.expression, asStatement);
+        return dir.filters ? this._applyFilters(val, null, dir.filters) : val;
+      } else {
+        // no filter
+        return this.$get(text, asStatement);
+      }
+    };
+
+    /**
+     * Interpolate a piece of template text.
+     *
+     * @param {String} text
+     * @return {String}
+     */
+
+    Vue.prototype.$interpolate = function (text) {
+      var tokens = parseText(text);
+      var vm = this;
+      if (tokens) {
+        if (tokens.length === 1) {
+          return vm.$eval(tokens[0].value) + '';
+        } else {
+          return tokens.map(function (token) {
+            return token.tag ? vm.$eval(token.value) : token.value;
+          }).join('');
+        }
+      } else {
+        return text;
+      }
+    };
+
+    /**
+     * Log instance data as a plain JS object
+     * so that it is easier to inspect in console.
+     * This method assumes console is available.
+     *
+     * @param {String} [path]
+     */
+
+    Vue.prototype.$log = function (path) {
+      var data = path ? getPath(this._data, path) : this._data;
+      if (data) {
+        data = clean(data);
+      }
+      // include computed fields
+      if (!path) {
+        var key;
+        for (key in this.$options.computed) {
+          data[key] = clean(this[key]);
+        }
+        if (this._props) {
+          for (key in this._props) {
+            data[key] = clean(this[key]);
+          }
+        }
+      }
+      console.log(data);
+    };
+
+    /**
+     * "clean" a getter/setter converted object into a plain
+     * object copy.
+     *
+     * @param {Object} - obj
+     * @return {Object}
+     */
+
+    function clean(obj) {
+      return JSON.parse(JSON.stringify(obj));
+    }
+  }
+
+  function domAPI (Vue) {
+    /**
+     * Convenience on-instance nextTick. The callback is
+     * auto-bound to the instance, and this avoids component
+     * modules having to rely on the global Vue.
+     *
+     * @param {Function} fn
+     */
+
+    Vue.prototype.$nextTick = function (fn) {
+      nextTick(fn, this);
+    };
+
+    /**
+     * Append instance to target
+     *
+     * @param {Node} target
+     * @param {Function} [cb]
+     * @param {Boolean} [withTransition] - defaults to true
+     */
+
+    Vue.prototype.$appendTo = function (target, cb, withTransition) {
+      return insert(this, target, cb, withTransition, append, appendWithTransition);
+    };
+
+    /**
+     * Prepend instance to target
+     *
+     * @param {Node} target
+     * @param {Function} [cb]
+     * @param {Boolean} [withTransition] - defaults to true
+     */
+
+    Vue.prototype.$prependTo = function (target, cb, withTransition) {
+      target = query(target);
+      if (target.hasChildNodes()) {
+        this.$before(target.firstChild, cb, withTransition);
+      } else {
+        this.$appendTo(target, cb, withTransition);
+      }
+      return this;
+    };
+
+    /**
+     * Insert instance before target
+     *
+     * @param {Node} target
+     * @param {Function} [cb]
+     * @param {Boolean} [withTransition] - defaults to true
+     */
+
+    Vue.prototype.$before = function (target, cb, withTransition) {
+      return insert(this, target, cb, withTransition, beforeWithCb, beforeWithTransition);
+    };
+
+    /**
+     * Insert instance after target
+     *
+     * @param {Node} target
+     * @param {Function} [cb]
+     * @param {Boolean} [withTransition] - defaults to true
+     */
+
+    Vue.prototype.$after = function (target, cb, withTransition) {
+      target = query(target);
+      if (target.nextSibling) {
+        this.$before(target.nextSibling, cb, withTransition);
+      } else {
+        this.$appendTo(target.parentNode, cb, withTransition);
+      }
+      return this;
+    };
+
+    /**
+     * Remove instance from DOM
+     *
+     * @param {Function} [cb]
+     * @param {Boolean} [withTransition] - defaults to true
+     */
+
+    Vue.prototype.$remove = function (cb, withTransition) {
+      if (!this.$el.parentNode) {
+        return cb && cb();
+      }
+      var inDocument = this._isAttached && inDoc(this.$el);
+      // if we are not in document, no need to check
+      // for transitions
+      if (!inDocument) withTransition = false;
+      var self = this;
+      var realCb = function realCb() {
+        if (inDocument) self._callHook('detached');
+        if (cb) cb();
+      };
+      if (this._isFragment) {
+        removeNodeRange(this._fragmentStart, this._fragmentEnd, this, this._fragment, realCb);
+      } else {
+        var op = withTransition === false ? removeWithCb : removeWithTransition;
+        op(this.$el, this, realCb);
+      }
+      return this;
+    };
+
+    /**
+     * Shared DOM insertion function.
+     *
+     * @param {Vue} vm
+     * @param {Element} target
+     * @param {Function} [cb]
+     * @param {Boolean} [withTransition]
+     * @param {Function} op1 - op for non-transition insert
+     * @param {Function} op2 - op for transition insert
+     * @return vm
+     */
+
+    function insert(vm, target, cb, withTransition, op1, op2) {
+      target = query(target);
+      var targetIsDetached = !inDoc(target);
+      var op = withTransition === false || targetIsDetached ? op1 : op2;
+      var shouldCallHook = !targetIsDetached && !vm._isAttached && !inDoc(vm.$el);
+      if (vm._isFragment) {
+        mapNodeRange(vm._fragmentStart, vm._fragmentEnd, function (node) {
+          op(node, target, vm);
+        });
+        cb && cb();
+      } else {
+        op(vm.$el, target, vm, cb);
+      }
+      if (shouldCallHook) {
+        vm._callHook('attached');
+      }
+      return vm;
+    }
+
+    /**
+     * Check for selectors
+     *
+     * @param {String|Element} el
+     */
+
+    function query(el) {
+      return typeof el === 'string' ? document.querySelector(el) : el;
+    }
+
+    /**
+     * Append operation that takes a callback.
+     *
+     * @param {Node} el
+     * @param {Node} target
+     * @param {Vue} vm - unused
+     * @param {Function} [cb]
+     */
+
+    function append(el, target, vm, cb) {
+      target.appendChild(el);
+      if (cb) cb();
+    }
+
+    /**
+     * InsertBefore operation that takes a callback.
+     *
+     * @param {Node} el
+     * @param {Node} target
+     * @param {Vue} vm - unused
+     * @param {Function} [cb]
+     */
+
+    function beforeWithCb(el, target, vm, cb) {
+      before(el, target);
+      if (cb) cb();
+    }
+
+    /**
+     * Remove operation that takes a callback.
+     *
+     * @param {Node} el
+     * @param {Vue} vm - unused
+     * @param {Function} [cb]
+     */
+
+    function removeWithCb(el, vm, cb) {
+      remove(el);
+      if (cb) cb();
+    }
+  }
+
+  function eventsAPI (Vue) {
+    /**
+     * Listen on the given `event` with `fn`.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     */
+
+    Vue.prototype.$on = function (event, fn) {
+      (this._events[event] || (this._events[event] = [])).push(fn);
+      modifyListenerCount(this, event, 1);
+      return this;
+    };
+
+    /**
+     * Adds an `event` listener that will be invoked a single
+     * time then automatically removed.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     */
+
+    Vue.prototype.$once = function (event, fn) {
+      var self = this;
+      function on() {
+        self.$off(event, on);
+        fn.apply(this, arguments);
+      }
+      on.fn = fn;
+      this.$on(event, on);
+      return this;
+    };
+
+    /**
+     * Remove the given callback for `event` or all
+     * registered callbacks.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     */
+
+    Vue.prototype.$off = function (event, fn) {
+      var cbs;
+      // all
+      if (!arguments.length) {
+        if (this.$parent) {
+          for (event in this._events) {
+            cbs = this._events[event];
+            if (cbs) {
+              modifyListenerCount(this, event, -cbs.length);
+            }
+          }
+        }
+        this._events = {};
+        return this;
+      }
+      // specific event
+      cbs = this._events[event];
+      if (!cbs) {
+        return this;
+      }
+      if (arguments.length === 1) {
+        modifyListenerCount(this, event, -cbs.length);
+        this._events[event] = null;
+        return this;
+      }
+      // specific handler
+      var cb;
+      var i = cbs.length;
+      while (i--) {
+        cb = cbs[i];
+        if (cb === fn || cb.fn === fn) {
+          modifyListenerCount(this, event, -1);
+          cbs.splice(i, 1);
+          break;
+        }
+      }
+      return this;
+    };
+
+    /**
+     * Trigger an event on self.
+     *
+     * @param {String|Object} event
+     * @return {Boolean} shouldPropagate
+     */
+
+    Vue.prototype.$emit = function (event) {
+      var isSource = typeof event === 'string';
+      event = isSource ? event : event.name;
+      var cbs = this._events[event];
+      var shouldPropagate = isSource || !cbs;
+      if (cbs) {
+        cbs = cbs.length > 1 ? toArray(cbs) : cbs;
+        // this is a somewhat hacky solution to the question raised
+        // in #2102: for an inline component listener like <comp @test="doThis">,
+        // the propagation handling is somewhat broken. Therefore we
+        // need to treat these inline callbacks differently.
+        var hasParentCbs = isSource && cbs.some(function (cb) {
+          return cb._fromParent;
+        });
+        if (hasParentCbs) {
+          shouldPropagate = false;
+        }
+        var args = toArray(arguments, 1);
+        for (var i = 0, l = cbs.length; i < l; i++) {
+          var cb = cbs[i];
+          var res = cb.apply(this, args);
+          if (res === true && (!hasParentCbs || cb._fromParent)) {
+            shouldPropagate = true;
+          }
+        }
+      }
+      return shouldPropagate;
+    };
+
+    /**
+     * Recursively broadcast an event to all children instances.
+     *
+     * @param {String|Object} event
+     * @param {...*} additional arguments
+     */
+
+    Vue.prototype.$broadcast = function (event) {
+      var isSource = typeof event === 'string';
+      event = isSource ? event : event.name;
+      // if no child has registered for this event,
+      // then there's no need to broadcast.
+      if (!this._eventsCount[event]) return;
+      var children = this.$children;
+      var args = toArray(arguments);
+      if (isSource) {
+        // use object event to indicate non-source emit
+        // on children
+        args[0] = { name: event, source: this };
+      }
+      for (var i = 0, l = children.length; i < l; i++) {
+        var child = children[i];
+        var shouldPropagate = child.$emit.apply(child, args);
+        if (shouldPropagate) {
+          child.$broadcast.apply(child, args);
+        }
+      }
+      return this;
+    };
+
+    /**
+     * Recursively propagate an event up the parent chain.
+     *
+     * @param {String} event
+     * @param {...*} additional arguments
+     */
+
+    Vue.prototype.$dispatch = function (event) {
+      var shouldPropagate = this.$emit.apply(this, arguments);
+      if (!shouldPropagate) return;
+      var parent = this.$parent;
+      var args = toArray(arguments);
+      // use object event to indicate non-source emit
+      // on parents
+      args[0] = { name: event, source: this };
+      while (parent) {
+        shouldPropagate = parent.$emit.apply(parent, args);
+        parent = shouldPropagate ? parent.$parent : null;
+      }
+      return this;
+    };
+
+    /**
+     * Modify the listener counts on all parents.
+     * This bookkeeping allows $broadcast to return early when
+     * no child has listened to a certain event.
+     *
+     * @param {Vue} vm
+     * @param {String} event
+     * @param {Number} count
+     */
+
+    var hookRE = /^hook:/;
+    function modifyListenerCount(vm, event, count) {
+      var parent = vm.$parent;
+      // hooks do not get broadcasted so no need
+      // to do bookkeeping for them
+      if (!parent || !count || hookRE.test(event)) return;
+      while (parent) {
+        parent._eventsCount[event] = (parent._eventsCount[event] || 0) + count;
+        parent = parent.$parent;
+      }
+    }
+  }
+
+  function lifecycleAPI (Vue) {
+    /**
+     * Set instance target element and kick off the compilation
+     * process. The passed in `el` can be a selector string, an
+     * existing Element, or a DocumentFragment (for block
+     * instances).
+     *
+     * @param {Element|DocumentFragment|string} el
+     * @public
+     */
+
+    Vue.prototype.$mount = function (el) {
+      if (this._isCompiled) {
+        'development' !== 'production' && warn('$mount() should be called only once.', this);
+        return;
+      }
+      el = query(el);
+      if (!el) {
+        el = document.createElement('div');
+      }
+      this._compile(el);
+      this._initDOMHooks();
+      if (inDoc(this.$el)) {
+        this._callHook('attached');
+        ready.call(this);
+      } else {
+        this.$once('hook:attached', ready);
+      }
+      return this;
+    };
+
+    /**
+     * Mark an instance as ready.
+     */
+
+    function ready() {
+      this._isAttached = true;
+      this._isReady = true;
+      this._callHook('ready');
+    }
+
+    /**
+     * Teardown the instance, simply delegate to the internal
+     * _destroy.
+     *
+     * @param {Boolean} remove
+     * @param {Boolean} deferCleanup
+     */
+
+    Vue.prototype.$destroy = function (remove, deferCleanup) {
+      this._destroy(remove, deferCleanup);
+    };
+
+    /**
+     * Partially compile a piece of DOM and return a
+     * decompile function.
+     *
+     * @param {Element|DocumentFragment} el
+     * @param {Vue} [host]
+     * @param {Object} [scope]
+     * @param {Fragment} [frag]
+     * @return {Function}
+     */
+
+    Vue.prototype.$compile = function (el, host, scope, frag) {
+      return compile(el, this.$options, true)(this, el, host, scope, frag);
+    };
+  }
+
+  /**
+   * The exposed Vue constructor.
+   *
+   * API conventions:
+   * - public API methods/properties are prefixed with `$`
+   * - internal methods/properties are prefixed with `_`
+   * - non-prefixed properties are assumed to be proxied user
+   *   data.
+   *
+   * @constructor
+   * @param {Object} [options]
+   * @public
+   */
+
+  function Vue(options) {
+    this._init(options);
+  }
+
+  // install internals
+  initMixin(Vue);
+  stateMixin(Vue);
+  eventsMixin(Vue);
+  lifecycleMixin(Vue);
+  miscMixin(Vue);
+
+  // install instance APIs
+  dataAPI(Vue);
+  domAPI(Vue);
+  eventsAPI(Vue);
+  lifecycleAPI(Vue);
+
+  var slot = {
+
+    priority: SLOT,
+    params: ['name'],
+
+    bind: function bind() {
+      // this was resolved during component transclusion
+      var name = this.params.name || 'default';
+      var content = this.vm._slotContents && this.vm._slotContents[name];
+      if (!content || !content.hasChildNodes()) {
+        this.fallback();
+      } else {
+        this.compile(content.cloneNode(true), this.vm._context, this.vm);
+      }
+    },
+
+    compile: function compile(content, context, host) {
+      if (content && context) {
+        if (this.el.hasChildNodes() && content.childNodes.length === 1 && content.childNodes[0].nodeType === 1 && content.childNodes[0].hasAttribute('v-if')) {
+          // if the inserted slot has v-if
+          // inject fallback content as the v-else
+          var elseBlock = document.createElement('template');
+          elseBlock.setAttribute('v-else', '');
+          elseBlock.innerHTML = this.el.innerHTML;
+          // the else block should be compiled in child scope
+          elseBlock._context = this.vm;
+          content.appendChild(elseBlock);
+        }
+        var scope = host ? host._scope : this._scope;
+        this.unlink = context.$compile(content, host, scope, this._frag);
+      }
+      if (content) {
+        replace(this.el, content);
+      } else {
+        remove(this.el);
+      }
+    },
+
+    fallback: function fallback() {
+      this.compile(extractContent(this.el, true), this.vm);
+    },
+
+    unbind: function unbind() {
+      if (this.unlink) {
+        this.unlink();
+      }
+    }
+  };
+
+  var partial = {
+
+    priority: PARTIAL,
+
+    params: ['name'],
+
+    // watch changes to name for dynamic partials
+    paramWatchers: {
+      name: function name(value) {
+        vIf.remove.call(this);
+        if (value) {
+          this.insert(value);
+        }
+      }
+    },
+
+    bind: function bind() {
+      this.anchor = createAnchor('v-partial');
+      replace(this.el, this.anchor);
+      this.insert(this.params.name);
+    },
+
+    insert: function insert(id) {
+      var partial = resolveAsset(this.vm.$options, 'partials', id, true);
+      if (partial) {
+        this.factory = new FragmentFactory(this.vm, partial);
+        vIf.insert.call(this);
+      }
+    },
+
+    unbind: function unbind() {
+      if (this.frag) {
+        this.frag.destroy();
+      }
+    }
+  };
+
+  var elementDirectives = {
+    slot: slot,
+    partial: partial
+  };
+
+  var convertArray = vFor._postProcess;
+
+  /**
+   * Limit filter for arrays
+   *
+   * @param {Number} n
+   * @param {Number} offset (Decimal expected)
+   */
+
+  function limitBy(arr, n, offset) {
+    offset = offset ? parseInt(offset, 10) : 0;
+    n = toNumber(n);
+    return typeof n === 'number' ? arr.slice(offset, offset + n) : arr;
+  }
+
+  /**
+   * Filter filter for arrays
+   *
+   * @param {String} search
+   * @param {String} [delimiter]
+   * @param {String} ...dataKeys
+   */
+
+  function filterBy(arr, search, delimiter) {
+    arr = convertArray(arr);
+    if (search == null) {
+      return arr;
+    }
+    if (typeof search === 'function') {
+      return arr.filter(search);
+    }
+    // cast to lowercase string
+    search = ('' + search).toLowerCase();
+    // allow optional `in` delimiter
+    // because why not
+    var n = delimiter === 'in' ? 3 : 2;
+    // extract and flatten keys
+    var keys = Array.prototype.concat.apply([], toArray(arguments, n));
+    var res = [];
+    var item, key, val, j;
+    for (var i = 0, l = arr.length; i < l; i++) {
+      item = arr[i];
+      val = item && item.$value || item;
+      j = keys.length;
+      if (j) {
+        while (j--) {
+          key = keys[j];
+          if (key === '$key' && contains(item.$key, search) || contains(getPath(val, key), search)) {
+            res.push(item);
+            break;
+          }
+        }
+      } else if (contains(item, search)) {
+        res.push(item);
+      }
+    }
+    return res;
+  }
+
+  /**
+   * Filter filter for arrays
+   *
+   * @param {String|Array<String>|Function} ...sortKeys
+   * @param {Number} [order]
+   */
+
+  function orderBy(arr) {
+    var comparator = null;
+    var sortKeys = undefined;
+    arr = convertArray(arr);
+
+    // determine order (last argument)
+    var args = toArray(arguments, 1);
+    var order = args[args.length - 1];
+    if (typeof order === 'number') {
+      order = order < 0 ? -1 : 1;
+      args = args.length > 1 ? args.slice(0, -1) : args;
+    } else {
+      order = 1;
+    }
+
+    // determine sortKeys & comparator
+    var firstArg = args[0];
+    if (!firstArg) {
+      return arr;
+    } else if (typeof firstArg === 'function') {
+      // custom comparator
+      comparator = function (a, b) {
+        return firstArg(a, b) * order;
+      };
+    } else {
+      // string keys. flatten first
+      sortKeys = Array.prototype.concat.apply([], args);
+      comparator = function (a, b, i) {
+        i = i || 0;
+        return i >= sortKeys.length - 1 ? baseCompare(a, b, i) : baseCompare(a, b, i) || comparator(a, b, i + 1);
+      };
+    }
+
+    function baseCompare(a, b, sortKeyIndex) {
+      var sortKey = sortKeys[sortKeyIndex];
+      if (sortKey) {
+        if (sortKey !== '$key') {
+          if (isObject(a) && '$value' in a) a = a.$value;
+          if (isObject(b) && '$value' in b) b = b.$value;
+        }
+        a = isObject(a) ? getPath(a, sortKey) : a;
+        b = isObject(b) ? getPath(b, sortKey) : b;
+      }
+      return a === b ? 0 : a > b ? order : -order;
+    }
+
+    // sort on a copy to avoid mutating original array
+    return arr.slice().sort(comparator);
+  }
+
+  /**
+   * String contain helper
+   *
+   * @param {*} val
+   * @param {String} search
+   */
+
+  function contains(val, search) {
+    var i;
+    if (isPlainObject(val)) {
+      var keys = Object.keys(val);
+      i = keys.length;
+      while (i--) {
+        if (contains(val[keys[i]], search)) {
+          return true;
+        }
+      }
+    } else if (isArray(val)) {
+      i = val.length;
+      while (i--) {
+        if (contains(val[i], search)) {
+          return true;
+        }
+      }
+    } else if (val != null) {
+      return val.toString().toLowerCase().indexOf(search) > -1;
+    }
+  }
+
+  var digitsRE = /(\d{3})(?=\d)/g;
+
+  // asset collections must be a plain object.
+  var filters = {
+
+    orderBy: orderBy,
+    filterBy: filterBy,
+    limitBy: limitBy,
+
+    /**
+     * Stringify value.
+     *
+     * @param {Number} indent
+     */
+
+    json: {
+      read: function read(value, indent) {
+        return typeof value === 'string' ? value : JSON.stringify(value, null, Number(indent) || 2);
+      },
+      write: function write(value) {
+        try {
+          return JSON.parse(value);
+        } catch (e) {
+          return value;
+        }
+      }
+    },
+
+    /**
+     * 'abc' => 'Abc'
+     */
+
+    capitalize: function capitalize(value) {
+      if (!value && value !== 0) return '';
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    },
+
+    /**
+     * 'abc' => 'ABC'
+     */
+
+    uppercase: function uppercase(value) {
+      return value || value === 0 ? value.toString().toUpperCase() : '';
+    },
+
+    /**
+     * 'AbC' => 'abc'
+     */
+
+    lowercase: function lowercase(value) {
+      return value || value === 0 ? value.toString().toLowerCase() : '';
+    },
+
+    /**
+     * 12345 => $12,345.00
+     *
+     * @param {String} sign
+     * @param {Number} decimals Decimal places
+     */
+
+    currency: function currency(value, _currency, decimals) {
+      value = parseFloat(value);
+      if (!isFinite(value) || !value && value !== 0) return '';
+      _currency = _currency != null ? _currency : '$';
+      decimals = decimals != null ? decimals : 2;
+      var stringified = Math.abs(value).toFixed(decimals);
+      var _int = decimals ? stringified.slice(0, -1 - decimals) : stringified;
+      var i = _int.length % 3;
+      var head = i > 0 ? _int.slice(0, i) + (_int.length > 3 ? ',' : '') : '';
+      var _float = decimals ? stringified.slice(-1 - decimals) : '';
+      var sign = value < 0 ? '-' : '';
+      return sign + _currency + head + _int.slice(i).replace(digitsRE, '$1,') + _float;
+    },
+
+    /**
+     * 'item' => 'items'
+     *
+     * @params
+     *  an array of strings corresponding to
+     *  the single, double, triple ... forms of the word to
+     *  be pluralized. When the number to be pluralized
+     *  exceeds the length of the args, it will use the last
+     *  entry in the array.
+     *
+     *  e.g. ['single', 'double', 'triple', 'multiple']
+     */
+
+    pluralize: function pluralize(value) {
+      var args = toArray(arguments, 1);
+      return args.length > 1 ? args[value % 10 - 1] || args[args.length - 1] : args[0] + (value === 1 ? '' : 's');
+    },
+
+    /**
+     * Debounce a handler function.
+     *
+     * @param {Function} handler
+     * @param {Number} delay = 300
+     * @return {Function}
+     */
+
+    debounce: function debounce(handler, delay) {
+      if (!handler) return;
+      if (!delay) {
+        delay = 300;
+      }
+      return _debounce(handler, delay);
+    }
+  };
+
+  function installGlobalAPI (Vue) {
+    /**
+     * Vue and every constructor that extends Vue has an
+     * associated options object, which can be accessed during
+     * compilation steps as `this.constructor.options`.
+     *
+     * These can be seen as the default options of every
+     * Vue instance.
+     */
+
+    Vue.options = {
+      directives: directives,
+      elementDirectives: elementDirectives,
+      filters: filters,
+      transitions: {},
+      components: {},
+      partials: {},
+      replace: true
+    };
+
+    /**
+     * Expose useful internals
+     */
+
+    Vue.util = util;
+    Vue.config = config;
+    Vue.set = set;
+    Vue['delete'] = del;
+    Vue.nextTick = nextTick;
+
+    /**
+     * The following are exposed for advanced usage / plugins
+     */
+
+    Vue.compiler = compiler;
+    Vue.FragmentFactory = FragmentFactory;
+    Vue.internalDirectives = internalDirectives;
+    Vue.parsers = {
+      path: path,
+      text: text,
+      template: template,
+      directive: directive,
+      expression: expression
+    };
+
+    /**
+     * Each instance constructor, including Vue, has a unique
+     * cid. This enables us to create wrapped "child
+     * constructors" for prototypal inheritance and cache them.
+     */
+
+    Vue.cid = 0;
+    var cid = 1;
+
+    /**
+     * Class inheritance
+     *
+     * @param {Object} extendOptions
+     */
+
+    Vue.extend = function (extendOptions) {
+      extendOptions = extendOptions || {};
+      var Super = this;
+      var isFirstExtend = Super.cid === 0;
+      if (isFirstExtend && extendOptions._Ctor) {
+        return extendOptions._Ctor;
+      }
+      var name = extendOptions.name || Super.options.name;
+      if ('development' !== 'production') {
+        if (!/^[a-zA-Z][\w-]*$/.test(name)) {
+          warn('Invalid component name: "' + name + '". Component names ' + 'can only contain alphanumeric characaters and the hyphen.');
+          name = null;
+        }
+      }
+      var Sub = createClass(name || 'VueComponent');
+      Sub.prototype = Object.create(Super.prototype);
+      Sub.prototype.constructor = Sub;
+      Sub.cid = cid++;
+      Sub.options = mergeOptions(Super.options, extendOptions);
+      Sub['super'] = Super;
+      // allow further extension
+      Sub.extend = Super.extend;
+      // create asset registers, so extended classes
+      // can have their private assets too.
+      config._assetTypes.forEach(function (type) {
+        Sub[type] = Super[type];
+      });
+      // enable recursive self-lookup
+      if (name) {
+        Sub.options.components[name] = Sub;
+      }
+      // cache constructor
+      if (isFirstExtend) {
+        extendOptions._Ctor = Sub;
+      }
+      return Sub;
+    };
+
+    /**
+     * A function that returns a sub-class constructor with the
+     * given name. This gives us much nicer output when
+     * logging instances in the console.
+     *
+     * @param {String} name
+     * @return {Function}
+     */
+
+    function createClass(name) {
+      /* eslint-disable no-new-func */
+      return new Function('return function ' + classify(name) + ' (options) { this._init(options) }')();
+      /* eslint-enable no-new-func */
+    }
+
+    /**
+     * Plugin system
+     *
+     * @param {Object} plugin
+     */
+
+    Vue.use = function (plugin) {
+      /* istanbul ignore if */
+      if (plugin.installed) {
+        return;
+      }
+      // additional parameters
+      var args = toArray(arguments, 1);
+      args.unshift(this);
+      if (typeof plugin.install === 'function') {
+        plugin.install.apply(plugin, args);
+      } else {
+        plugin.apply(null, args);
+      }
+      plugin.installed = true;
+      return this;
+    };
+
+    /**
+     * Apply a global mixin by merging it into the default
+     * options.
+     */
+
+    Vue.mixin = function (mixin) {
+      Vue.options = mergeOptions(Vue.options, mixin);
+    };
+
+    /**
+     * Create asset registration methods with the following
+     * signature:
+     *
+     * @param {String} id
+     * @param {*} definition
+     */
+
+    config._assetTypes.forEach(function (type) {
+      Vue[type] = function (id, definition) {
+        if (!definition) {
+          return this.options[type + 's'][id];
+        } else {
+          /* istanbul ignore if */
+          if ('development' !== 'production') {
+            if (type === 'component' && (commonTagRE.test(id) || reservedTagRE.test(id))) {
+              warn('Do not use built-in or reserved HTML elements as component ' + 'id: ' + id);
+            }
+          }
+          if (type === 'component' && isPlainObject(definition)) {
+            definition.name = id;
+            definition = Vue.extend(definition);
+          }
+          this.options[type + 's'][id] = definition;
+          return definition;
+        }
+      };
+    });
+
+    // expose internal transition API
+    extend(Vue.transition, transition);
+  }
+
+  installGlobalAPI(Vue);
+
+  Vue.version = '1.0.22';
+
+  // devtools global hook
+  /* istanbul ignore next */
+  setTimeout(function () {
+    if (config.devtools) {
+      if (devtools) {
+        devtools.emit('init', Vue);
+      } else if ('development' !== 'production' && inBrowser && /Chrome\/\d+/.test(window.navigator.userAgent)) {
+        console.log('Download the Vue Devtools for a better development experience:\n' + 'https://github.com/vuejs/vue-devtools');
+      }
+    }
+  }, 0);
+
+  return Vue;
+
+}));
