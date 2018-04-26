@@ -10,8 +10,8 @@ By: [![storyofmylife version][som-image]][som-url]
 Watch Evan You - Reactivity in Frontend JavaScript Frameworks in DotJs Conference!
 ==============
 
-|All Update News                         |.js Version All update Default    |
-|----------------------------------------|----------------------------------|
+|All Update News                         |.js Version All update Default    |[Library] |
+|----------------------------------------|----------------------------------|----|
 |[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][3]|[vue.js Default Update][2]|
 |                                        |                                  |
 
@@ -64,3 +64,4 @@ Watch Evan You - Reactivity in Frontend JavaScript Frameworks in DotJs Conferenc
 [marlondeposoy]: https://github.com/marlondeposoy.png?size=40
 [marlondeposoy-url]: https://github.com/marlondeposoy
 [Vuejsfeed]: https://raw.githubusercontent.com/samuelbetio/storyofmylife/js-update/IMG/evan-you-dotjs-2016.jpg
+[Library]: https://cdnjs.com/libraries
