@@ -41,7 +41,7 @@ Watch Evan You - Reactivity in Frontend JavaScript Frameworks in DotJs Conferenc
 
 [1]: https://samuelbetio.github.io/storyofmylife
 [2]: https://raw.githubusercontent.com/samuelbetio/storyofmylife/js-update/vue.js
-[3]: https://youtu.be/r4pNEdIt_l4
+[3]: https://vuejsfeed.com/blog/watch-evan-you-reactivity-in-frontend-javascript-frameworks-in-dotjs-conference
 [4]: https://raw.githubusercontent.com/samuelbetio/storyofmylife/970fff4efee1f55aefc251088afdf948fa37f6f1/vue.js
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
