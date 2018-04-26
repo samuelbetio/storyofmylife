@@ -10,23 +10,10 @@ let a = 3
 Update Version
 ==============
 
-|[![Vuejsfeed][Vuejsfeed]][Vuejsfeed]|[Index Version][2] Default    |:tv: [README.md Version][3] Default     | [LICENSE][4] Default  |[RSS][5] Version Default      |[Full Version][6] Default    |
-|-------------------------------|--------------------- |--------------------------------|----------------|-----------------------|---------------------|
-|[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][7]|V0.0.0.3     |               |                 |      |                      |
+|[![Vuejsfeed][Vuejsfeed]][Vuejsfeed]| .js Version All update Default   |vue.js |
+|------------------------------------|----------------------------------|-------|
+|[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][7]|   |v1.0.10 |
 
-
-
-
-## Index Version
-
-
-## README.md Version
-
-## LICENSE
-
-## RSS Version
-
-## Full Version
 
 
 ## :thumbsup: Contributors & Credits
@@ -47,11 +34,7 @@ Update Version
 
 
 [1]: https://samuelbetio.github.io/storyofmylife
-[2]: #index-version
-[3]: #readmemd-version
-[4]: #license
-[5]: #rss-version
-[6]: #full-version
+
 [7]: https://youtu.be/r4pNEdIt_l4
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
