@@ -13,6 +13,7 @@ Update Version
 |NAME Full Version              |[Index Version][2] Default    |:tv: [README.md Version][3] Default     | [LICENSE][4] Default  |[RSS][5] Version Default      |[Full Version][6] Default    |
 |-------------------------------|--------------------- |--------------------------------|----------------|-----------------------|---------------------|
 |[dotJS 2016 - Evan You - Reactivity in Frontend JavaScript Frameworks][7]|V0.0.0.3     |               |                 |      |                      |
+|[![Vuejsfeed][Vuejsfeed]][Vuejsfeed]| |               |                 |      |                      |
 
 
 
@@ -72,3 +73,4 @@ Update Version
 [jeanalyn-url]: https://github.com/jeanalyn
 [marlondeposoy]: https://github.com/marlondeposoy.png?size=40
 [marlondeposoy-url]: https://github.com/marlondeposoy
+[Vuejsfeed]: https://d2jq2hx2dbkw6t.cloudfront.net/286/evan-you-dotjs-2016.jpg
