@@ -5,7 +5,7 @@ Welcome to the
 By: [![storyofmylife version][som-image]][som-url]
 ==================================================
 
-let a = 3
+
 
 Watch Evan You - Reactivity in Frontend JavaScript Frameworks in DotJs Conference!
 ==============
