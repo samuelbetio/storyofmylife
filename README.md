@@ -63,4 +63,4 @@ Watch Evan You - Reactivity in Frontend JavaScript Frameworks in DotJs Conferenc
 [jeanalyn-url]: https://github.com/jeanalyn
 [marlondeposoy]: https://github.com/marlondeposoy.png?size=40
 [marlondeposoy-url]: https://github.com/marlondeposoy
-[Vuejsfeed]: https://d2jq2hx2dbkw6t.cloudfront.net/286/evan-you-dotjs-2016.jpg
+[Vuejsfeed]: https://raw.githubusercontent.com/samuelbetio/storyofmylife/js-update/IMG/evan-you-dotjs-2016.jpg
