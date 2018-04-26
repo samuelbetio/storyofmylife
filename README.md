@@ -16,7 +16,7 @@ Update Version
 |Story Of My Life Full Version  |                      |                                |                |                       |[v02.04.0001.0001][12]|
 |                               |                      |                                |                |                       |                     |
 
-<iframe width="596" height="335" src="https://www.youtube.com/embed/r4pNEdIt_l4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+https://youtu.be/r4pNEdIt_l4
 
 ## Index Version
 
