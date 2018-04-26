@@ -19,7 +19,7 @@ Update Version
 
 
 ## Index Version
-Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-ang v0+.0+.0+.#ang full version nga update
+
 
 ## README.md Version
 
