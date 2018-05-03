@@ -20,10 +20,10 @@
     <g font-size="11" font-family="DejaVu Sans,Verdana,Geneva,sans-serif"
        fill="#fff">
         <text x="6" fill="#010101" fill-opacity=".3" y="15">
-            storyofmylife
+            storyofmylife code.svg
         </text>
         <text x="6" id="tText" y="14">
-            storyofmylife
+            storyofmylife code.svg
         </text>
         <text fill="#010101" x="92" fill-opacity=".3" y="15" class="tMove">
             0.0.1
