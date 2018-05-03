@@ -1,81 +1,178 @@
-Welcome to the
-[Story Of My Life][1]
-=====================
+# TOAST UI Calendar
+
+> A JavaScript schedule calendar with full featured. Now your service just got the customizable calendar.
+
+[![GitHub release](https://img.shields.io/github/release/nhnent/tui.calendar.svg)](https://github.com/nhnent/tui.calendar/releases/latest)
+[![npm](https://img.shields.io/npm/v/tui-calendar.svg)](https://www.npmjs.com/package/tui-calendar)
+[![GitHub license](https://img.shields.io/github/license/nhnent/tui.calendar.svg)](https://github.com/nhnent/tui.calendar/blob/master/LICENSE)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg)](https://github.com/nhnent/tui.project-name/labels/help%20wanted)
+[![code with hearth by NHN Entertainment](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-NHN%20Entertainment-ff1414.svg)](https://github.com/nhnent)
+
+## 🚩 Table of Contents
+
+* [Browser Support](#-browser-support)
+* [Features](#-features)
+* [Examples](#-examples)
+* [Install](#-install)
+  * [Via Package Manager](#via-package-manager)
+  * [Download Source Files](#download-source-files)
+* [Usage](#-usage)
+  * [HTML](#html)
+  * [JavaScript](#javascript)
+* [Pull Request Steps](#-pull-request-steps)
+  * [Setup](#setup)
+  * [Develop](#develop)
+  * [Pull Request Steps](#pull-request)
+* [Documents](#-documents)
+* [Contributing](#-contributing)
+* [License](#-license)
+
+## 🌏 Browser Support
+| <img src="https://user-images.githubusercontent.com/1215767/34348387-a2e64588-ea4d-11e7-8267-a43365103afe.png" alt="Chrome" width="16px" height="16px" /> Chrome | <img src="https://user-images.githubusercontent.com/1215767/34348383-9e7ed492-ea4d-11e7-910c-03b39d52f496.png" alt="Firefox" width="16px" height="16px" /> Firefox | <img src="https://user-images.githubusercontent.com/1215767/34348394-a981f892-ea4d-11e7-9156-d128d58386b9.png" alt="Safari" width="16px" height="16px" /> Safari | <img src="https://user-images.githubusercontent.com/1215767/34348380-93e77ae8-ea4d-11e7-8696-9a989ddbbbf5.png" alt="Edge" width="16px" height="16px" /> Edge | <img src="https://user-images.githubusercontent.com/1215767/34348590-250b3ca2-ea4f-11e7-9efb-da953359321f.png" alt="IE" width="16px" height="16px" /> Internet Explorer |
+| :---------: | :---------: | :---------: | :---------: | :---------: |
+| Yes | Yes | Yes | Yes | 9+ |
+
+## 🎨 Features
+
+* Supports various view types: daily, weekly, monthly(6 weeks, 2 weeks, 3 weeks)
+* Supports efficient management of milestone and task schedules
+* Supports the narrow width of weekend
+* Supports changing start day of week
+* Supports customizing the date and schedule information UI(including a header and a footer of grid cell)
+* Supports adjusting a schedule by mouse dragging
+
+## 🐾 Examples
+
+* [Basic](https://nhnent.github.io/tui.calendar/latest/tutorial-example01-basic.html) : Example of using default options.
+
+More examples can be found on the left sidebar of each example page, and have fun with it.
+
+## 💾 Install
+
+TOAST UI products can be used by using the package manager or downloading the source directly.
+However, we highly recommend using the package manager.
+
+### Via Package Manager
+
+TOAST UI products are registered in two package managers, [npm](https://www.npmjs.com/) and [bower](https://bower.io/).
+You can conveniently install it using the commands provided by each package manager.
+When using npm, be sure to use it in the environment [Node.js](https://nodejs.org) is installed.
+
+#### npm
+
+``` sh
+$ npm install --save tui-calendar # Latest version
+$ npm install --save tui-calendar@<version> # Specific version
+```
+
+#### bower
+
+``` sh
+$ bower install tui-calendar # Latest version
+$ bower install tui-calendar#<tag> # Specific version
+```
+
+### Download Source Files
+
+* [Download bundle files](https://github.com/nhnent/tui.calendar/tree/master/dist)
+* [Download all sources for each version](https://github.com/nhnent/tui.calendar/releases)
 
 
-By: [![storyofmylife version][som-image]][som-url]
-==================================================
+## 🔨 Usage
 
+### HTML
 
-Update Version
-==============
+Place a `<div></div>` where you want TOAST UI Calendar rendered.
 
-|NAME Full Version              |[Index Version][2] Default    |:tv: [README.md Version][3] Default     | [LICENSE][4] Default  |[RSS][5] Version Default      |[Full Version][6] Default    |
-|-------------------------------|--------------------- |--------------------------------|----------------|-----------------------|---------------------|
-|Professional Bootstrap Template|[V0.0.0.3][7]         |[V0.4][8]                       |[V0.0.1][9]     |[v01.80.3462.5836][10] |[v5.80.3462.5836][11]|
-|Story Of My Life Full Version  |                      |                                |                |                       |[v02.04.0001.0001][12]|
-|                               |                      |                                |                |                       |                     |
+```html
+<body>
+...
+<div id="calendar" style="height: 800px;"></div>
+...
+</body>
+```
 
+### JavaScript
 
+```javascript
+var Calendar = require('tui-calendar');
 
-## Index Version
-Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-ang v0+.0+.0+.#ang full version nga update
+var cal = new Calendar('#calendar', {
+        defaultView: 'month',
+        taskView: true,
+        template: {
+          monthGridHeader: function(model) {
+                var date = new Date(model.date);
+                var template = '<span class="tui-full-calendar-weekday-grid-date">' + date.getDate() + '</span>';
+                return template;
+            }
+        }
+});
+```
 
-## README.md Version
+## 🔧 Pull Request Steps
 
-## LICENSE
+TOAST UI products are open source, so you can create a pull request(PR) after you fix issues.
+Run npm scripts and develop yourself with the following process.
 
-## RSS Version
+### Setup
 
-## Full Version
+Fork `develop` branch into your personal repository.
+Clone it to local computer. Install node modules.
+Before starting development, you should check to haveany errors.
 
+``` sh
+$ git clone https://github.com/{your-personal-repo}/tui.calendar.git
+$ cd tui.calendar
+$ npm install
+$ npm run test
+```
 
-## :thumbsup: Contributors & Credits
-[![NEWBAYAWANCITYPS][NEWBAYAWANCITYPS]][NEWBAYAWANCITYPS-url]
-[![samuelbetio][samuelbetio]][samuelbetio-url]
-[![Pearlton][Pearlton]][Pearlton-url]
-[![kennethvalor][kennethvalor]][kennethvalor-url]
-[![cityofbayawan][cityofbayawan]][cityofbayawan-url]
-[![marysalva][marysalva]][marysalva-url]
-[![timeseariver][timeseariver]][timeseariver-url]
-[![jeanalyn][jeanalyn]][jeanalyn-url]
-[![marlondeposoy][marlondeposoy]][marlondeposoy-url]
+### Develop
 
+Let's start development!
+You can see your code is reflected as soon as you saving the codes by running a server.
+Don't miss adding test cases and then make green rights.
 
+#### Run webpack-dev-server
 
+``` sh
+$ npm run serve
+$ npm run serve:ie8 # Run on Internet Explorer 8
+```
 
+#### Run karma test
 
+``` sh
+$ npm run test
+```
 
+### Pull Request
 
-[1]: https://samuelbetio.github.io/storyofmylife
-[2]: #index-version
-[3]: #readmemd-version
-[4]: #license
-[5]: #rss-version
-[6]: #full-version
-[7]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.0.3
-[8]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.4
-[9]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.1
-[10]: https://github.com/samuelbetio/storyofmylife/releases/tag/v01.80.3462.5836
-[11]: https://github.com/samuelbetio/storyofmylife/releases/tag/v5.80.3462.5836
-[12]: https://github.com/samuelbetio/storyofmylife/releases/tag/v02.04.0001.0001
-[som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
-[som-url]: https://github.com/samuelbetio/storyofmylife/releases
-[samuelbetio]: https://github.com/samuelbetio.png?size=40
-[samuelbetio-url]: https://github.com/samuelbetio
-[NEWBAYAWANCITYPS]: https://github.com/NEWBAYAWANCITYPS.png?size=40
-[NEWBAYAWANCITYPS-url]: https://github.com/NEWBAYAWANCITYPS
-[Pearlton]: https://github.com/Pearlton.png?size=40
-[Pearlton-url]: https://github.com/Pearlton
-[kennethvalor]: https://github.com/kennethvalor.png?size=40
-[kennethvalor-url]: https://github.com/kennethvalor
-[cityofbayawan]: https://github.com/cityofbayawan.png?size=40
-[cityofbayawan-url]: https://github.com/cityofbayawan
-[marysalva]: https://github.com/marysalva.png?size=40
-[marysalva-url]: https://github.com/marysalva
-[timeseariver]: https://github.com/timeseariver.png?size=40
-[timeseariver-url]: https://github.com/timeseariver
-[jeanalyn]: https://github.com/jeanalyn.png?size=40
-[jeanalyn-url]: https://github.com/jeanalyn
-[marlondeposoy]: https://github.com/marlondeposoy.png?size=40
-[marlondeposoy-url]: https://github.com/marlondeposoy
+Before PR, check to test lastly and then check any errors.
+If it has no error, commit and then push it!
+
+For more information on PR's step, please see links of Contributing section.
+
+## 📙 Documents
+
+* [Getting Started](https://github.com/nhnent/tui.calendar/blob/master/docs/getting-started.md)
+* [Tutorials](https://github.com/nhnent/tui.calendar/tree/master/docs)
+* [APIs](https://nhnent.github.io/tui.calendar/latest)
+
+You can also see the older versions of API page on the [releases page](https://github.com/nhnent/tui.calendar/releases).
+
+## 💬 Contributing
+
+* [Code of Conduct](https://github.com/nhnent/tui.calendar/blob/master/CODE_OF_CONDUCT.md)
+* [Contributing guideline](https://github.com/nhnent/tui.calendar/blob/master/CONTRIBUTING.md)
+* [Issue guideline](https://github.com/nhnent/tui.calendar/blob/master/docs/ISSUE_TEMPLATE.md)
+* [Commit convention](https://github.com/nhnent/tui.calendar/blob/master/docs/COMMIT_MESSAGE_CONVENTION.md)
+
+## 🔩 Dependency
+
+* [tui-code-snippet](https://github.com/nhnent/tui.code-snippet) >=1.2.9
+
+## 📜 License
+
+This software is licensed under the [MIT](https://github.com/nhnent/tui.calendar/blob/master/LICENSE) © [NHN Entertainment](https://github.com/nhnent).

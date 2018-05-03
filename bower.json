@@ -1,0 +1,30 @@
+{
+  "name": "tui-calendar",
+  "authors": [
+    "NHNEnt FE Dev tean <dl_javascript@nhnent.com>"
+  ],
+  "license": "MIT",
+  "main": [
+    "dist/tui-calendar.js",
+    "dist/tui-calendar.css"
+  ],
+  "version": "0.6.0",
+  "description": "TOAST UI Calendar",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "examples",
+    "karma.*.js",
+    "package.json",
+    ".gitignore",
+    "jsdoc.conf.json",
+    "webpack.*.js"
+  ],
+  "dependencies": {
+    "tui-code-snippet": "^1.2.9"
+  }
+}
