@@ -13,7 +13,7 @@
     </linearGradient>
 
     <rect rx="3" fill="#555" width="126" height="20" class="sWidth"/>
-    <rect rx="3" fill="#4c1" width="39" x="87" height="20" class="vWidth tMove"/>
+    <rect rx="3" fill="#555" width="39" x="87" height="20" class="vWidth tMove"/>
     <rect fill="#4c1" x="87" width="13" height="20" class="tMove"/>
     <rect rx="3" fill="url(#a)" width="126" height="20" class="sWidth"/>
 
