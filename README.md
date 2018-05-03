@@ -17,9 +17,8 @@ Update Version
 |Link   |[![Story Of My Life](https://github.com/samuelbetio/storyofmylife/blob/code.svg/storyofmylife.svg)][8]|                    |
 |Image  | https://img.shields.io/conda/dn/conda-forge/python.svg                                               |                    |
 
-Style  `flat-square`
-====================
-
+`flat-square`
+ ============
 
 Markdown `![Conda](https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square)`
 reStructuredText `.. image:: https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square   :alt: Conda`
