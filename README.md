@@ -12,15 +12,13 @@ Update Version
 ==============
 > A Shields.IO with full featured. Now your service just got the customizable badge code.svg.
 
-|                NAME Full Version                                                                    |[Index Version][2]    |
-|-----------------------------------------------------------------------------------------------------|----------------------|
-|[![Story Of My Life](https://github.com/samuelbetio/storyofmylife/blob/code.svg/storyofmylife.svg)][8]  |        v02.01.0001   |
+|                NAME Full Version                                                                    |          Style     |
+|-----------------------------------------------------------------------------------------------------|--------------------|
+|[![Story Of My Life](https://github.com/samuelbetio/storyofmylife/blob/code.svg/storyofmylife.svg)][8]|                   |
+|[![Conda](https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square)]                  |    flat-square    |
 
 
 
-
-
-![Conda](https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square)
 
 
 
