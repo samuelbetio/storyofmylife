@@ -15,7 +15,7 @@ Update Version
 |                NAME Full Version                                                                    |          Style     |
 |-----------------------------------------------------------------------------------------------------|--------------------|
 |[![Story Of My Life](https://github.com/samuelbetio/storyofmylife/blob/code.svg/storyofmylife.svg)][8]|                   |
-|[![Conda](https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square)]                  |    flat-square    |
+|[![Conda](https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square)][8]               |    flat-square    |
 
 
 
