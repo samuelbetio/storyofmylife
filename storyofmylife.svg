@@ -22,7 +22,7 @@
         <text x="6" fill="#010101" fill-opacity=".3" y="15">
             storyofmylife code.svg
         </text>
-        <text x="6" id="tText" y="14">
+        <text x="6" id="tText" y="15">
             storyofmylife code.svg
         </text>
         <text fill="#010101" x="92" fill-opacity=".3" y="15" class="tMove">
