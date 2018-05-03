@@ -14,7 +14,7 @@ Update Version
 
 |NAME Full Version              |[Index Version][2]|:tv: [README.md Version][3]| [LICENSE][4]|[RSS][5] Version|[Full Version][6]|
 |-------------------------------|--------------------- |-----------------------|-------------|----------------|-----------------|
-|Professional Bootstrap Template|[V0.0.0.3][7]         |[V0.4][8]              |[V0.0.1][9]  |[v01.80.836][10]|[v5.80836][11]   |
+|[Story Of My Life][8]          |[V0.0.0.3][7]         |[V0.4][8]              |[V0.0.1][9]  |[v01.80.836][10]|[v5.80836][11]   |
 |Story Of My Life Full Version  |                      |                       |             |                |[v02.01.0001][12]|
 |                               |                      |                       |             |                |                 |
 
@@ -103,7 +103,7 @@ Given this sample data set, see example expressions below:
 [5]: #rss-version
 [6]: #full-version
 [7]: http://goessner.net/articles/JsonPath/
-[8]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.4
+[8]: https://github.com/samuelbetio/storyofmylife/blob/code.svg/storyofmylife.svg
 [9]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.1
 [10]: https://github.com/samuelbetio/storyofmylife/releases/tag/v01.80.3462.5836
 [11]: https://github.com/samuelbetio/storyofmylife/releases/tag/v5.80.3462.5836
