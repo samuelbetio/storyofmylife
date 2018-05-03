@@ -18,11 +18,11 @@ Update Version
 |[![Conda](https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square)][8]               |    flat-square    |
 
 
-Link
+Link  [![Story Of My Life](https://github.com/samuelbetio/storyofmylife/blob/code.svg/storyofmylife.svg)][8]
 Image                    https://img.shields.io/conda/dn/conda-forge/python.svg
 
-**Style**  `flat-square`
-========================
+Style  `flat-square`
+====================
 
 
 Markdown `![Conda](https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square)`
