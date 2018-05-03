@@ -14,7 +14,7 @@ Update Version
 
 |NAME Full Version              |[Index Version][2]|:tv: [README.md Version][3]| [LICENSE][4]|[RSS][5] Version|[Full Version][6]|
 |-------------------------------|--------------------- |-----------------------|-------------|----------------|-----------------|
-|[![Story Of My Life]([8])]          |[V0.0.0.3][7]         |[V0.4][8]              |[V0.0.1][9]  |[v01.80.836][10]|[v5.80836][11]   |
+|[![Story Of My Life][SOML:][8]          |[V0.0.0.3][7]         |[V0.4][8]              |[V0.0.1][9]  |[v01.80.836][10]|[v5.80836][11]   |
 |Story Of My Life Full Version  |                      |                       |             |                |[v02.01.0001][12]|
 |                               |                      |                       |             |                |                 |
 
@@ -110,3 +110,4 @@ Given this sample data set, see example expressions below:
 [12]: https://github.com/samuelbetio/storyofmylife/releases/tag/v02.04.0001.0001
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
+[SOML:] https://github.com/samuelbetio/storyofmylife/blob/code.svg/storyofmylife.svg
