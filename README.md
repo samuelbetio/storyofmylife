@@ -26,8 +26,9 @@ Update Version
 
 
 
-
-
+JSONPath Syntax
+===============
+Here are syntax and examples adapted from [Stefan Goessner's original post][7] introducing JSONPath in 2007.
 |**JSONPath**|    **Description**     |
 |------------|------------------------|
 |$           |The root object/element |
@@ -66,7 +67,7 @@ Update Version
 [4]: #license
 [5]: #rss-version
 [6]: #full-version
-[7]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.0.3
+[7]: http://goessner.net/articles/JsonPath/
 [8]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.4
 [9]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.1
 [10]: https://github.com/samuelbetio/storyofmylife/releases/tag/v01.80.3462.5836
