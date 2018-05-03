@@ -29,6 +29,8 @@ Update Version
 JSONPath Syntax
 ===============
 Here are syntax and examples adapted from [Stefan Goessner's original post][7] introducing JSONPath in 2007.
+
+
 |**JSONPath**|    **Description**     |
 |------------|------------------------|
 |$           |The root object/element |
