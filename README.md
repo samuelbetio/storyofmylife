@@ -30,7 +30,6 @@ JSONPath Syntax
 ===============
 Here are syntax and examples adapted from [Stefan Goessner's original post][7] introducing JSONPath in 2007.
 
-```js
 |**JSONPath**|    **Description**     |
 |------------|------------------------|
 |$           |The root object/element |
@@ -39,10 +38,10 @@ Here are syntax and examples adapted from [Stefan Goessner's original post][7] i
 |*	         |Wildcard matching all objects/elements regardless their names|
 |[]	         |Subscript operator      |
 |[,]	       |Union operator for alternate names or array indices as a set|
-|[start:end:step]|Array slice operator borrowed from ES4 / Python|
+|```[start:end:step]```|Array slice operator borrowed from ES4 / Python|
 |?()	       |Applies a filter (script) expression via static evaluation|
 |()	         |Script expression via static evaluation|
-```
+
 
 Given this sample data set, see example expressions below:
 ```js
