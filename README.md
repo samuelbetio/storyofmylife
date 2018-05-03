@@ -18,7 +18,9 @@ Update Version
 
 
 
-![Coveralls github](https://img.shields.io/coveralls/github/jekyll/jekyll.svg?style=social)
+
+.. image:: https://img.shields.io/conda/dn/conda-forge/python.svg   :alt: Conda
+
 
 
 
