@@ -1,0 +1,13 @@
+<div class="{{CSS_PREFIX}}month-dayname">
+{{#each daynames}}
+    <div class="{{CSS_PREFIX}}month-dayname-item"
+         style="position: absolute;
+                width: {{width}}%;
+                left: {{left}}%">
+        <span class="{{holiday day}}">
+            {{{monthDayname-tmpl this}}}
+        </span>
+    </div>
+{{/each}}
+</div>
+<div class="{{CSS_PREFIX}}month-weeks"></div>
