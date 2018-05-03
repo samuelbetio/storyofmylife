@@ -1,5 +1,3 @@
-'use strict';
-
 var domutil = require('common/domutil');
 var VPanel = require('common/vpanel');
 
@@ -12,15 +10,12 @@ describe('VPanel', function() {
     });
 
     it('getResizeInfoByGrowth() calculate new height and remain height by supplied growth value.', function() {
-        var actual;
         spyOn(inst, 'getHeight').and.returnValue(100);
 
-        actual = inst.getResizeInfoByGrowth(+20);
-
+        var actual = inst.getResizeInfoByGrowth(+20);
         expect(actual).toEqual([120, -20]);
 
         actual = inst.getResizeInfoByGrowth(-20);
-
         expect(actual).toEqual([80, 20]);
     });
 
@@ -47,14 +42,5 @@ describe('VPanel', function() {
         }, container);
 
         expect(domutil.setData).toHaveBeenCalledWith(container, 'autoHeight', true);
-    });
-
-    it('setHeight() can set specified height after force resizing if options.autoHeight is true', function() {
-        inst.options.autoHeight = true;
-        inst.isHeightForcedSet = true;
-
-        inst.setHeight(null, 350);
-
-        expect(container.style.height).toBe('350px');
     });
 });

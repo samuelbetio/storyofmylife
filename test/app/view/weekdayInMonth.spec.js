@@ -1,9 +1,6 @@
-'use strict';
-
 var WeekdayInMonth = require('view/month/weekdayInMonth');
 var Schedule = require('model/schedule');
 var ScheduleViewModel = require('model/viewModel/scheduleViewModel');
-var TZDate = require('common/timezone').Date;
 
 describe('view:WeekdayInMonth', function() {
     var mockInst;
@@ -59,8 +56,7 @@ describe('view:WeekdayInMonth', function() {
                     end: '2015-05-03T23:59:59'
                 })),
                 eventsInDateRange = [[[viewModel]]],
-                ranges = [new TZDate('2015-05-01T00:00:00'), new TZDate('2015-05-02T00:00:00'), new TZDate('2015-05-03T00:00:00')],
-                cache = WeekdayInMonth.prototype.getExceedDate(0, eventsInDateRange, ranges);
+                cache = WeekdayInMonth.prototype.getExceedDate(0, eventsInDateRange);
 
             expect(cache).toEqual({
                 '20150501': 1,

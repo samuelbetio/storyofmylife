@@ -22,8 +22,7 @@ describe('View/TimeGrid', function() {
                 {hours: 8, hidden: false},
                 {hours: 9, hidden: false},
                 {hours: 10, hidden: false}
-            ],
-            styles: {}
+            ]
         };
 
         var obj = {
@@ -33,13 +32,10 @@ describe('View/TimeGrid', function() {
             },
             _getHourmarkerViewModel: function() {
                 return {todaymarkerLeft: 1};
-            },
-            _getStyles: function() {
-                return {};
             }
         };
 
-        var result = proto._getBaseViewModel.call(obj, {});
+        var result = proto._getBaseViewModel.call(obj);
 
         expect(result).toEqual(expected);
 

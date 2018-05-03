@@ -19,8 +19,7 @@ describe('view/dayName', function() {
             width: 50,
             isToday: true,
             left: 0,
-            renderDate: '2015-07-26',
-            color: ''
+            renderDate: '2015-07-26'
         }, {
             day: 1,
             dayName: '월',
@@ -28,8 +27,7 @@ describe('view/dayName', function() {
             width: 50,
             isToday: false,
             left: 50,
-            renderDate: '2015-07-27',
-            color: ''
+            renderDate: '2015-07-27'
         }];
         var grids = datetime.getGridLeftAndWidth(2, 0, false);
 
@@ -37,8 +35,7 @@ describe('view/dayName', function() {
             {
                 options: {
                     daynames: ['일', '월', '화', '수', '목', '금', '토']
-                },
-                _getDayNameColor: function() {return ''}
+                }
             },
             new Date('2015-07-26'),
             new Date('2015-07-27'),

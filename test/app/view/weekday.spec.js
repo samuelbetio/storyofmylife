@@ -1,5 +1,3 @@
-'use strict';
-
 var Weekday = require('view/weekday');
 var TZDate = require('common/timezone').Date;
 var timezoneMatchers = require('../../matcher/timezone');

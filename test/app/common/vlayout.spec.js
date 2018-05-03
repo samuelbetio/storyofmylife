@@ -1,5 +1,3 @@
-'use strict';
-
 var util = require('tui-code-snippet');
 var VLayout = require('common/vlayout');
 var VPanel = require('common/vpanel');
@@ -10,6 +8,7 @@ describe('VLayout', function() {
     function getDiv() {
         return document.getElementById('vlayout');
     }
+
 
     beforeEach(function() {
         fixture.load('vlayout.html');
@@ -22,10 +21,7 @@ describe('VLayout', function() {
     it('getLayoutData() return height list for each normal panels with `autoHeight` false', function() {
         inst = new VLayout({
             panels: [
-                {
-                    minHeight: 50,
-                    height: 60
-                },
+                {minHeight: 50, height: 60},
                 {isSplitter: true},
                 {autoHeight: true}
             ]
@@ -39,10 +35,7 @@ describe('VLayout', function() {
 
         inst = new VLayout({
             panels: [
-                {
-                    minHeight: 50,
-                    height: 60
-                },
+                {minHeight: 50, height: 60},
                 {isSplitter: true},
                 {autoHeight: true}
             ]
@@ -50,8 +43,7 @@ describe('VLayout', function() {
         spyOn(inst, 'refresh');
 
         VPanel.prototype.setHeight.calls.reset();
-        inst.setLayoutData([80]);
-
+        inst.setLayoutData([80])
         expect(VPanel.prototype.setHeight.calls.allArgs()).toEqual([[null, 80]]);
     });
 
@@ -60,9 +52,9 @@ describe('VLayout', function() {
         spyOn(VPanel.prototype, 'getHeight').and.callFake(function() {
             if (this.options.isSplitter) {
                 return 5;
+            } else {
+                return this.options.minHeight;
             }
-
-            return this.options.minHeight;
         });
 
         inst = new VLayout({
@@ -78,7 +70,6 @@ describe('VLayout', function() {
         VPanel.prototype.setHeight.calls.reset();
 
         inst.refresh();
-
         expect(VPanel.prototype.setHeight.calls.allArgs()).toEqual([
             [null, 222.5],
             [null, 222.5]
@@ -86,9 +77,6 @@ describe('VLayout', function() {
     });
 
     it('_getMouseYAdditionalLimit() can calculate additional limit from supplied splitter panel item.', function() {
-        var baseSplitterItem,
-            actual;
-
         spyOn(VPanel.prototype, 'getHeight').and.returnValue(5);
 
         inst = new VLayout({
@@ -101,27 +89,24 @@ describe('VLayout', function() {
             ]
         }, getDiv());
 
-        // The additional drag limits above and below the second splitter base are 50, 25
-        baseSplitterItem = inst.panels[1];
-        actual = inst._getMouseYAdditionalLimit(baseSplitterItem);
-
+        // 두 번째 스플리터 기준 위 아래 추가 드래그 제한 값은 50, 25
+        var baseSplitterItem = inst.panels[1]
+        var actual = inst._getMouseYAdditionalLimit(baseSplitterItem);
         expect(actual).toEqual([50, 25]);
 
-        // The additional drag limits above and below the fourth splitter base are 55, 20
+
+        // 네 번째 스플리터 기준 위 아래 추가 드래그 제한 값은 55, 20
         baseSplitterItem = inst.panels[3];
         actual = inst._getMouseYAdditionalLimit(baseSplitterItem);
-
         expect(actual).toEqual([55, 20]);
     });
 
     describe('_resize', function() {
-        var allArgs;
-
         beforeEach(function() {
             inst = new VLayout({}, getDiv());
 
             spyOn(VPanel.prototype, 'getHeight').and.callFake(function() {
-                // Test ignores splitter size
+                // 테스트에서는 스플리터 사이즈는 무시한다
                 if (this.options.isSplitter) {
                     return 0;
                 }
@@ -132,49 +117,46 @@ describe('VLayout', function() {
 
         it('resize at 1 splitter between 2 panels.', function() {
             inst.addPanels([
-                {height: 100}, // 100,  100
-                {isSplitter: true}, //
-                {height: 100} // 100,  205
+                {height: 100},         // 100,  100
+                {isSplitter: true},    //
+                {height: 100},         // 100,  205
             ], inst.container);
             spyOn(util, 'forEach');
             inst._resize(inst.panels[1], 100, 110);
 
-            // The first panel increased by 10, and the second panel decreased by 10)
-            allArgs = _.pluck(util.forEach.calls.argsFor(0)[0], 1);
-
+            // 첫 번째 패널은 10 증가, 두 번째 패널은 10 감소
+            var allArgs = _.pluck(util.forEach.calls.argsFor(0)[0], 1);
             expect(allArgs).toEqual([110, 90]);
         });
 
         it('resize first splitter across to 2 splitter', function() {
             inst.addPanels([
-                {height: 100}, // 100,  100
-                {isSplitter: true}, //
-                {height: 100}, // 100,  200
-                {isSplitter: true}, //
-                {height: 30} // 30 ,  230
+                {height: 100},         // 100,  100
+                {isSplitter: true},    //
+                {height: 100},         // 100,  200
+                {isSplitter: true},    //
+                {height: 30}           // 30 ,  230
             ], inst.container);
             spyOn(util, 'forEach');
 
-            // Assume you drag the first splitter to the last panel
+            // 첫 번째 스플리터를 마지막 패널까지 드래그 했다고 가정
             inst._resize(inst.panels[1], 100, 210);
-            allArgs = _.pluck(util.forEach.calls.argsFor(0)[0], 1);
-
+            var allArgs = _.pluck(util.forEach.calls.argsFor(0)[0], 1);
             expect(allArgs).toEqual([210, 0, 20]);
         });
 
-        it('Assuming you dragged the second splitter up by 30', function() {
+        it('두 번째 스플리터를 30만큼 위로 드래그했다고 가정', function() {
             inst.addPanels([
-                {height: 100}, // 100,  100
-                {isSplitter: true}, //
-                {height: 100}, // 100,  200
-                {isSplitter: true}, //
-                {height: 30} // 30 ,  230
+                {height: 100},         // 100,  100
+                {isSplitter: true},    //
+                {height: 100},         // 100,  200
+                {isSplitter: true},    //
+                {height: 30}           // 30 ,  230
             ], inst.container);
             spyOn(util, 'forEach');
 
             inst._resize(inst.panels[3], 200, 170);
             allArgs = _.pluck(util.forEach.calls.argsFor(0)[0], 1);
-
             expect(allArgs).toEqual([60, 70, 100]);
         });
     });

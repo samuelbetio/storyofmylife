@@ -1,5 +1,3 @@
-'use strict';
-
 var TZDate = require('common/timezone').Date;
 
 module.exports = {

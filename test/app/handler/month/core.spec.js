@@ -1,27 +1,20 @@
-'use strict';
-
 var getMousePosData = require('handler/month/core');
 var Month = require('view/month/month');
 var WeekdayInMonth = require('view/month/weekdayInMonth');
 var TZDate = require('common/timezone').Date;
 var datetime = require('common/datetime');
-var Theme = require('theme/theme');
+
 
 describe('handler:MonthCore', function() {
     var m, w1, w2;
-    var controller;
 
     beforeEach(function() {
         var container = document.createElement('div');
         container.style.width = '70px';
         container.style.height = '100px';
 
-        controller = {
-            theme: new Theme()
-        };
-
-        // January 2016 calendar first week, second week
-        m = new Month(null, container, controller);
+        // 2016년 1월 달력의 첫주, 둘째주
+        m = new Month(null, container);
 
         // mock the container element
         m.vLayout.panels[1].container = container;

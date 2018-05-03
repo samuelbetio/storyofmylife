@@ -3,7 +3,6 @@
  * @author NHN Ent. FE Development Team <dl_javascript@nhnent.com>
  */
 'use strict';
-
 var undef = (function() {})();
 module.exports = function() {
     function pickTitle(matrix) {
@@ -22,6 +21,7 @@ module.exports = function() {
         return titleList;
     }
 
+
     function fail(msg) {
         return {
             message: msg,
@@ -33,14 +33,14 @@ module.exports = function() {
         return function matcher(actual, expected) {
             var i, j, cnt, cnt2,
                 aMatrix, aLength, bMatrix, bLength,
-                aColumn, aViewModel, bValue,
+                aColumn, bColumn, aViewModel, bValue,
                 result = {
-                    message: 'Matrix match',
+                    message: '매트릭스 일치',
                     pass: true
                 };
 
             if (actual.length !== expected.length) {
-                return fail('Matrix number mismatch\n' +
+                return fail('매트릭스 갯수 불일치\n' +
                             'actual: ' + actual + '\n' +
                             'expected: ' + expected);
             }
@@ -52,7 +52,7 @@ module.exports = function() {
                 bLength = bMatrix.length;
 
                 if (aLength !== bLength) {
-                    return fail(i + 'th matrix is different\n' +
+                    return fail(i + ' 번째 매트릭스 다름\n' +
                                 'actual: ' + pickTitle(aMatrix) + '\n' +
                                 'expected: ' + bMatrix);
                 }
@@ -68,15 +68,16 @@ module.exports = function() {
                     bValue = bMatrix[j];
 
                     if (!comparator(aViewModel, bValue)) {
-                        return fail('[' + i + '][' + j + '] th matrix is different\n' +
+                        return fail('[' + i + '][' + j + '] 번째 매트릭스 다름\n' +
                                     'actual: ' + aViewModel + '\n' +
                                     'expected: ' + bValue);
+
                     }
                 }
             }
 
             return result;
-        };
+        }
     }
 
     function titleComparator(viewModel, title) {
@@ -88,12 +89,12 @@ module.exports = function() {
     }
 
     return {
-        toEqualMatricesTitle: function() {
+        toEqualMatricesTitle: function(util, customEqualityTesters) {
             return {
                 compare: getMatcher(titleComparator)
             };
         },
-        toEqualMatricesTop: function() {
+        toEqualMatricesTop: function(util, customEqualityTesters) {
             return {
                 compare: getMatcher(topComparator)
             };
