@@ -26,10 +26,10 @@
             storyofmylife
         </text>
         <text fill="#010101" x="92" fill-opacity=".3" y="15" class="tMove">
-            v0.0.1
+            v15.0123457.2934
         </text>
         <text x="92" id="vText" y="14" class="tMove">
-            v0.0.1
+            v15.0123457.2934
         </text>
     </g>
 </svg>
