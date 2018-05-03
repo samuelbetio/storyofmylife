@@ -45,7 +45,8 @@ Here are syntax and examples adapted from [Stefan Goessner's original post][7] i
 
 
 Given this sample data set, see example expressions below:
->{
+```js
+{
   "store": {
     "book": [ 
       {
@@ -78,7 +79,7 @@ Given this sample data set, see example expressions below:
     }
   }
 }
-
+```
 
 
 
