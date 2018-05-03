@@ -9,6 +9,7 @@ By: [![storyofmylife version][som-image]][som-url]
 Update Version
 ==============
 > A Shields.IO with full featured. Now your service just got the customizable badge code.svg.
+
 |NAME Full Version              |[Index Version][2]|:tv: [README.md Version][3]| [LICENSE][4]|[RSS][5] Version|[Full Version][6]|
 |-------------------------------|--------------------- |-----------------------|-------------|----------------|-----------------|
 |Professional Bootstrap Template|[V0.0.0.3][7]         |[V0.4][8]              |[V0.0.1][9]  |[v01.80.836][10]|[v5.80836][11]   |
