@@ -1,7 +1,7 @@
 Welcome to the
 [Story Of My Life][1]
 =====================
-
+Pixel-perfect   Retina-ready   Fast   Consistent   Hackable   No tracking
 
 By: [![storyofmylife version][som-image]][som-url]
 ==================================================
