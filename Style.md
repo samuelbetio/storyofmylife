@@ -1,6 +1,7 @@
-Welcome to the
 [Story Of My Life][1]
 =====================
+Samuel Betio's clean lines and stylish design will give your site the perfect platform to stand out from the crowd. In modern web design content is everything and our Samuel Betio template puts its focus on just that.
+
 
 
 [![By: Samuel Betio](https://github.com/samuelbetio/storyofmylife/blob/code.svg/logo.svg)][1]
