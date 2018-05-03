@@ -14,7 +14,7 @@ Update Version
 
 |                NAME Full Version                                                                    |[Index Version][2]    |
 |-----------------------------------------------------------------------------------------------------|----------------------|
-|[![Story Of My Life](https://github.com/samuelbetio/storyofmylife/blob/code.svg/storyofmylife.svg)[8]|        v02.01.0001   |
+|[![Story Of My Life](https://github.com/samuelbetio/storyofmylife/blob/code.svg/storyofmylife.svg)]  |        v02.01.0001   |
 
 
 
