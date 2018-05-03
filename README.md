@@ -19,7 +19,9 @@ Update Version
 
 
 
-.. image:: https://img.shields.io/conda/dn/conda-forge/python.svg   :alt: Conda
+
+![Conda](https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square)
+
 
 
 
