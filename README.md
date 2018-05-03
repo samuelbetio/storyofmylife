@@ -3,7 +3,7 @@ Welcome to the
 =====================
 Pixel-perfect   Retina-ready   Fast   Consistent   Hackable   No tracking
 
-[![By:Samuel Betio](https://raw.githubusercontent.com/samuelbetio/storyofmylife/code.svg/logo.svg)][1]
+[![By: Samuel Betio](https://github.com/samuelbetio/storyofmylife/blob/code.svg/logo.svg)][1]
 ==================================================
 
 Update Version
