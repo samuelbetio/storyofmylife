@@ -22,7 +22,10 @@ Link
 Image                    https://img.shields.io/conda/dn/conda-forge/python.svg
 
 **Style**  `flat-square`
+========================
 
+
+Markdown `![Conda](https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square)`
 reStructuredText `.. image:: https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square   :alt: Conda`
 AsciiDoc `image:https://img.shields.io/conda/dn/conda-forge/python.svg?style=flat-square[Conda]`
 
