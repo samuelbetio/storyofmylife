@@ -18,6 +18,8 @@ Update Version
 
 
 
+![Coveralls github](https://img.shields.io/coveralls/github/jekyll/jekyll.svg?style=social)
+
 
 
 
