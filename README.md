@@ -2,9 +2,12 @@ Welcome to the
 [Story Of My Life][1]
 =====================
 
+
 [![By: Samuel Betio](https://github.com/samuelbetio/storyofmylife/blob/code.svg/logo.svg)][1]
 ==================================================
 Pixel-perfect   Retina-ready   Fast   Consistent   Hackable   No tracking
+
+
 Update Version
 ==============
 > A Shields.IO with full featured. Now your service just got the customizable badge code.svg.
