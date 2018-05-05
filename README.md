@@ -1,5 +1,5 @@
 Welcome to the
-[Story Of My Life][1][Monolyth][13]
+[Story Of My Life][1] of [Monolyth][13]
 =====================
 
 
