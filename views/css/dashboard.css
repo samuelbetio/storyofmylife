@@ -1,33 +1,57 @@
-body {
-  background-color: #F2F2F0;
-  padding-top: 80px;
+/* Dashbaord.css - Bryce Mercines 2017 */
+
+* {
+  box-sizing: border-box;
 }
 
-.navbar {
-  background-color: #373737;
-  padding: 5px;
+#search {
+  background-image: url('../assets/img/searchicon.png');
+  background-position: 10px 12px;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  width: 50%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 2px solid #ddd;
+  margin-bottom: 12px;
 }
 
-.navbar a {
-  color: #8C8C8C;
-  font-size: 1.5em;
+#rdata {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-.coligo {
-  color: #D0D0D0;
-  font-size: 0.8em;
+#rdata li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
 }
 
-.well {
-  text-align: center;
-  margin-top: 20px;
+#rdata li a:hover:not(.header) {
+  background-color: #eee;
+  transition: 0.3s;
 }
 
-.dash-red {
-  color: #DD6161;
+#editor {
+  width: 100%;
+  height: 350px;
+  border-radius: 10px;
 }
 
-.sub-header{
-  color: #777779;
-  font-weight: 300;
+#code-loader {
+  display: none;
+  width: 100%;
+  height: 350px;
+  border-radius: 10px;
+}
+
+#code_bank {
+  margin: 10px;
+  display: none;
 }
