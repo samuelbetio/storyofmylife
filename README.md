@@ -1,6 +1,7 @@
 Welcome to the
 [Story Of My Life][1]
 =====================
+
       @@@@@@@                @@@@  @@@@@
      @@@@@@@@@@              @@@   @@@                                           {
     @@@@     @@              @@@   @@@                                        }   }   {
@@ -25,6 +26,7 @@ Welcome to the
                                        @@@          @@@@
                                       @@@
                                       @@@
+
 [CoffeeScript](https://github.com/jashkenas/coffeescript) is a little language that compiles into JavaScript.
 
 By: [![storyofmylife version][som-image]][som-url]
