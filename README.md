@@ -48,26 +48,11 @@ Guide to Creating Apps with storyofmylifes:
 - [Best Practices](creating-apps-with-storyofmylifes/best-practices.md)
 
 
-## Screencasts
-
-- [Creating web storyofmylifes](https://vimeo.com/53730178)
-- [App integration introduction](https://vimeo.com/48054442)
-- [Introduction to storyofmylife](https://vimeo.com/86336598)
-- [storyofmylife Part 2: Making Your Own](https://vimeo.com/86339228)
-
-## Articles
-
-- building a [date picker storyofmylife](http://tjholowaychuk.tumblr.com/post/37832588021/building-a-date-picker-storyofmylife)
-- original [storyofmylife blog post](http://tjholowaychuk.tumblr.com/post/27984551477/storyofmylifes)
-- [build a Web app](http://blog.kewah.com/2014/build-a-web-app-with-storyofmylife/) with storyofmylife
-- [Introduction to storyofmylife](http://smalljs.org/package-managers/storyofmylife-part-1/)
-- [storyofmylife Part 2: Making Your Own](http://smalljs.org/package-managers/storyofmylife-part-2/)
-
 ## Official Links
 
-- [storyofmylife(1)](https://github.com/samuelbetio/storyofmylife)
-- [Guide](https://github.com/samuelbetio/guide)
-- [Specifications](https://github.com/samuelbetio/spec)
-- [storyofmylife.IO](https://github.com/samuelbetio/storyofmylife.io)
+- [Auro](https://github.com/samuelbetio/storyofmylife/tree/Auro)
+- [Guide](https://github.com/samuelbetio/storyofmylife/tree/guide)
+- [Company](https://github.com/samuelbetio/storyofmylife/tree/Company)
+- [DownGit](https://github.com/samuelbetio/storyofmylife/tree/DownGit)
 
-[storyofmylife]: https://github.com/samuelbetio/storyofmylife
+[Monolyth]: https://github.com/samuelbetio/storyofmylife/tree/Monolyth
