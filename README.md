@@ -1,5 +1,5 @@
 # THIS PROJECT IS storyofmylife
-storyofmylife is __storyofmylife__, see [samuelbetio/storyofmylife](https://github.com/samuelbetio/storyofmylife/blob/master/Readme.md)
+storyofmylife is __storyofmylife__, see [samuelbetio/storyofmylife](https://github.com/samuelbetio/storyofmylife/blob/guide/README.md)
 
 # storyofmylife Guide
 
