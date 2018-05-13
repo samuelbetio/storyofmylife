@@ -1,23 +1,23 @@
 # THIS PROJECT IS DEPRECATED
-Component is __deprecated__, see [samuelbetio/component](https://github.com/samuelbetio/component/blob/master/Readme.md)
+Storyofmylife is __deprecated__, see [samuelbetio/storyofmylife](https://github.com/samuelbetio/storyofmylife/blob/guide/README.md)
 
-# Component Guide
+# Storyofmylife Guide
 
-A public wiki guide for [component][samuelbetio].
-Have questions about component? Open up an issue.
-Created a screencast or blog post about component? Link it here.
+A public wiki guide for [storyofmylife][samuelbetio].
+Have questions about storyofmylife? Open up an issue.
+Created a screencast or blog post about storyofmylife? Link it here.
 Feel free to open a PRs with edits! Please be concise!
 
 ## Changelogs
 
 - [v1.0.0](changelogs/1.0.0.md)
 
-You can always view the boring [history.md](https://github.com/samuelbetio/component/blob/master/History.md).
+You can always view the boring [history.md](https://github.com/samuelbetio/storyofmylife/blob/guide/History.md).
 
 ## Community
 
-- [Mailing List](https://groups.google.com/group/samuelbetio)
-- [Google+ Community](https://plus.google.com/u/0/communities/109771441994395167277)
+- [Mailing List](https://groups.google.com/forum/#!forum/samuelbetio)
+- [Google+ Community](https://plus.google.com/u/0/+SamuelBetio)
 - join `#components` on freenode
 - follow [@samuelbetio](http://twitter.com/samuelbetio) on twitter
 
@@ -48,26 +48,12 @@ Guide to Creating Apps with Components:
 - [Best Practices](creating-apps-with-components/best-practices.md)
 
 
-## Screencasts
-
-- [Creating web components](https://vimeo.com/53730178)
-- [App integration introduction](https://vimeo.com/48054442)
-- [Introduction to Component](https://vimeo.com/86336598)
-- [Component Part 2: Making Your Own](https://vimeo.com/86339228)
-
-## Articles
-
-- building a [date picker component](http://tjholowaychuk.tumblr.com/post/37832588021/building-a-date-picker-component)
-- original [component blog post](http://tjholowaychuk.tumblr.com/post/27984551477/components)
-- [build a Web app](http://blog.kewah.com/2014/build-a-web-app-with-component/) with component
-- [Introduction to Component](http://smalljs.org/package-managers/component-part-1/)
-- [Component Part 2: Making Your Own](http://smalljs.org/package-managers/component-part-2/)
 
 ## Official Links
 
-- [Component(1)](https://github.com/componentjs/component)
-- [Guide](https://github.com/componentjs/guide)
-- [Specifications](https://github.com/componentjs/spec)
-- [Component.IO](https://github.com/componentjs/component.io)
+- [Auro](https://github.com/samuelbetio/storyofmylife/tree/Auro)
+- [Guide](https://github.com/samuelbetio/storyofmylife/tree/guide)
+- [Company](https://github.com/samuelbetio/storyofmylife/tree/Company)
+- [DownGit](https://github.com/samuelbetio/storyofmylife/tree/DownGit)
 
-[component]: https://github.com/componentjs/component
+[Monolyth]: https://github.com/samuelbetio/storyofmylife/tree/Monolyth
