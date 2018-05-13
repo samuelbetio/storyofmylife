@@ -42,9 +42,9 @@ $flag_image_link = WEBSITE_BASE_URL . '/image/flags/' . $code . '.png';
 
 ### License
 
-The MIT License (MIT)
+MIT License
 
-Copyright (c) 2018 Samuel Betio
+Copyright (c) 2018 Samuel Rapana Betio
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
