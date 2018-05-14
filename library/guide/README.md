@@ -1,5 +1,5 @@
 # THIS PROJECT IS DEPRECATED
-Storyofmylife is __deprecated__, see [samuelbetio/storyofmylife](https://github.com/samuelbetio/storyofmylife/blob/guide/README.md)
+Storyofmylife is __deprecated__, see [samuelbetio/storyofmylife](https://github.com/samuelbetio/storyofmylife/blob/master/library/guide/README.md)
 
 # Storyofmylife Guide
 
@@ -12,7 +12,7 @@ Feel free to open a PRs with edits! Please be concise!
 
 - [v1.0.0](changelogs/1.0.0.md)
 
-You can always view the boring [history.md](https://github.com/samuelbetio/storyofmylife/blob/guide/History.md).
+You can always view the boring [history.md](https://github.com/samuelbetio/storyofmylife/blob/master/library/guide/History.md).
 
 ## Community
 
