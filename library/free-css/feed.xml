@@ -1,0 +1,52 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Free CSS - Latest Templates</title>
+    <link>https://samuelbetio.github.io/storyofmylife/library/free-css/</link>
+    <description>RSS Feed</description>
+    <language>en</language>
+    <copyright>Free CSS 2017</copyright>
+    <ttl>120</ttl>
+    <item>
+      <title>Guardian Free CSS Template</title>
+      <link>
+         https://samuelbetio.github.io/storyofmylife/library/free-css/free-css-templates/page217/guardian
+      </link>
+      <description>
+        <![CDATA[
+          <p>The Guardian Template has a Responsive layout with 3 Columns and uses an HTML 5 doctype.</p>
+        ]]>
+         <![CDATA[
+           <p>It is a Dark on Light design developed by &quot;FreeHTML5&quot;.</p>
+        ]]>
+      </description>
+      <pubDate>Sun, 27 Aug 2017 04:00:00 +0100</pubDate>
+      <guid isPermaLink="false">
+        https://samuelbetio.github.io/storyofmylife/library/free-css/free-css-templates/page217/guardian
+      </guid>
+    </item>
+  </channel>
+</rss>
+<!--
+     
+  <?xml version="1.0" encoding="UTF-8" ?>
+  <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+   <channel>
+  	<title>Free CSS - Latest Templates</title>
+	  <link>https://samuelbetio.github.io/storyofmylife/library/free-css/feed.xml</link>
+	  <description>RSS Feed</description>
+	  <language>en</language>
+	  <copyright>Free CSS - 2017</copyright>
+	  <ttl>120</ttl>		
+  	<item>
+  	  <title>Free CSS - RSS Disabled</title>
+	    <link>https://samuelbetio.github.io/storyofmylife/library/free-css/</link>
+	    <description>
+	  	<![CDATA[ <p>We have decided to temporarily discontinue / disable our RSS feed due to mis-use of this service on a large scale and by a variety of websites.</p> ]]>
+	  	<![CDATA[ <p>We apologise to those users who use the feed as it should be used, a quick resource for the latest updates.</p> ]]>
+	  	<![CDATA[ <p>Your Free CSS Team.</p> ]]>
+	    </description>
+  	  <guid isPermaLink="false">https://samuelbetio.github.io/storyofmylife/library/free-css/</guid>
+	  </item>
+   </channel>
+  </rss>
+  -->
