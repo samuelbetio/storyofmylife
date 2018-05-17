@@ -27,7 +27,11 @@ Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-
 
 ## RSS Version
 
-## Full Version
+## Bugs and feature requests
+
+Have a bug or a feature request? Please first read the [issue guidelines](https://github.com/samuelbetio/storyofmylife/blob/master/CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/samuelbetio/storyofmylife/issues/new).
+
+Note that **feature requests must target [Story Of My Life Guide](https://github.com/samuelbetio/storyofmylife/tree/guide),** because Story Of My Life Guide is now in maintenance mode and is closed off to new features. This is so that we can focus our efforts on Story Of My Life Guide.
 
 
 ## :thumbsup: Contributors & Credits
