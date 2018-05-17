@@ -13,6 +13,8 @@ Update Version
 ==============
 > A Shields.IO with full featured. Now your service just got the customizable badge code.svg.
 
+![code.svg](https://github.com/samuelbetio/storyofmylife/blob/code.svg/browser-matrix.svg)
+
 |       |                NAME Full Version                                                                    |          Style     |
 |-------|-----------------------------------------------------------------------------------------------------|--------------------|
 |Link   |[![Story Of My Life](https://github.com/samuelbetio/storyofmylife/blob/code.svg/storyofmylife.svg)][8]|                    |
