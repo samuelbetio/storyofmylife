@@ -25,7 +25,15 @@ Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-
 
 ## LICENSE
 
-## RSS Version
+## Community
+
+Get updates on Story Of My Life development and chat with the project maintainers and community members.
+
+* Follow [@samuelbetio on Twitter](https://twitter.com/samuelbetio).
+* Read and subscribe to [The Official Story Of My Life Blog](http://www.facebook.com/samuelrapanabetio).
+* Join [the official Google Classroom](https://classroom.google.com/u/1/c/MTE5ODkzNjY0ODZa). Class code: **ocb3ezh**
+
+
 
 ## Bugs and feature requests
 
