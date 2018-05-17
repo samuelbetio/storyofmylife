@@ -36,59 +36,33 @@ AsciiDoc `image:https://img.shields.io/conda/dn/conda-forge/python.svg?style=fla
 
 
 
-JSONPath Syntax
-===============
-Here are syntax and examples adapted from [Stefan Goessner's original post][7] introducing JSONPath in 2007.
+### What's included
 
-|**JSONPath**|    **Description**     |
-|------------|------------------------|
-|$           |The root object/element |
-|.	         |Child member operator   |
-|..          |Recursive descendant operator; JSONPath borrows this syntax from E4X|
-|*	         |Wildcard matching all objects/elements regardless their names|
-|[]	         |Subscript operator      |
-|[,]	       |Union operator for alternate names or array indices as a set|
-|```[start:end:step]```|Array slice operator borrowed from ES4 / Python|
-|?()	       |Applies a filter (script) expression via static evaluation|
-|()	         |Script expression via static evaluation|
+Within the download you'll find the following directories and files, logically grouping common assets and providing both compiled and minified variations. You'll see something like this:
 
-
-Given this sample data set, see example expressions below:
-```js
-{
-  "store": {
-    "book": [ 
-      {
-        "category": "reference",
-        "author": "Nigel Rees",
-        "title": "Sayings of the Century",
-        "price": 8.95
-      }, {
-        "category": "fiction",
-        "author": "Evelyn Waugh",
-        "title": "Sword of Honour",
-        "price": 12.99
-      }, {
-        "category": "fiction",
-        "author": "Herman Melville",
-        "title": "Moby Dick",
-        "isbn": "0-553-21311-3",
-        "price": 8.99
-      }, {
-         "category": "fiction",
-        "author": "J. R. R. Tolkien",
-        "title": "The Lord of the Rings",
-        "isbn": "0-395-19395-8",
-        "price": 22.99
-      }
-    ],
-    "bicycle": {
-      "color": "red",
-      "price": 19.95
-    }
-  }
-}
 ```
+bootstrap/
+├── css/
+│   ├── bootstrap.css
+│   ├── bootstrap.css.map
+│   ├── bootstrap.min.css
+│   ├── bootstrap.min.css.map
+│   ├── bootstrap-theme.css
+│   ├── bootstrap-theme.css.map
+│   ├── bootstrap-theme.min.css
+│   └── bootstrap-theme.min.css.map
+├── js/
+│   ├── bootstrap.js
+│   └── bootstrap.min.js
+└── fonts/
+    ├── glyphicons-halflings-regular.eot
+    ├── glyphicons-halflings-regular.svg
+    ├── glyphicons-halflings-regular.ttf
+    ├── glyphicons-halflings-regular.woff
+    └── glyphicons-halflings-regular.woff2
+```
+
+We provide compiled CSS and JS (`bootstrap.*`), as well as compiled and minified CSS and JS (`bootstrap.min.*`). CSS [source maps](https://developer.chrome.com/devtools/docs/css-preprocessors) (`bootstrap.*.map`) are available for use with certain browsers' developer tools. Fonts from Glyphicons are included, as is the optional Bootstrap theme.
 
 
 
