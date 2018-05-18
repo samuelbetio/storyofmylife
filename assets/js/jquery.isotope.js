@@ -1,7 +1,7 @@
 /*!
- * Storyofmylife PACKAGED v1.0.0
+ * Isotope PACKAGED v2.0.0
  * Filter & sort magical layouts
- * https://samuelbetio.github.io/storyofmylife
+ * http://isotope.metafizzy.co
  */
 
 /**
@@ -1235,7 +1235,7 @@
                     }
 
                     this.element = element;
-                    // parent layout class, i.e. Masonry, storyofmylife, or Packery
+                    // parent layout class, i.e. Masonry, Isotope, or Packery
                     this.layout = layout;
                     this.position = {
                         x: 0,
@@ -2681,7 +2681,7 @@
         })(window);
 
         /**
-         * storyofmylife Item
+         * Isotope Item
          **/
 
         (function(window) {
@@ -2732,14 +2732,14 @@
 
             if (typeof define === 'function' && define.amd) {
                 // AMD
-                define('storyofmylife/js/item', [
+                define('isotope/js/item', [
                     'outlayer/outlayer'
                 ],
                         itemDefinition);
             } else {
                 // browser global
-                window.storyofmylife = window.storyofmylife || {};
-                window.storyofmylife.Item = itemDefinition(
+                window.Isotope = window.Isotope || {};
+                window.Isotope.Item = itemDefinition(
                         window.Outlayer
                         );
             }
@@ -2755,20 +2755,20 @@
             function layoutModeDefinition(getSize, Outlayer) {
 
                 // layout mode class
-                function LayoutMode(storyofmylife) {
-                    this.storyofmylife = storyofmylife;
+                function LayoutMode(isotope) {
+                    this.isotope = isotope;
                     // link properties
-                    if (storyofmylife) {
-                        this.options = storyofmylife.options[ this.namespace ];
-                        this.element = storyofmylife.element;
-                        this.items = storyofmylife.filteredItems;
-                        this.size = storyofmylife.size;
+                    if (isotope) {
+                        this.options = isotope.options[ this.namespace ];
+                        this.element = isotope.element;
+                        this.items = isotope.filteredItems;
+                        this.size = isotope.size;
                     }
                 }
 
                 /**
                  * some methods should just defer to default Outlayer method
-                 * and reference the storyofmylife instance as `this`
+                 * and reference the Isotope instance as `this`
                  **/
                 (function() {
                     var facadeMethods = [
@@ -2787,7 +2787,7 @@
 
                     function getOutlayerMethod(methodName) {
                         return function() {
-                            return Outlayer.prototype[ methodName ].apply(this.storyofmylife, arguments);
+                            return Outlayer.prototype[ methodName ].apply(this.isotope, arguments);
                         };
                     }
                 })();
@@ -2797,17 +2797,17 @@
                 // for horizontal layout modes, check vertical size
                 LayoutMode.prototype.needsVerticalResizeLayout = function() {
                     // don't trigger if size did not change
-                    var size = getSize(this.storyofmylife.element);
+                    var size = getSize(this.isotope.element);
                     // check that this.size and size are there
                     // IE8 triggers resize on body size change, so they might not be
-                    var hasSizes = this.storyofmylife.size && size;
-                    return hasSizes && size.innerHeight !== this.storyofmylife.size.innerHeight;
+                    var hasSizes = this.isotope.size && size;
+                    return hasSizes && size.innerHeight !== this.isotope.size.innerHeight;
                 };
 
                 // ----- measurements ----- //
 
                 LayoutMode.prototype._getMeasurement = function() {
-                    this.storyofmylife._getMeasurement.apply(this, arguments);
+                    this.isotope._getMeasurement.apply(this, arguments);
                 };
 
                 LayoutMode.prototype.getColumnWidth = function() {
@@ -2836,23 +2836,23 @@
                     var firstItemSize = this.getFirstItemSize();
                     this[ segmentName ] = firstItemSize && firstItemSize[ outerSize ] ||
                             // or size of container
-                            this.storyofmylife.size[ 'inner' + size ];
+                            this.isotope.size[ 'inner' + size ];
                 };
 
                 LayoutMode.prototype.getFirstItemSize = function() {
-                    var firstItem = this.storyofmylife.filteredItems[0];
+                    var firstItem = this.isotope.filteredItems[0];
                     return firstItem && firstItem.element && getSize(firstItem.element);
                 };
 
-                // ----- methods that should reference storyofmylife ----- //
+                // ----- methods that should reference isotope ----- //
 
                 LayoutMode.prototype.layout = function() {
-                    this.storyofmylife.layout.apply(this.storyofmylife, arguments);
+                    this.isotope.layout.apply(this.isotope, arguments);
                 };
 
                 LayoutMode.prototype.getSize = function() {
-                    this.storyofmylife.getSize();
-                    this.size = this.storyofmylife.size;
+                    this.isotope.getSize();
+                    this.size = this.isotope.size;
                 };
 
                 // -------------------------- create -------------------------- //
@@ -2873,7 +2873,7 @@
                     }
 
                     Mode.prototype.namespace = namespace;
-                    // register in storyofmylife
+                    // register in Isotope
                     LayoutMode.modes[ namespace ] = Mode;
 
                     return Mode;
@@ -2886,15 +2886,15 @@
 
             if (typeof define === 'function' && define.amd) {
                 // AMD
-                define('storyofmylife/js/layout-mode', [
+                define('isotope/js/layout-mode', [
                     'get-size/get-size',
                     'outlayer/outlayer'
                 ],
                         layoutModeDefinition);
             } else {
                 // browser global
-                window.storyofmylife = window.storyofmylife || {};
-                window.storyofmylife.LayoutMode = layoutModeDefinition(
+                window.Isotope = window.Isotope || {};
+                window.Isotope.LayoutMode = layoutModeDefinition(
                         window.getSize,
                         window.Outlayer
                         );
@@ -3152,15 +3152,15 @@
                 var measureColumns = MasonryMode.prototype.measureColumns;
                 MasonryMode.prototype.measureColumns = function() {
                     // set items, used if measuring first item
-                    this.items = this.storyofmylife.filteredItems;
+                    this.items = this.isotope.filteredItems;
                     measureColumns.call(this);
                 };
 
                 // HACK copy over isOriginLeft/Top options
                 var _manageStamp = MasonryMode.prototype._manageStamp;
                 MasonryMode.prototype._manageStamp = function() {
-                    this.options.isOriginLeft = this.storyofmylife.options.isOriginLeft;
-                    this.options.isOriginTop = this.storyofmylife.options.isOriginTop;
+                    this.options.isOriginLeft = this.isotope.options.isOriginLeft;
+                    this.options.isOriginTop = this.isotope.options.isOriginTop;
                     _manageStamp.apply(this, arguments);
                 };
 
@@ -3171,7 +3171,7 @@
 
             if (typeof define === 'function' && define.amd) {
                 // AMD
-                define('storyofmylife/js/layout-modes/masonry', [
+                define('isotope/js/layout-modes/masonry', [
                     '../layout-mode',
                     'masonry/masonry'
                 ],
@@ -3179,7 +3179,7 @@
             } else {
                 // browser global
                 masonryDefinition(
-                        window.storyofmylife.LayoutMode,
+                        window.Isotope.LayoutMode,
                         window.Masonry
                         );
             }
@@ -3204,7 +3204,7 @@
                     item.getSize();
 
                     // if this element cannot fit in the current row
-                    if (this.x !== 0 && item.size.outerWidth + this.x > this.storyofmylife.size.innerWidth) {
+                    if (this.x !== 0 && item.size.outerWidth + this.x > this.isotope.size.innerWidth) {
                         this.x = 0;
                         this.y = this.maxY;
                     }
@@ -3230,14 +3230,14 @@
 
             if (typeof define === 'function' && define.amd) {
                 // AMD
-                define('storyofmylife/js/layout-modes/fit-rows', [
+                define('isotope/js/layout-modes/fit-rows', [
                     '../layout-mode'
                 ],
                         fitRowsDefinition);
             } else {
                 // browser global
                 fitRowsDefinition(
-                        window.storyofmylife.LayoutMode
+                        window.Isotope.LayoutMode
                         );
             }
 
@@ -3259,7 +3259,7 @@
 
                 Vertical.prototype._getItemLayoutPosition = function(item) {
                     item.getSize();
-                    var x = (this.storyofmylife.size.innerWidth - item.size.outerWidth) *
+                    var x = (this.isotope.size.innerWidth - item.size.outerWidth) *
                             this.options.horizontalAlignment;
                     var y = this.y;
                     this.y += item.size.outerHeight;
@@ -3276,23 +3276,23 @@
 
             if (typeof define === 'function' && define.amd) {
                 // AMD
-                define('storyofmylife/js/layout-modes/vertical', [
+                define('isotope/js/layout-modes/vertical', [
                     '../layout-mode'
                 ],
                         verticalDefinition);
             } else {
                 // browser global
                 verticalDefinition(
-                        window.storyofmylife.LayoutMode
+                        window.Isotope.LayoutMode
                         );
             }
 
         })(window);
 
         /*!
-         * Storyofmylife v1.0.0
+         * Isotope v2.0.0
          * Filter & sort magical layouts
-         * https://samuelbetio.github.io/storyofmylife
+         * http://isotope.metafizzy.co
          */
 
         (function(window) {
@@ -3373,21 +3373,21 @@
                 }
             }
 
-// -------------------------- storyofmylifeDefinition -------------------------- //
+// -------------------------- isotopeDefinition -------------------------- //
 
 // used for AMD definition and requires
-            function storyofmylifeDefinition(Outlayer, getSize, matchesSelector, Item, LayoutMode) {
+            function isotopeDefinition(Outlayer, getSize, matchesSelector, Item, LayoutMode) {
                 // create an Outlayer layout class
-                var Storyofmylife = Outlayer.create('Storyofmylife', {
+                var Isotope = Outlayer.create('isotope', {
                     layoutMode: "masonry",
                     isJQueryFiltering: true,
                     sortAscending: true
                 });
 
-                Storyofmylife.Item = Item;
-                Storyofmylife.LayoutMode = LayoutMode;
+                Isotope.Item = Item;
+                Isotope.LayoutMode = LayoutMode;
 
-                Storyofmylife.prototype._create = function() {
+                Isotope.prototype._create = function() {
                     this.itemGUID = 0;
                     // functions that sort items
                     this._sorters = {};
@@ -3407,14 +3407,14 @@
                     }
                 };
 
-                Storyofmylife.prototype.reloadItems = function() {
+                Isotope.prototype.reloadItems = function() {
                     // reset item ID counter
                     this.itemGUID = 0;
                     // call super
                     Outlayer.prototype.reloadItems.call(this);
                 };
 
-                Storyofmylife.prototype._itemize = function() {
+                Isotope.prototype._itemize = function() {
                     var items = Outlayer.prototype._itemize.apply(this, arguments);
                     // assign ID for original-order
                     for (var i = 0, len = items.length; i < len; i++) {
@@ -3428,7 +3428,7 @@
 
                 // -------------------------- layout -------------------------- //
 
-                Storyofmylife.prototype._initLayoutMode = function(name) {
+                Isotope.prototype._initLayoutMode = function(name) {
                     var Mode = LayoutMode.modes[ name ];
                     // set mode options
                     // HACK extend initial options, back-fill in default options
@@ -3440,7 +3440,7 @@
                 };
 
 
-                Storyofmylife.prototype.layout = function() {
+                Isotope.prototype.layout = function() {
                     // if first time doing layout, do all magic
                     if (!this._isLayoutInited && this.options.isInitLayout) {
                         this.arrange();
@@ -3450,7 +3450,7 @@
                 };
 
                 // private method to be used in layout() & magic()
-                Storyofmylife.prototype._layout = function() {
+                Isotope.prototype._layout = function() {
                     // don't animate first layout
                     var isInstant = this._getIsInstant();
                     // layout flow
@@ -3463,7 +3463,7 @@
                 };
 
                 // filter + sort + layout
-                Storyofmylife.prototype.arrange = function(opts) {
+                Isotope.prototype.arrange = function(opts) {
                     // set any options pass
                     this.option(opts);
                     this._getIsInstant();
@@ -3473,12 +3473,12 @@
                     this._layout();
                 };
                 // alias to _init for main plugin method
-                Storyofmylife.prototype._init = Storyofmylife.prototype.arrange;
+                Isotope.prototype._init = Isotope.prototype.arrange;
 
                 // HACK
                 // Don't animate/transition first layout
                 // Or don't animate/transition other layouts
-                Storyofmylife.prototype._getIsInstant = function() {
+                Isotope.prototype._getIsInstant = function() {
                     var isInstant = this.options.isLayoutInstant !== undefined ?
                             this.options.isLayoutInstant : !this._isLayoutInited;
                     this._isInstant = isInstant;
@@ -3487,7 +3487,7 @@
 
                 // -------------------------- filter -------------------------- //
 
-                Storyofmylife.prototype._filter = function(items) {
+                Isotope.prototype._filter = function(items) {
                     var filter = this.options.filter;
                     filter = filter || '*';
                     var matches = [];
@@ -3533,7 +3533,7 @@
                 };
 
                 // get a jQuery, function, or a matchesSelector test given the filter
-                Storyofmylife.prototype._getFilterTest = function(filter) {
+                Isotope.prototype._getFilterTest = function(filter) {
                     if (jQuery && this.options.isJQueryFiltering) {
                         // use jQuery
                         return function(item) {
@@ -3558,7 +3558,7 @@
                  * @params {Array} elems
                  * @public
                  */
-                Storyofmylife.prototype.updateSortData = function(elems) {
+                Isotope.prototype.updateSortData = function(elems) {
                     this._getSorters();
                     // update item sort data
                     // default to all items if none are passed in
@@ -3569,7 +3569,7 @@
                     this._updateItemsSortData(items);
                 };
 
-                Storyofmylife.prototype._getSorters = function() {
+                Isotope.prototype._getSorters = function() {
                     var getSortData = this.options.getSortData;
                     for (var key in getSortData) {
                         var sorter = getSortData[ key ];
@@ -3578,10 +3578,10 @@
                 };
 
                 /**
-                 * @params {Array} items - of Storyofmylife.Items
+                 * @params {Array} items - of Isotope.Items
                  * @private
                  */
-                Storyofmylife.prototype._updateItemsSortData = function(items) {
+                Isotope.prototype._updateItemsSortData = function(items) {
                     for (var i = 0, len = items.length; i < len; i++) {
                         var item = items[i];
                         item.updateSortData();
@@ -3611,7 +3611,7 @@
                         var attr = attrMatch && attrMatch[1];
                         var getValue = getValueGetter(attr, query);
                         // use second argument as a parser
-                        var parser = Storyofmylife.sortDataParsers[ args[1] ];
+                        var parser = Isotope.sortDataParsers[ args[1] ];
                         // parse the value, if there was a parser
                         sorter = parser ? function(elem) {
                             return elem && parser(getValue(elem));
@@ -3646,7 +3646,7 @@
                 })();
 
                 // parsers used in getSortData shortcut strings
-                Storyofmylife.sortDataParsers = {
+                Isotope.sortDataParsers = {
                     'parseInt': function(val) {
                         return parseInt(val, 10);
                     },
@@ -3658,7 +3658,7 @@
                 // ----- sort method ----- //
 
                 // sort filteredItem order
-                Storyofmylife.prototype._sort = function() {
+                Isotope.prototype._sort = function() {
                     var sortByOpt = this.options.sortBy;
                     if (!sortByOpt) {
                         return;
@@ -3697,7 +3697,7 @@
                 // -------------------------- methods -------------------------- //
 
                 // get layout mode
-                Storyofmylife.prototype._mode = function() {
+                Isotope.prototype._mode = function() {
                     var layoutMode = this.options.layoutMode;
                     var mode = this.modes[ layoutMode ];
                     if (!mode) {
@@ -3710,32 +3710,32 @@
                     return mode;
                 };
 
-                Storyofmylife.prototype._resetLayout = function() {
+                Isotope.prototype._resetLayout = function() {
                     // trigger original reset layout
                     Outlayer.prototype._resetLayout.call(this);
                     this._mode()._resetLayout();
                 };
 
-                Storyofmylife.prototype._getItemLayoutPosition = function(item) {
+                Isotope.prototype._getItemLayoutPosition = function(item) {
                     return this._mode()._getItemLayoutPosition(item);
                 };
 
-                Storyofmylife.prototype._manageStamp = function(stamp) {
+                Isotope.prototype._manageStamp = function(stamp) {
                     this._mode()._manageStamp(stamp);
                 };
 
-                Storyofmylife.prototype._getContainerSize = function() {
+                Isotope.prototype._getContainerSize = function() {
                     return this._mode()._getContainerSize();
                 };
 
-                Storyofmylife.prototype.needsResizeLayout = function() {
+                Isotope.prototype.needsResizeLayout = function() {
                     return this._mode().needsResizeLayout();
                 };
 
                 // -------------------------- adding & removing -------------------------- //
 
                 // HEADS UP overwrites default Outlayer appended
-                Storyofmylife.prototype.appended = function(elems) {
+                Isotope.prototype.appended = function(elems) {
                     var items = this.addItems(elems);
                     if (!items.length) {
                         return;
@@ -3746,7 +3746,7 @@
                 };
 
                 // HEADS UP overwrites default Outlayer prepended
-                Storyofmylife.prototype.prepended = function(elems) {
+                Isotope.prototype.prepended = function(elems) {
                     var items = this._itemize(elems);
                     if (!items.length) {
                         return;
@@ -3765,7 +3765,7 @@
                     this.filteredItems = filteredItems.concat(this.filteredItems);
                 };
 
-                Storyofmylife.prototype._filterRevealAdded = function(items) {
+                Isotope.prototype._filterRevealAdded = function(items) {
                     var filteredItems = this._noTransition(function() {
                         return this._filter(items);
                     });
@@ -3779,7 +3779,7 @@
                  * Filter, sort, and layout newly-appended item elements
                  * @param {Array or NodeList or Element} elems
                  */
-                Storyofmylife.prototype.insert = function(elems) {
+                Isotope.prototype.insert = function(elems) {
                     var items = this.addItems(elems);
                     if (!items.length) {
                         return;
@@ -3822,8 +3822,8 @@
                     this.reveal(filteredInsertItems);
                 };
 
-                var _remove = Storyofmylife.prototype.remove;
-                Storyofmylife.prototype.remove = function(elems) {
+                var _remove = Isotope.prototype.remove;
+                Isotope.prototype.remove = function(elems) {
                     elems = makeArray(elems);
                     var removeItems = this.getItems(elems);
                     // do regular thing
@@ -3847,7 +3847,7 @@
                  * @returns ret
                  * @private
                  */
-                Storyofmylife.prototype._noTransition = function(fn) {
+                Isotope.prototype._noTransition = function(fn) {
                     // save transitionDuration before disabling
                     var transitionDuration = this.options.transitionDuration;
                     // disable transition
@@ -3861,7 +3861,7 @@
 
                 // -----  ----- //
 
-                return Storyofmylife;
+                return Isotope;
             }
 
 // -------------------------- transport -------------------------- //
@@ -3872,22 +3872,22 @@
                     'outlayer/outlayer',
                     'get-size/get-size',
                     'matches-selector/matches-selector',
-                    'storyofmylife/js/item',
-                    'storyofmylife/js/layout-mode',
+                    'isotope/js/item',
+                    'isotope/js/layout-mode',
                     // include default layout modes
-                    'storyofmylife/js/layout-modes/masonry',
-                    'storyofmylife/js/layout-modes/fit-rows',
-                    'storyofmylife/js/layout-modes/vertical'
+                    'isotope/js/layout-modes/masonry',
+                    'isotope/js/layout-modes/fit-rows',
+                    'isotope/js/layout-modes/vertical'
                 ],
-                        storyofmylifeDefinition);
+                        isotopeDefinition);
             } else {
                 // browser global
-                window.storyofmylife = storyofmylifeDefinition(
+                window.Isotope = isotopeDefinition(
                         window.Outlayer,
                         window.getSize,
                         window.matchesSelector,
-                        window.storyofmylife.Item,
-                        window.storyofmylife.LayoutMode
+                        window.Isotope.Item,
+                        window.Isotope.LayoutMode
                         );
             }
 
