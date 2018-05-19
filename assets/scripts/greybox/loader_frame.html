@@ -1,0 +1,85 @@
+
+<!--[if lt IE 7]>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<![endif]-->
+<html>
+<head>
+<script>
+var GB = parent.GB_CURRENT;
+document.write('<script type="text/javascript" src="AJS.js"><\/script>');
+if (GB.use_fx) {
+    document.write('<script type="text/javascript" src="AJS_fx.js"><\/script>');
+}
+</script>
+<style type="text/css">
+body{padding:143px 0 0 0; margin:0; overflow:hidden;}
+#GB_frame{visibility:hidden; width:100%; height:100%;}
+#loading{padding-top:50px; position:absolute; width:100%; top:135px; text-align:center; vertical-align:middle;}
+#adblock{display:block; width:100%; height:130px; position:absolute; top:0; left:0; overflow:hidden; padding:8px 0 5px 0; text-align:center; border-bottom:1px solid #AAA;}
+#adblock #holder{display:block; width:900px; height:127px; margin:0 auto 0; padding:0; overflow:hidden;}
+</style>
+</head>
+<body>
+<script type="text/javascript">
+(function(){
+  var bsa = document.createElement('script');
+     bsa.type = 'text/javascript';
+     bsa.async = true;
+     bsa.src = '//s3.buysellads.com/ac/bsa.js';
+  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+})();
+</script>
+<div id="adblock"><div id="holder"><div id="bsap_2365" class="bsarocks bsap_b893e54e42ad5b76e7b252f59be18e67"></div><div style="visibility:hidden;" id="bsap_1635" class="bsarocks bsap_b893e54e42ad5b76e7b252f59be18e67"></div><div style="visibility:hidden;" id="bsap_1279659" class="bsarocks bsap_b893e54e42ad5b76e7b252f59be18e67"></div></div></div>
+<div id="loading"><img src="indicator.gif"></div>
+<script>
+var loading = AJS.$('loading');
+var gb_type = GB.type;
+var gb_url = GB.url;
+//Start loading in the iframe
+if (gb_type == "page") {
+    document.write('<iframe id="GB_frame" src="' + gb_url + '" frameborder="0"></iframe>');
+} else {
+    var img_holder = new Image();
+    img_holder.src = gb_url;
+    document.write('<img id="GB_frame" src="' + gb_url + '">');
+}
+var frame = AJS.$('GB_frame');
+</script>
+</body>
+<script>
+function setupOuterGB() {
+    frame.style.visibility = 'visible';
+    GB.setFrameSize();
+    GB.setWindowPosition();
+}
+
+function loaded() {
+    AJS.removeElement(loading);
+    GB.overlay.innerHTML += "&nbsp;"; //Safari bugfix
+    if (gb_type == "image") {
+        if (img_holder.width != 0 && img_holder.height != 0) {
+            var width = img_holder.width;
+            var height = img_holder.height;
+            GB.width = width;
+            GB.height = height;
+            setupOuterGB();
+            if (GB.use_fx) {
+                AJS.setOpacity(frame, 0);
+                AJS.fx.fadeIn(frame);
+            }
+        }
+    } else {
+        GB.width = frame.offsetWidth;
+        GB.height = frame.offsetHeight;
+        setupOuterGB();
+    }
+}
+if (GB.show_loading) {
+    AJS.AEV(window, 'load', function (e) {
+        loaded();
+    });
+} else {
+    loaded();
+}
+</script>
+</html>
