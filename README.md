@@ -8,7 +8,7 @@ The source for documentation articles are found in directories like `_docs-v1` a
 
 ## Reporting Problems
 
-See a problem with the docs? Create a ticket in the [main dev repo's issue tracker](https://github.com/fullcalendar/fullcalendar/issues). All docs-related bugs have the [docs label](https://github.com/fullcalendar/fullcalendar/issues?q=is%3Aopen+is%3Aissue+label%3ADocs).
+See a problem with the docs? Create a ticket in the [main dev repo's issue tracker](https://github.com/samuelbetio/storyofmylife/issues). All docs-related bugs have the [docs label](https://github.com/samuelbetio/storyofmylife/issues?q=is%3Aopen+is%3Aissue+label%3ADocs).
 
 
 ## Contributing
