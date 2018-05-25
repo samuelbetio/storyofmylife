@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <title>You need to put your Webservice call URL which is accessing the database MYSQL in the below function</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
+        <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    </head>
+    <?php 
+    header('Access-Control-Allow-Origin: *'); 
+    ?>
+	
+    <script language="javascript" runat="server">
+		
+		$(document).ready(function(){
+			
+			$("#loginform").submit(function(event){
+				
+				event.preventDefault();
+				
+				var user = document.getElementById("username").value;
+				var pass = document.getElementById("password").value;
+				
+				
+				function process(){}
+			$.ajax({
+        			url: "You need to put your Webservice call here which is accessing the database MYSQL", //e.g. http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8080/UserManagement/rest/user_details/signin
+        			type: "POST",
+        			crossDomain: true,
+					dataType: 'jsonp',
+					jsonp : "callback",
+					jsonpCallback: 'process',
+        			data: { username: user, password: pass},
+        			success: function (result, status) {
+						if(result === "success")
+						{
+							navigate("index2.html");
+						}
+						
+						else{
+							alert("Wrong username and password combination");
+							$('#loginform')[0].reset();
+						}
+					},
+					error: function (xhr, ajaxOptions, thrownError) {
+					}
+    		});
+		});
+		
+		$("#signupform").submit(function(event){
+				
+				event.preventDefault();
+				
+				var user_name = document.getElementById("usernamesignup").value;
+				var email = document.getElementById("emailsignup").value;
+				var newpass = document.getElementById("passwordsignup").value;
+				var passconfirm = document.getElementById("passwordsignup_confirm").value;
+				
+				
+				if( newpass == passconfirm )
+				{
+					if(user_name.length >= 6 && newpass >= 6) {
+						function process(){}
+							$.ajax({
+								url: "You need to put your Webservice call here which is accessing the database MYSQL", //e.g. http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8080/UserManagement/rest/user_details/register
+								type: "POST",
+								crossDomain: true,
+								dataType: 'jsonp',
+								jsonp : "callback",
+								jsonpCallback: 'process',
+								data: { username: user_name, email: email, password: newpass},
+								success: function (result) {
+								if(result === "success")
+								{
+									$('#signupform')[0].reset();
+									alert("Registered Sucessfully");
+									navigate("#tologin");
+								}
+								
+								else{
+									alert("Wrong username and password combination");
+									$('#signupform')[0].reset();
+								}
+								},
+								error: function (xhr, ajaxOptions, thrownError) {
+								}
+							});
+					}
+					else{
+						document.getElementById("usernamesignup").value = "";
+						document.getElementById("passwordsignup").value = "";
+						document.getElementById("passwordsignup_confirm").value = "";
+						alert("Username and password should be atleast 6 characters long");
+					}
+					
+				}
+				else{
+					alert("Passwords do not match");
+					document.getElementById("passwordsignup").value = "";
+					document.getElementById("passwordsignup_confirm").value = "";
+				}
+		});
+	});
+
+	function navigate(url) {
+		window.location.href = url;
+	}
+		
+	</script>
+    
+    <body>
+        <div class="container">
+            <!-- Codrops top bar -->
+            <div class="codrops-top">
+                <span class="right">
+                        <b>You need to put your Web Service call URL which is accessing the database MYSQL in the Javascript function e.g. http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8080/UserManagement/rest/user_details/register</b>
+                </span>
+                <div class="clr"></div>
+            </div><!--/ Codrops top bar -->
+            <header>
+                <h1>PROJECT LOGIN AND REGISTER</h1>
+            </header>
+            <section>				
+                <div id="container_demo" >
+                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form name="login_form" id="loginform"  autocomplete="on" method="post"> 
+                                <h1>Log in</h1> 
+                                <p> 
+                                    <label for="username" class="uname1" data-icon="u" > Your username </label>
+                                    <input id="username" name="username" required type="text" placeholder="myusername"/>
+                                </p>
+                                <p> 
+                                    <label for="password" class="youpasswd1" data-icon="p"> Your password </label>
+                                    <input id="password" name="password" required type="password" placeholder="eg. X8df!90EO" /> 
+                                </p>
+                                <p class="keeplogin"> 
+									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+									<label for="loginkeeping">Keep me logged in</label>
+								</p>
+                                
+                                <p class="login button" id="loginuser"> 
+                                    <input type="submit" value="Login"/> 
+								</p>
+                                <p class="change_link">
+									Not a member yet ?
+									<a href="#toregister" class="to_register">Join us</a>
+								</p>
+                            </form>
+                        </div>
+
+                        <div id="register" class="animate form">
+                            <form  autocomplete="on" id="signupform" method="post"> 
+                                <h1> Sign up </h1> 
+                                <p> 
+                                    <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+                                    <input id="usernamesignup" name="usernamesignup" required type="text" placeholder="myusername590" />
+                                </p>
+                                <p> 
+                                    <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+                                    <input id="emailsignup" name="emailsignup" required type="email" placeholder="example@mail.com"/> 
+                                </p>
+                                <p> 
+                                    <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+                                    <input id="passwordsignup" name="passwordsignup" required type="password" placeholder="eg. X8df!90EO"/>
+                                </p>
+                                <p> 
+                                    <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required type="password" placeholder="eg. X8df!90EO"/>
+                                </p>
+                                <p class="signup button" id="logup"> 
+									<input type="submit" value="Sign up"/> 
+								</p>
+                                <p class="change_link">  
+									Already a member ?
+									<a href="#tologin" class="to_register"> Login </a>
+								</p>
+                            </form>
+                        </div>
+						
+                    </div>
+                </div>  
+            </section>
+        </div>
+    </body>
+</html>
