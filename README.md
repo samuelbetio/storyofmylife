@@ -1,7 +1,10 @@
-# [CaledarMo][1]
-Full-sized drag &amp; drop event calendar
-[Full Version][2]
+# FullCalendar [![Build Status](https://travis-ci.org/fullcalendar/fullcalendar.svg?branch=master)](https://travis-ci.org/fullcalendar/fullcalendar)
 
+A full-sized drag & drop event calendar (jQuery plugin).
 
-[1]: https://samuelbetio.github.io/storyofmylife
-[2]: https://github.com/samuelbetio/storyofmylife/releases/tag/v01.01.07
+- [Project website and demos](http://fullcalendar.io/)
+- [Documentation](http://fullcalendar.io/docs)
+- [Support](http://fullcalendar.io/support)
+- [Contributing](CONTRIBUTING.md)
+- [Changelog](CHANGELOG.md)
+- [License](LICENSE.txt)
