@@ -1,0 +1,57 @@
+
+.docs-landing {
+  display: table;
+  width: 100%;
+}
+
+.docs-landing__section {
+  display: table-row;
+}
+
+.docs-landing__section-title,
+.docs-landing__section-content {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.docs-landing__section-title {
+  width: 1px;
+  padding: 54px 60px 0 0;
+  font-size: 22px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.docs-landing__section-content {
+  padding: 20px 0;
+}
+
+.docs-landing__illustrations {
+  @include clearfix(); // for the illustration floats
+  padding: 0 0 0 30px;
+  border-left: 1px solid #ccc;
+}
+
+.docs-landing__illustration {
+  float: left; // for IE, which messed up wrapping with flexbox here
+  width: 182px;
+  height: 156px;
+  margin: 20px 0 10px 10px;
+  padding: 0;
+  text-align: center;
+}
+
+.docs-landing__illustration-link {
+  color: $font-color;
+  text-decoration: none;
+}
+
+.docs-landing__illustration-image {
+  display: block;
+  margin: 0 auto;
+}
+
+.docs-landing__illustration-title {
+  display: block;
+  margin-top: 4px;
+}
