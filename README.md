@@ -2,61 +2,134 @@
 TITLE: 
 Wedding - 100% Fully Responsive Free HTML5 Bootstrap Template
 
-AUTHOR:
-DESIGNED & DEVELOPED by GetTemplates.co
+Welcome to the
+[Story Of My Life][1]
+=====================
+```
+      @@@@@@@                @@@@  @@@@@
+     @@@@@@@@@@              @@@   @@@                                           {
+    @@@@     @@              @@@   @@@                                        }   }   {
+   @@@@          @@@@@@@    @@@   @@@     @@@@@@    @@@@@@                   {   {  }  }
+  @@@@          @@@   @@  @@@@@  @@@@@@  @@@   @@  @@@@  @@                   }   }{  {
+  @@@@         @@@@   @@   @@@    @@@   @@@   @@@ @@@   @@@                  {  }{  }  }
+  @@@@        @@@@    @@   @@@    @@@   @@@@@@@@  @@@@@@@@                  { }{ }{  { }
+  @@@@@       @@@@   @@    @@@    @@@   @@@       @@@                     {  { } { } { }  }
+   @@@@@@@@@@ @@@@@@@@    @@@    @@@    @@@@@@@@  @@@@@@@@                 { }   { }   { }
+      @@@@@               @@@    @@@      @@@@@     @@@@@           @@@@@@   { }   { }    @@@@@@@
+                         @@@    @@@                                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@
+      @@@@@@            @@@    @@@                                @@ @@@@@@@@@@@@@@@@@@@@@@@@@@
+   @@@@    @@          @@@   @@@@                                @@   @@@@@@@@@@@@@@@@@@@@@@@@
+   @@@@   @@@                       @@                  @@@@     @@@   @@@@@@@@@@@@@@@@@@@@@
+   @@@@@          @@@@@   @@  @@   @@@     @@@@@@@     @@@@@      @@@    @@@@@@@@@@@@@@@@@@
+     @@@@@      @@@  @@@ @@@@@@@@         @@@@  @@@@  @@@@@@@       @@@   @@@@@@@@@@@@@@@@
+       @@@@@   @@@       @@@@     @@@@    @@@    @@@   @@@                 @@@@@@@@@@@@@@
+ @@@@@  @@@@  @@@@      @@@@      @@@@   @@@@   @@@@  @@@@
+@@@     @@@@  @@@       @@@@     @@@@    @@@    @@@@  @@@@
+@@@     @@@@  @@@@     @@@@      @@@@   @@@@   @@@@  @@@@
+ @@@@@@@@@     @@@@@@  @@@@       @@@@  @@@@@@@@@    @@@@
+                                       @@@          @@@@
+                                      @@@
+                                      @@@
+```
 
-Website: http://gettemplates.co/
-Twitter: http://twitter.com/gettemplatesco
-Facebook: http://facebook.com/gettemplatesco
+[CoffeeScript](https://github.com/jashkenas/coffeescript) is a little language that compiles into JavaScript.
+
+By: [![storyofmylife version][som-image]][som-url]
+==================================================
 
 
-CREDITS:
+Update Version
+==============
 
-Bootstrap
-http://getbootstrap.com/
+|![NAME Full Version](https://github.com/samuelbetio/storyofmylife/blob/code.svg/SBstoryofMyLife.svg)|[Index Version][2] Default    |:tv: [README.md Version][3] Default     | [LICENSE][4] Default  |[RSS][5] Version Default      |[Full Version][6] Default    |
+|-------------------------------|--------------------- |--------------------------------|----------------|-----------------------|---------------------|
+|Professional Bootstrap Template|[V0.0.0.3][7]         |[V0.4][8]                       |[V0.0.1][9]     |[v01.80.3462.5836][10] |[v5.80.3462.5836][11]|
+|Story Of My Life Full Version  |                      |                                |                |                       |[v02.04.0001.0003][12]|
+|Monolyth                       |                      |                                |                |                       |      [v0.11.2][13]       |
 
-jQuery
-http://jquery.com/
 
-jQuery Easing
-http://gsgd.co.uk/sandbox/jquery/easing/
 
-Modernizr
-http://modernizr.com/
+## Index Version
+Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-ang v0+.0+.0+.#ang full version nga update
 
-Google Fonts
-https://www.google.com/fonts/
+## README.md Version
 
-Google Map
-http://maps.google.com/
+## LICENSE
+MIT License
 
-Icomoon
-https://icomoon.io/app/
+Copyright (c) 2018 Samuel Rapana Betio
 
-Respond JS
-https://github.com/scottjehl/Respond/blob/master/LICENSE-MIT
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-animate.css
-http://daneden.me/animate
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-jQuery Waypoint
-https://github.com/imakewebthings/waypoints/blog/master/licenses.txt
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-Owl Carousel
-http://www.owlcarousel.owlgraphic.com/
 
-jQuery countTo
-http://www.owlcarousel.owlgraphic.com/
+## RSS Version
 
-Stellar Parallax
-http://markdalgleish.com/projects/stellar.js/
+## Full Version
 
-Magnific Popup
-http://dimsemenov.com/plugins/magnific-popup/
 
-SimplyCountDown JS
-http://vincentloy.github.io/simplyCountdown.js/
+## :thumbsup: Contributors & Credits
+[![NEWBAYAWANCITYPS][NEWBAYAWANCITYPS]][NEWBAYAWANCITYPS-url]
+[![samuelbetio][samuelbetio]][samuelbetio-url]
+[![Pearlton][Pearlton]][Pearlton-url]
+[![kennethvalor][kennethvalor]][kennethvalor-url]
+[![cityofbayawan][cityofbayawan]][cityofbayawan-url]
+[![marysalva][marysalva]][marysalva-url]
+[![timeseariver][timeseariver]][timeseariver-url]
+[![jeanalyn][jeanalyn]][jeanalyn-url]
+[![marlondeposoy][marlondeposoy]][marlondeposoy-url]
 
-Demo Images:
-http://unsplash.com
 
+
+
+
+
+
+[1]: https://samuelbetio.github.io/storyofmylife
+[2]: #index-version
+[3]: #readmemd-version
+[4]: #license
+[5]: #rss-version
+[6]: #full-version
+[7]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.0.3
+[8]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.4
+[9]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.1
+[10]: https://github.com/samuelbetio/storyofmylife/releases/tag/v01.80.3462.5836
+[11]: https://github.com/samuelbetio/storyofmylife/releases/tag/v5.80.3462.5836
+[12]: https://github.com/samuelbetio/storyofmylife/releases/tag/v02.04.0001.0003
+[13]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.11.2
+[som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
+[som-url]: https://github.com/samuelbetio/storyofmylife/releases
+[samuelbetio]: https://github.com/samuelbetio.png?size=40
+[samuelbetio-url]: https://github.com/samuelbetio
+[NEWBAYAWANCITYPS]: https://github.com/NEWBAYAWANCITYPS.png?size=40
+[NEWBAYAWANCITYPS-url]: https://github.com/NEWBAYAWANCITYPS
+[Pearlton]: https://github.com/Pearlton.png?size=40
+[Pearlton-url]: https://github.com/Pearlton
+[kennethvalor]: https://github.com/kennethvalor.png?size=40
+[kennethvalor-url]: https://github.com/kennethvalor
+[cityofbayawan]: https://github.com/cityofbayawan.png?size=40
+[cityofbayawan-url]: https://github.com/cityofbayawan
+[marysalva]: https://github.com/marysalva.png?size=40
+[marysalva-url]: https://github.com/marysalva
+[timeseariver]: https://github.com/timeseariver.png?size=40
+[timeseariver-url]: https://github.com/timeseariver
+[jeanalyn]: https://github.com/jeanalyn.png?size=40
+[jeanalyn-url]: https://github.com/jeanalyn
+[marlondeposoy]: https://github.com/marlondeposoy.png?size=40
+[marlondeposoy-url]: https://github.com/marlondeposoy
