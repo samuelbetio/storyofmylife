@@ -1,0 +1,69 @@
+---
+layout: base
+needs_jquery: true
+custom_css: docs
+custom_js: docs
+---
+
+<div class='hero'>
+  <div class='hero__container container'>
+
+    <div class='hero__main'>
+      {% if page.title_for_hero %}
+        <div class='hero__title'>
+          <a href='{{ site.baseurl }}{{ page.version.url | escape }}'>Docs</a>
+          <span class='hero__title-separator'></span>
+          {{ page.title_for_hero | escape }}
+        </div>
+      {% else %}
+        <h1 class='hero__title'>
+          <a href='{{ site.baseurl }}{{ page.version.url | escape }}'>Docs</a>
+          <span class='hero__title-separator'></span>
+          {{ page.title | escape }}
+        </h1>
+      {% endif %}
+    </div>
+
+    {% include docs-version-warning.html %}
+
+    <div class='hero__controls'>
+      <div class='hero__control'>
+        <a class='hero-button'
+          target='_blank'
+          href='https://github.com/fullcalendar/fullcalendar-site-static/edit/master/{{ page.path | escape }}'
+          >edit doc</a>
+      </div>
+      <div class='hero__control'>
+        {% include docs-version-select.html %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class='docs-sublanding'>
+  <div class='docs-sublanding__container container'>
+
+    <div class='docs-sublanding__main'>
+      <div class='docs-sublanding__content docs-content text-content'>
+
+        {% if page.title_for_hero %}
+          <h1>{{ page.title | escape }}</h1>
+        {% endif %}
+
+        {{ content }}
+      </div>
+      <div class='docs-sublanding__children'>
+        {% include docs-sublanding-children.html %}
+      </div>
+
+      {% if page.bottom_content_include %}
+        {% include {{ page.bottom_content_include }} %}
+      {% endif %}
+
+    </div>
+
+    {% include docs-sublanding-sidebar.html %}
+
+  </div>
+</div>
