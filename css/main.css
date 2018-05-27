@@ -1,0 +1,76 @@
+*{
+	margin: 0;
+	padding: 0;
+	outline: 0;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+}
+body{
+	background-image: url('');
+	background-size: cover;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="number"], textarea {
+    width: 97%;
+    height: 25px;
+    margin: 0 0 15px;
+    padding: 10px 1%;
+    font-size: 18px;
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+    display: inline-block;
+    background: #2394D5;
+    padding: 5px 15px;
+    color: #fff;
+    border: 0 none;
+    font-size: 18px;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover {
+	opacity: .8;
+}
+
+.main input[type="text"], .main input[type="password"] {
+	text-align: center;
+	border:0;
+}
+.main input[type="submit"] {
+    width: 99%;
+    margin: 0 auto;
+    padding: 13px 0;
+}
+
+.main{
+    width: 30%;
+    background-color: rgba(255,255,255,.4);
+    text-align: center;
+	border-radius: 5px;
+	margin: 17% auto 0 auto;
+	padding: 3%;
+    position: relative;
+}
+
+.error{
+    background-color: #E74F4F;
+    position: absolute;
+    top: 0;
+    padding: 10px 0 ;
+    border-radius:  0 0 5px 5px;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    display: none;
+}
