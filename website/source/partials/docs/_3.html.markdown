@@ -1,0 +1,100 @@
+<a name="3"></a>
+# Blocks
+
+<a name="3-1"></a>
+## Tweet Block
+
+To use the Tweet block you'll need some **server side** code. This will need to lookup a Tweet ID and return the tweet in JSON via the Twitter API. Unfortunately, the only way to do this via the API is with an authenticated call.
+
+You can change the Tweet fetch URL as follows:
+
+```js
+SirTrevor.setBlockOptions("Tweet", {
+  fetchUrl: function(tweetID) {
+    return "/tweets/?tweet_id=" + tweetID;
+  }
+});
+```
+
+<a name="3-2"></a>
+## Image Block
+
+The image block relies on a server side component to **store images on the server**. By default Sir Trevor will do an AJAX file upload in the background to a `/attachments` endpoint. You can change this as follows:
+
+```js
+SirTrevor.setDefaults({
+  uploadUrl: "/images"
+});
+```
+
+The uploader posts an `attachment` hash that has three properties:
+
+  * `attachment[name]` – the files name
+  * `attachment[file]` – the file
+  * `attachment[uid]` – a unique identifier for this file
+
+There is [an uploader example using Rails + Carrierwave](https://gist.github.com/cjbell/7091537).
+
+<a name="3-3"></a>
+## Hooks
+
+There are a few hook in points per block that you can use:
+
+**`beforeBlockRender`**
+Called immediately when render is called.
+
+```js
+SirTrevor.Blocks.Text.beforeBlockRender = function() {
+  alert('Do something');
+};
+```
+
+**`onBlockRender`**
+Called once a block has been rendered.
+
+```js
+SirTrevor.Blocks.Text.onBlockRender = function() {
+  alert('Do something');
+};
+```
+
+<a name="3-4"></a>
+## Mediated Events
+
+We use events bound to an individual editor to trigger actions internally. You can use these events to hook into the inner workings of Sir Trevor. 
+
+<a name="3-4-1"></a>
+### Block events
+
+* `block:create`
+* `block:remove`
+* `block:changePosition`
+* `block:limitReached`
+* `block:rerender`
+* `block:replace`
+* `block:countUpdate`
+
+<a name="3-4-2"></a>
+### Error events
+
+* `errors:add`
+* `errors:render`
+* `errors:reset`
+
+<a name="3-4-3"></a>
+### Formatter events
+
+* `formatter:position`
+* `formatter:hide`
+
+You can use access these events using the mediator object on an editor as follows:
+
+```js
+var editor = SirTrevor.Editor({
+  el: document.querySelector('.js-editor')
+});
+
+editor.mediator.on('block:create', function() {
+  console.log(arguments);
+});
+```

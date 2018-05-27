@@ -1,0 +1,131 @@
+---
+title: Sir Trevor JS | Made by Many
+---
+
+<header class="site-header dark-bg">
+  <div class="site-header__inner site-width">
+
+    <%= link_to "Sir Trevor", "/index.html", class: "site-logo", data: { icon: "add" } %>
+
+    <nav class="site-nav">
+      <ul class="site-nav__items">
+        <li class="site-nav__item">
+          <%= link_to "Github", "https://github.com/madebymany/sir-trevor-js" %>
+        </li>
+        <li class="site-nav__item">
+          <%= link_to "Docs", "/docs.html" %>
+        </li>
+        <li class="site-nav__item">
+          <%= link_to "Example", "/example.html" %>
+        </li>
+      </ul>
+    </nav>
+
+    <%
+      lines =
+        ["I'm a rich content editor re-imagined for the web",
+         "I have a beautiful, intuitive interface for creating content",
+         "And finally... I'm easy to extend and customise"]
+    %>
+
+    <div class="typer">
+      <h1 class="intro">Good evening. I'm Sir Trevor.</h1>
+
+      <% content_tag(:h1, "", class: "intro typer-text") do %>
+        <%= content_tag :span, '', class: "typer-target",
+                                   data: { "typer-targets" =>
+                                      { targets: lines }.to_json } %>
+      <% end %>
+
+      <% lines.each do |line| %>
+        <h1 class="visuallyhidden intro"><%= line %></h1>
+      <% end %>
+    </div>
+
+    <div class="site-header__info-container cf">
+
+      <div class="more-info__copy">
+        <p class="intro-copy">Sir Trevor is rich content editing entirely re-imagined for the web: an <strong>intuitive editor for web content</strong> which does not presuppose anything about how it will be rendered.</p>
+      </div>
+
+      <nav class="more-info__ctas">
+        <%= link_to "Get started", "/docs.html#1-1", class: "btn btn--primary" %>
+        <%= link_to "See an example", "/example.html", class: "btn" %>
+      </nav>
+
+    </div>
+
+  </div>
+</header>
+
+<section class="block block--features">
+
+  <h2>Features</h2>
+
+  <ul class="features cf">
+    <li class="feature" data-icon="add">No HTML is stored, only structured JSON and clean Markdown</li>
+    <li class="feature" data-icon="add">Trivial to extend and create your own block types</li>
+    <li class="feature" data-icon="add">Intuitive interface for creating rich content</li>
+    <li class="feature" data-icon="add">Used on a national broadcast news site serving millions of users</li>
+  </ul>
+
+</section>
+
+<section class="block block--block-types">
+
+  <h2 class="with-divider">Block types</h2>
+  <p>Sir trevor content is made up of <strong>blocks</strong>. By default Sir Trevor ships with the following block types, but you can easily add your own</p>
+
+  <ul class="block-types">
+
+    <li class="block-type">
+      <span class="st-icon">text</span>
+      Text
+    </li>
+
+    <li class="block-type">
+      <span class="st-icon">image</span>
+      Image
+    </li>
+
+    <li class="block-type">
+      <span class="st-icon">quote</span>
+      Quote
+    </li>
+
+    <li class="block-type">
+      <span class="st-icon">list</span>
+      List
+    </li>
+
+    <li class="block-type">
+      <span class="st-icon">twitter</span>
+      Tweet
+    </li>
+
+    <li class="block-type">
+      <span class="st-icon">video</span>
+      Video
+    </li>
+
+  </ul>
+
+  <p>There are more blocks available in the dedicated <a href="https://github.com/madebymany/sir-trevor-blocks">blocks repository</a> or it's incredibly easy to write your own.</p>
+</section>
+
+<section class="block block--more-info">
+
+  <div class="cf">
+    <div class="more-info__copy">
+      <p class="larger">For more information on Sir Trevor JS check out the repository at <a href="http://github.com/madebymany/sir-trevor-js">github.com/madebymany/sir-trevor-js</a></p>
+    </div>
+
+    <div class="more-info__ctas">
+      <a href="https://github.com/madebymany/sir-trevor-js/archive/master.zip" class="btn btn--primary">Download</a>
+      <a href="https://github.com/madebymany/sir-trevor-js" class="btn btn--secondary">Fork it</a>
+    </div>
+  </div>
+
+</section>
+
+<%= partial "partials/footer" %>
