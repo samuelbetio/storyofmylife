@@ -64,7 +64,7 @@ See the documentation to find out more about [adding your own block types](http:
 
 # Implementations
 
-SirTrevor saves json and relies on markdown parsers and third party image upload integrations. It was designed for use with Ruby on Rails and has an accompanying sir-trevor-rails project that eases the integration with that framework. If you'd like to work on integrating SirTrevor with your framework of choice we'd love to hear about it. The current list of integrations is listed in the [readme](https://github.com/samuelbetio/storyofmylife/blob/sir-trevor-js#implementations). Take a look at the sir-trevor-rails implementation for a starting point.
+SirTrevor saves json and relies on markdown parsers and third party image upload integrations. It was designed for use with Ruby on Rails and has an accompanying sir-trevor-rails project that eases the integration with that framework. If you'd like to work on integrating SirTrevor with your framework of choice we'd love to hear about it. The current list of integrations is listed in the [readme](https://github.com/madebymany/sir-trevor-js#implementations). Take a look at the sir-trevor-rails implementation for a starting point.
 
 # Translations
 
