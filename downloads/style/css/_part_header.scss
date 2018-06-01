@@ -1,0 +1,153 @@
+/*------------------------------------*\
+    .header
+\*------------------------------------*/
+
+
+
+.header {
+	position: fixed;
+	z-index: 3000;
+	top: 0;
+	left: 0;
+	height: 75px;
+	width: 100%;
+	transition: height 300ms ease-in-out;
+
+	//fix
+	backface-visibility: hidden;
+	background-image: linear-gradient(to bottom, rgba(black, 0.7), rgba(black, 0) );
+
+	//&:hover {
+	//	height: 85px;
+	//}
+
+}
+
+	.header__wrapper {
+		position: relative;
+		z-index: 3000;
+
+		width: 1200px;
+		margin: 0 auto;
+	}
+
+
+
+
+
+		.header__hamburger {
+			position: relative;
+			z-index: 150;
+			width: 36px;
+			float: left;
+			margin-top: 19px;
+			margin-left: 15px;
+			cursor: pointer;
+		}
+
+			.header__hamburger-block {
+				background-color: rgba(255,255,255,0.9);
+				height: 4px;
+				box-shadow: 0 0 20px black;
+				margin-bottom: 9px;
+				&:last-of-type { margin-bottom: 0; }
+				transition: background-color 100ms ease-in-out;
+			}
+
+			.header__hamburger:hover .header__hamburger-block {
+				background-color: rgba(255,255,255,0.8);
+			}
+
+
+
+
+
+
+		.header__navigation {
+			position: fixed;
+			top: 0px;
+			padding: 70px 20px 14px 20px;
+			min-width: 300px;
+			background-color: rgba(#121212, 0.9);
+			display: none;
+			z-index: 100;
+
+			a {
+				display: block;
+				padding: 8px 0;
+			}
+		}
+
+			.header__navigation-element {
+				font-size: 20px;
+				font-weight: 600;
+				color: rgba(255,255,255,1);
+				opacity: 0.8;
+				padding-left: 35px;
+				padding-right: 10px;
+				//background-image: url("../img/title_square.svg");
+				background-size: 20px 20px;
+				background-position: 5px top;
+				transition: padding 100ms ease;
+				&--experience {
+					background-image: url("../img/title_square.svg");
+				}
+				&--features {
+					background-image: url("../img/title_circle.svg");
+				}
+				&--realizations {
+					background-image: url("../img/title_pentagon.svg");
+				}
+				&--contact {
+					background-image: url("../img/title_triangle.svg");
+				}
+			}
+
+			.header__navigation a:hover .header__navigation-element {
+				padding-left: 40px;
+			}
+
+
+
+
+
+		.header__title-wrapper {
+			float: left;
+			margin-top: 11px;
+			margin-left: 20px;
+			position: relative;
+			z-index: 200;
+		}
+
+			.header__title-main {
+				font-size: 22px;
+				font-weight: 600;
+				color: rgba(255,255,255,0.9);
+				text-shadow: 0 0 20px black;
+			}
+
+			.header__title-sub {
+				font-size: 15px;
+				color: rgba(255,255,255,0.6);
+				padding-left: 1px;
+				text-shadow: 0 0 20px black;
+			}
+
+
+
+		.header__social-icons {
+			float: right;
+			margin-left: 50px;
+			margin-top: 16px;
+
+			a {
+				float: left;
+				margin-left: 50px;
+				font-size: 31px;
+				text-shadow: 0 0 20px black;
+
+				color: rgba(255,255,255,0.9);
+				transition: color 100ms ease-in-out;
+				&:hover { color: rgba(255,255,255,0.8); }
+			}
+		}
