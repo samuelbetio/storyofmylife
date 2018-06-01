@@ -1,0 +1,45 @@
+/*------------------------------------*\
+    .footer
+\*------------------------------------*/
+.footer {
+	background-color: rgba(#ebebeb,1);
+	position: relative;
+}
+
+	.footer__wrapper {
+		position: relative;
+		z-index: 200;
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding-top: 50px;
+		padding-bottom: 30px;
+
+		//clearfix
+		&::after {
+			display: table;
+			content: " ";
+			clear: both;
+		}
+	}
+
+
+		.footer__copyright {
+			font-size: 26px;
+			float: left;
+			font-weight: 600;
+			opacity: 0.2;
+			margin-top: 54px;
+		}
+
+		.footer__image {
+			width: 350px;
+			height: 100px;
+			background-image: url("../img/footer_image.png");
+			background-size: contain;
+			background-position: center right;
+			background-repeat: no-repeat;
+			float: right;
+			//background-color: gray;
+			opacity: 0.2;
+		}

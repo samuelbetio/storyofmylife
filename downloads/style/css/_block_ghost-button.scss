@@ -1,0 +1,69 @@
+/*------------------------------------*\
+    .ghost-button
+\*------------------------------------*/
+
+.ghost-button {
+	position: relative;
+	color: rgba(255,255,255,0.9);
+	border: 2px solid rgba(255,255,255,0.9);
+	cursor: pointer;
+	transition: color 150ms ease 1ms;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+	.ghost-button:hover, .ghost-button:focus  {
+		color: black;
+		transition: color 400ms ease 70ms;
+	}
+
+	.ghost-button::before {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		content: " ";
+		display: block;
+		background-color: rgba(255,255,255,0.9);
+		width: 0%;
+		height: 0%;
+		z-index: -10;
+		border-radius: 1000px;
+		transform: translateX(-50%) translateY(-50%);
+		transition: width 200ms ease-out 1ms, height 200ms ease-out;
+	}
+
+	.ghost-button:hover::before, .ghost-button:focus::before {
+		width: 200px;
+		height: 200px;
+		transition: width 200ms ease-out 1ms, height 200ms ease-out;
+	}
+
+
+
+
+
+
+/*------------------------------------*\
+    .ghost-button modifiers
+\*------------------------------------*/
+
+.ghost-button--hero {
+	&:hover::before, &:focus::before {
+		width: 400px;
+		height: 400px;
+	}
+}
+
+.ghost-button--realizations {
+	&:hover::before, &:focus::before {
+		width: 250px;
+		height: 250px;
+	}
+}
+
+.ghost-button--contact {
+	&:hover::before, &:focus::before {
+		width: 600px;
+		height: 600px;
+	}
+}

@@ -1,0 +1,38 @@
+/*------------------------------------*\
+    .section-header
+\*------------------------------------*/
+
+
+		.section-header {
+		}
+
+			.section-header__title {
+				color: rgba(255,255,255,1);
+				font-size: 38px;
+				font-weight: 600;
+				padding-left: 60px;
+				padding-bottom: 5px;
+				border-bottom: 2px solid rgba(255,255,255,0.1);
+				background-image: url("../img/title_square.svg");
+				background-size: 40px 40px;
+				background-position: 10px top;
+				opacity: 1;
+				&--experience { background-image: url("../img/title_square.svg"); }
+				&--features { background-image: url("../img/title_circle.svg"); }
+				&--realizations { background-image: url("../img/title_pentagon.svg"); }
+				&--contact { background-image: url("../img/title_triangle.svg"); }
+			}
+
+
+			.section-header__subtitle {
+				color: rgba(255,255,255,0.8);
+				font-size: 22px;
+				font-weight: 200;
+				padding-top: 5px;
+				padding-left: 100px;
+			}
+
+
+
+
+
