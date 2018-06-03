@@ -12,7 +12,7 @@ Update Version
 
 |NAME Full Version              |[Free Download][2]    |
 |-------------------------------|--------------------- |
-|                   Auro        |[v1.00.01][7]         |
+|                   Auro        |[v1.00.01][3]         |
 
 
 ## :thumbsup: Contributors & Credits
