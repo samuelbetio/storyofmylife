@@ -10,7 +10,7 @@ By: [![storyofmylife version][som-image]][som-url]
 Update Version
 ==============
 
-|NAME Full Version              |[Free Download][2]    |
+|    [Full Version][1]          |[Free Download][2]    |
 |-------------------------------|--------------------- |
 |                   Auro        |[v1.00.01][3]         |
 
