@@ -10,9 +10,9 @@ By: [![storyofmylife version][som-image]][som-url]
 Update Version
 ==============
 
-|NAME Full Version              |[Index Version][2]    |:tv: [README.md Version][3]     | [LICENSE][4]   |[RSS][5] Version       |[Full Version][6]    |
-|-------------------------------|--------------------- |--------------------------------|----------------|-----------------------|---------------------|
-|  Auro        |[v1.00.01][7]         |[V0.4][8]                       |[V0.0.1][9]     |[v01.80.3462.5836][10] |[v5.80.3462.5836][11]|
+|NAME Full Version              |[Free Download][2]    |
+|-------------------------------|--------------------- |
+|                   Auro        |[v1.00.01][7]         |
 
 
 ## :thumbsup: Contributors & Credits
@@ -33,12 +33,8 @@ Update Version
 
 
 [1]: https://samuelbetio.github.io/storyofmylife
-[2]: #index-version
-[3]: #readmemd-version
-[4]: #license
-[5]: #rss-version
-[6]: #full-version
-[7]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.00.01
+[2]: https://github.com/samuelbetio/storyofmylife/archive/v1.00.01.zip
+[3]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.00.01
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
 [samuelbetio]: https://github.com/samuelbetio.png?size=40
