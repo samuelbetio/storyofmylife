@@ -12,7 +12,7 @@ Update Version
 
 |    [Full Version][1]          |[Free Download][2]    |
 |-------------------------------|--------------------- |
-|                   Auro        |[v1.00.01][3]         |
+|                   Auro        |[v1.00.02][3]         |
 
 
 ## :thumbsup: Contributors & Credits
@@ -33,8 +33,8 @@ Update Version
 
 
 [1]: https://samuelbetio.github.io/storyofmylife
-[2]: https://github.com/samuelbetio/storyofmylife/archive/v1.00.01.zip
-[3]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.00.01
+[2]: https://github.com/samuelbetio/storyofmylife/archive/v1.00.02.zip
+[3]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.00.02
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
 [samuelbetio]: https://github.com/samuelbetio.png?size=40
