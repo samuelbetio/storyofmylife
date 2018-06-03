@@ -1,0 +1,124 @@
+/*------------------------------------*\
+    .experience
+\*------------------------------------*/
+.experience {
+	background-color: rgba(#43374c,0.99);
+	background-image: linear-gradient(to bottom right, rgba(#360033, 1), rgba(#0b8793, 1) 2100px);
+	position: relative;
+
+	&::before {
+		position: absolute;
+		z-index: 100;
+		top: 0;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: 500px;
+		content: " ";
+		background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+	}
+
+	&::after {
+		position: absolute;
+		z-index: 50;
+		bottom: 0;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: 1077px;
+		content: " ";
+		background-image: url("../img/section_pattern01.png");
+		opacity: 1;
+		background-position: -80px 50px;
+	}
+}
+
+	.experience__hollow-arrow {
+		width: 100%;
+		height: 40px;
+		background-image: url("../img/content_hollow-arrow.png");
+		background-position: 50% 50%;
+		position: relative;
+		top: -40px;
+		left: 0;
+		opacity: 1;
+	}
+
+
+	.experience__wrapper {
+		position: relative;
+		z-index: 200;
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding-top: 110px;
+		padding-bottom: 200px;
+	}
+	
+
+		.experience__icons-wrapper {
+			margin-bottom: 20px;
+			
+			//clearfix
+			&::after {
+				display: table;
+				content: " ";
+				clear: both;
+			}
+		}
+
+			.experience__icon {
+				//cursor: default;
+				position: relative;
+				margin-top: 100px;
+				float: left;
+				width: 20%;
+				height: 120px;
+				background-image: url("../img/exp_html5.svg");
+				background-size: 100px 100px;
+				background-position: 50%;
+				//filter: drop-shadow(0 0 7px rgba(0,0,0,0.2));
+
+				&--html5 { background-image: url("../img/exp/exp_html5.svg"); }
+				&--css3 { background-image: url("../img/exp/exp_css3.svg"); }
+				&--javascript { background-image: url("../img/exp/exp_javascript.svg"); }
+				&--sass { background-image: url("../img/exp/exp_sass.svg"); }
+				&--jquery { background-image: url("../img/exp/exp_jquery.svg"); }
+				&--wordpress { background-image: url("../img/exp/exp_wordpress.svg"); }
+				&--git { background-image: url("../img/exp/exp_git.svg"); }
+				&--photoshop { background-image: url("../img/exp/exp_photoshop.svg"); }
+				&--illustrator { background-image: url("../img/exp/exp_illustrator.svg"); }
+				&--fireworks { background-image: url("../img/exp/exp_fireworks.svg"); }
+				&--bootstrap { background-image: url("../img/exp/exp_bootstrap.svg"); }
+				&--foundation { background-image: url("../img/exp/exp_foundation-glasses.svg"); }
+
+			}
+
+				.experience__icon-description {
+					display: block;
+					position: absolute;
+					font-size: 19px;
+					font-weight: 400;
+					left: 50%;
+					bottom: -25px;
+					transform: translate(-50%, 0);
+					color: rgba(white, 0.9);
+					width: 200px;
+					text-align: center;
+
+					//&::after {
+					//	position: absolute;
+					//	display: block;
+					//	width: 100%;
+					//	height: 16px;
+					//	content: " ";
+					//	background-image: url("../img/icon_arrow-down.svg");
+					//	background-size: 16px 16px;
+					//	background-position: top center;
+					//	bottom: -15px;
+					//	left: 0;
+					//}
+				}
+
+
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve">
+<g id="Layer_1" display="none">
+	<defs>
+		<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="11.8" y="0" width="176.4" height="200">
+			<feFlood  style="flood-color:white;flood-opacity:1" result="back"/>
+			<feBlend  in="SourceGraphic" in2="back" mode="normal"/>
+		</filter>
+	</defs>
+	<mask maskUnits="userSpaceOnUse" x="11.8" y="0" width="176.4" height="200" id="SVGID_1_" display="inline">
+		<g filter="url(#Adobe_OpacityMaskFilter)">
+			<polygon points="153,61.4 111.1,83 150.9,83 144.2,151.1 100,162.5 55.8,151.1 52.5,117 77.9,117 80.2,134.1 100,139.8 
+				122.1,134.1 124.9,105.7 51.3,105.7 49.8,89.6 62.7,83 107.3,60.2 46.9,60.2 44.7,37.5 155.3,37.5 			"/>
+		</g>
+	</mask>
+	<path display="inline" mask="url(#SVGID_1_)" fill="#FFFFFF" d="M11.8,0l16,180l72,20l72.2-20L188.2,0H11.8z"/>
+	<polygon points="153.3,59.6 153.2,59.6 68.8,59.6 70.9,82.2 151.3,82.2 145.2,150 100.1,162.5 100,162.5 100,162.5 100,162.5 
+		54.7,150 51.7,115.3 73.8,115.3 75.4,132.9 100,139.5 100,139.5 124.6,132.9 127.2,104.3 50.7,104.3 44.7,37.5 155.3,37.5 	"/>
+</g>
+<g id="Layer_1_copy">
+	<path fill="#FFFFFF" d="M11.8,0l16,180l72,20l72.2-20L188.2,0H11.8z M153,61.4L111.1,83h39.8l-6.6,68.2L100,162.5l-44.2-11.4
+		L52.5,117h25.4l2.3,17.1l19.8,5.7l22.1-5.7l2.8-28.4H51.3l-1.6-16.1l13-6.6l44.5-22.7H46.9l-2.2-22.7h110.6L153,61.4z"/>
+	<polygon display="none" points="153.3,59.6 153.2,59.6 68.8,59.6 70.9,82.2 151.3,82.2 145.2,150 100.1,162.5 100,162.5 100,162.5 
+		100,162.5 54.7,150 51.7,115.3 73.8,115.3 75.4,132.9 100,139.5 100,139.5 124.6,132.9 127.2,104.3 50.7,104.3 44.7,37.5 
+		155.3,37.5 	"/>
+</g>
+</svg>

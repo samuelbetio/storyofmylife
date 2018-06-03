@@ -1,0 +1,347 @@
+/*------------------------------------*\
+    .contact
+\*------------------------------------*/
+.contact {
+	background-color: rgba(#3b3b3b,1);
+	background-image: linear-gradient(to top left, rgba(#232526, 1), rgba(#414345, 1) 2100px);
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		position: absolute;
+		z-index: 100;
+		top: 0;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: 500px;
+		content: " ";
+		background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+	}
+
+	&::after {
+		position: absolute;
+		z-index: 50;
+		top: 0;
+		right: 0;
+		display: block;
+		width: 100%;
+		height: 1080px;
+		content: " ";
+		background-image: url("../img/section_pattern04.png");
+		opacity: 1;
+		background-position: 110px -110px;
+	}
+}
+
+	.contact__wrapper {
+		position: relative;
+		z-index: 200;
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding-top: 150px;
+		padding-bottom: 200px;
+	}
+
+
+
+
+
+
+		/*------------------------------------*\
+			.contact icons
+		\*------------------------------------*/
+
+		.contact__icons-wrapper {
+			margin-top: 100px;
+			text-align: center;
+		}
+
+			.contact__icon {
+				display: inline-block;
+				width: 33%;
+
+				a {
+					display: block;
+					height: 100%;
+					width: 100%;
+				}
+
+				.fa {
+					font-size: 100px;
+					color: white;
+				}
+			}
+
+				.contact__icon-description {
+					color: white;
+					font-size: 20px;
+					margin-top: 20px;
+				}
+
+
+
+
+
+	
+
+		/*------------------------------------*\
+			.contact forms
+		\*------------------------------------*/
+
+		.contact__form {
+			margin-top: 100px;
+			text-align: center;
+
+			//clearfix
+			&::after {
+				display: table;
+				content: " ";
+				clear: both;
+			}
+		}
+
+			.contact__label {
+				color: rgba(255,255,255,0.9);
+				font-size: 15px;
+				font-weight: 300;
+				margin-left: 10px;
+			}
+
+			.contact__spacer {
+				font-size: 0;
+				width: 68%;
+				margin: 0 auto;
+				margin-top: 100px;
+				height: 2px;
+				background: rgba(255, 255, 255, 0.05);
+			}
+
+
+
+
+
+
+
+			/*------------------------------------*\
+				.contact message textarea
+			\*------------------------------------*/
+
+			.contact__textarea-wrapper {
+				display: block;
+				width: 100%;
+				text-align: left;
+				font-size: 0;
+
+				textarea {
+					font-weight: 300;
+					margin-top: 5px;
+					resize: vertical;
+					border: none;
+					border-radius: 3px;
+					width: 100%;
+					font-size: 15px;
+					padding: 15px 15px 15px 15px;
+					transition: box-shadow 150ms ease-in-out, outline 150ms ease-in-out;
+
+					&:invalid {
+						outline-color: red;
+					}
+
+					&:valid {
+						outline-color: black;
+					}
+				}
+			}
+
+
+
+
+
+
+
+
+
+			/*------------------------------------*\
+				.contact bottom
+			\*------------------------------------*/
+
+			.contact__bottom-wrapper {
+			}
+
+				.contact__sender-info-wrapper {
+					display: inline-block;
+					width: 50%;
+					font-size: 0;
+					text-align: left;
+					float: left;
+				}
+
+					.contact__input-wrapper {
+						display: block;
+						width: 100%;
+						margin-top: 20px;
+
+						input {
+							font-weight: 300;
+							margin-top: 5px;
+							border: none;
+							border-radius: 3px;
+							width: 100%;
+							font-size: 15px;
+							padding: 15px 15px 15px 15px;
+							transition: box-shadow 150ms ease-in-out, outline 150ms ease-in-out;
+
+							&:invalid {
+								//box-shadow: 0 0 10px 0 rgba(255,0,0,0.5);
+								outline-color: red;
+							}
+
+							&:valid {
+								//box-shadow: 0 0 10px 0 rgba(0,255,0,0.5);
+								outline-color: black;
+							}
+						}
+
+					}
+
+
+
+
+
+
+
+
+				/*------------------------------------*\
+					.contact button
+				\*------------------------------------*/
+
+				.contact__button-wrapper {
+					width: 46%;
+					height: 139px;
+					font-size: 24px;
+					font-weight: 600;
+					border: 2px solid rgba(255,255,255,0.9);
+					border-radius: 3px;
+					margin-top: 43px;
+					display: inline-block;
+					float: right;
+					position: relative;
+					overflow: hidden;
+
+					input {
+						position: absolute;
+						top: 0;
+						left: 0;
+						background: none;
+						box-shadow: none;
+						border: none;
+						outline: none;
+						//background: gray;
+						line-height: 44px;
+						display: inline-block;
+						width: 100%;
+						height: 100%;
+					}
+
+					//clearfix
+					&::after {
+						display: table;
+						content: " ";
+						clear: both;
+					}
+				}
+
+				.contact__button-wrapper--sent {
+					background-color: rgba(255,255,255,0.9);
+					color: black;
+					cursor: default;
+
+					input {
+						cursor: default !important;
+					}
+				}
+
+
+					.contact__paper-plane-wrapper {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translateY(-50%) translateX(-50%);
+						font-size: 0;
+						transition: transform 600ms ease-in;
+
+						.fa-paper-plane {
+							transition: transform 200ms ease-in-out;
+							font-size: 70px;
+						}
+					}
+
+					.contact__paper-plane-wrapper--takeoff {
+						transform: translateY(-50%) translateX(400%);
+					}
+
+					.contact__paper-plane-wrapper--takeoff .fa-paper-plane  {
+						transform: translateY(-5%) rotate(49deg);
+					}
+
+					.contact__button-wrapper:hover .contact__paper-plane-wrapper .fa-paper-plane {
+						transform: translateY(-5%) rotate(49deg);
+					}
+
+
+
+
+
+
+
+
+
+
+
+
+			/*------------------------------------*\
+				.contact ajax response
+			\*------------------------------------*/
+
+			.contact__response {
+				display: none;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 90%;
+				transform: translateY(-50%) translateX(-50%);
+			}
+
+				.contact__response-title {
+					font-size: 24px;
+					font-weight: 600;
+				}
+
+				.contact__response-description {
+					font-size: 18px;
+					font-weight: 400;
+				}
+
+
+
+			.contact__response-ajax-text {
+				color: red;
+				margin-left: 7px;
+				padding-left: 4px;
+				display: inline-block;
+				display: none;
+				font-size: 15px;
+
+
+				&::before {
+					font-family: FontAwesome;
+					font-style: normal;
+  					font-weight: normal;
+					display: inline-block;
+					content: "\f071";
+					margin-right: 5px;
+					font-size: 15px;
+				}
+			}
