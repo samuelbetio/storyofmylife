@@ -1,0 +1,189 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <link href="monolyth.PNG" rel="shortcut icon">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.12.9/sweetalert2.all.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+  <title>Monolyth - Modular Web Analytics</title>
+</head>
+  <style>
+    body {
+      background-color: black;
+      font-weight: 100 !important;
+    }
+   a {
+    text-decoration: none;
+  }
+
+    .cpf_logo {
+      width: 250px;
+      margin: 10px;
+    }
+
+    .bg-blue {
+      background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=0 ); /* IE6-9 */
+    }
+
+
+
+    .window_widget  {-moz-transition: all 0.3s;-webkit-transition: all 0.3s;transition: all 0.3s;}
+.window_widget:hover  {-moz-transform: scale(1.1);-webkit-transform: scale(1.1);transform: scale(1.1);cursor:pointer;}
+
+    #ok {
+      width: 100%;
+      height: 100vh;
+      display: none;
+    }
+
+
+    #login {
+      width: 100%;
+      height: 100vh;
+     background: linear-gradient(rgba(0, 0, 0, 255), rgba(0, 0, 0, 0.2)), url("./assets/img/galaxy.jpg");
+
+    }
+
+    .bg-blur {
+      background-color: rgba(0,120,250,0.1);
+    }
+
+   #poll {
+ display:none;
+}
+
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background-color:black;
+}
+
+input {
+    background-color: rgba(0,120,250,0.1);
+    color: #fff;
+}
+  </style>
+<body spellcheck="false">
+
+  <div class="loader">
+       <center>
+            <img src="./assets/img/loading.gif" style="margin-top:15%">
+       </center>
+  </div>
+   <div id="login" class="w3-text-white">
+    <br>
+     <br>
+     <br>
+     <br>
+    <center>
+      <div class="w3-round bg-blur w3-card-4" style="width:530px;">
+         <div class="w3-padding">
+           <div class="w3-margin w3-padding">
+             <img src="monolyth-logo.PNG" class="cpf_logo">
+             <hr>
+             <input id="code" class="w3-input w3-round w3-border" placeholder="Website URL:" onkeyup="url=this.value">
+             <br>
+             <input id="passphrase" type="password" class="w3-input w3-round w3-border" placeholder="Passphrase:" onkeyup="url=this.value">
+             <br>
+             <div class="w3-padding">
+             <p class="w3-text-white">If you dont have a Tracked site, enter your site URL and click<br><b class="w3-text-amber">"Get Tracking Data"</b></p>
+             <br>
+             <button class="w3-indigo w3-btn w3-round" onclick="getDashboard(url)">Proceed</button>
+             <button class="w3-indigo w3-btn w3-round" onclick="getCode(url)">Get Tracking Code</button>
+        </div>
+    </center>
+       <center>
+         <footer class="w3-bottom">
+           <p class="w3-text-white">
+               <a href="https://github.com/samuelbetio/storyofmylife/tree/Monolyth"><i class="fa fa-github"></i> View in GitHub</a>
+           </p>
+         </footer>
+       </center>
+    </div>
+    </div>
+</div>
+   <iframe src="" id="axios" style="display:none"></iframe>
+
+
+      <script>
+        var url;
+          window.onload = function() {
+           var x = document.getElementById("code").focus();
+           var modules = localStorage.getItem('modules');
+           if(modules){
+              messenger(3);
+              location.href="/dashboard";
+            }
+           $('.loader').delay(100).fadeOut('slow',function(){$(this).remove();});
+            // DB=document.getElementById("axios").innerHTML.split("\n");
+        }
+
+       function getDashboard(link){
+           if(link){
+              //link is trackable then perform axios request
+              var axios = document.getElementById('axios');
+              axios.src = link;
+             alert(axios.src);
+           }else{
+           messenger(1);
+         }
+       }
+
+     function messenger(n){
+        switch(n){
+        case 1:
+          swal({
+              timer: 2000,
+              type: 'info',
+              title: 'Empty URL!',
+              text: 'please provide your site URL',
+              showConfirmButton: false
+              });
+        break;
+        case 2:
+          swal({
+              timer: 2000,
+              type: 'info',
+              title: 'Your website has no Tracking code yet!',
+              text: 'Enter your site URL and click "Get tracking Code."',
+              showConfirmButton: true
+              });
+        break;
+        case 3:
+          swal({
+              timer: 1500,
+              type: 'success',
+              title: 'Redirecting to Dashboard',
+              text: 'Please wait we are redirecting to your dashboard.',
+              showConfirmButton: false
+              });
+        break;
+       }
+     }
+
+  </script>
+  <!-- <script src="/socket.io/socket.io.js"></script>
+  <script>
+      var socket = io();
+      var visitorData = {
+          referringSite: document.referrer,
+          page: location.pathname
+      }
+      socket.emit('visitor-data', visitorData);
+  </script> -->
+
+    </body>
+</html>
