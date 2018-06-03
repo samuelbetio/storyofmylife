@@ -1,93 +1,145 @@
-Welcome to the
-[Story Of My Life][1]
-=====================
+Introduction
+============
+
+**AdminLTE** -- is a fully responsive admin template. Based on **Bootstrap 3** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself. 
+
+**Download & Preview on [Almsaeed Studio](http://almsaeedstudio.com)**
+
+Looking for Premium Templates?
+------------------------------
+**Almsaeed studio just opened a new premium templates page. Hand picked to insure the best quality and the most affordable prices. Visit http://almsaeedstudio.com/premium for more information.**
 
 
-By: [![storyofmylife version][som-image]][som-url]
-==================================================
+!["AdminLTE Presentation"] (http://almsaeedstudio.com/AdminLTE2.png "AdminLTE Presentation")
 
+**AdminLTE** has been carefully coded with clear comments in all of its JS, LESS and HTML files. LESS has been used to increase code customizability.
 
-Update Version
-==============
+Installation
+------------
+There are multiple ways to install AdminLTE.
 
-|![NAME Full Version](https://github.com/samuelbetio/storyofmylife/blob/code.svg/SBstoryofMyLife.svg)|[Index Version][2]    |:tv: [README.md Version][3]     | [LICENSE][4]   |[RSS][5] Version       |[Full Version][6]    |
-|-------------------------------|--------------------- |--------------------------------|----------------|-----------------------|---------------------|
-|Professional Bootstrap Template|[V0.0.0.3][7]         |[V0.4][8]                       |[V0.0.1][9]     |[v01.80.3462.5836][10] |[v5.80.3462.5836][11]|
-|Story Of My Life Full Version  |                      |                                |                |                       |[v02.04.0001.0001][12]|
-|                               |                      |                                |                |                       |                     |
+####Download:
 
+Download from Github or [visit Almsaeed Studio](http://almsaeedstudio.com) and download the lateset release.
 
+####Using The Command Line:
 
-## Index Version
-Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-ang v0+.0+.0+.#ang full version nga update
+**Github**
 
-## README.md Version
+- Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
+- Clone to your machine 
+```
+git clone https://github.com/YOUR_USERNAME/AdminLTE.git"
+```
 
-## LICENSE
+**Bower**
 
-## Community
+```
+bower install git://github.com/almasaeed2010/AdminLTE.git
+```
 
-Get updates on Story Of My Life development and chat with the project maintainers and community members.
+**Composer**
 
-* Follow [@samuelbetio on Twitter](https://twitter.com/samuelbetio).
-* Read and subscribe to [The Official Story Of My Life Blog](http://www.facebook.com/samuelrapanabetio).
-* Join [the official Google Classroom](https://classroom.google.com/u/1/c/MTE5ODkzNjY0ODZa). Class code: **ocb3ezh**
+```
+composer require "almasaeed2010/adminlte=~2.0"
+```
 
+Documentation
+-------------
+Visit the [online documentation](http://almsaeedstudio.com/themes/AdminLTE/documentation/index.html) for the most
+updated guide. Information will be added on a weekly basis.
 
+Browser Support
+---------------
+- IE 9+
+- Firefox (latest)
+- Chrome (latest)
+- Safari (latest)
+- Opera (latest)
 
-## Bugs and feature requests
+Contribution
+------------
+Contribution are always **welcome and recommended**! Here is how:
 
-Have a bug or a feature request? Please first read the [issue guidelines](https://github.com/samuelbetio/storyofmylife/blob/master/CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/samuelbetio/storyofmylife/issues/new).
+- Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
+- Clone to your machine ```git clone https://github.com/YOUR_USERNAME/AdminLTE.git"
+- Make your changes
+- Create a pull request
 
-Note that **feature requests must target [Story Of My Life Guide](https://github.com/samuelbetio/storyofmylife/tree/guide),** because Story Of My Life Guide is now in maintenance mode and is closed off to new features. This is so that we can focus our efforts on Story Of My Life Guide.
+#### Contribution Requirements:
 
+- When you contribute, you agree to give a non-exclusive license to Almsaeed Studio to use that contribution in any context as we (Almsaeed Studio) see appropriate.
+- If you use content provided by another party, it must be appropriately licensed using an [open source](http://opensource.org/licenses) license.
+- Contributions are only accepted through Github pull requests.
+- Finally, contributed code must work in all supported browsers (see above for browser support).
 
-## :thumbsup: Contributors & Credits
-[![NEWBAYAWANCITYPS][NEWBAYAWANCITYPS]][NEWBAYAWANCITYPS-url]
-[![samuelbetio][samuelbetio]][samuelbetio-url]
-[![Pearlton][Pearlton]][Pearlton-url]
-[![kennethvalor][kennethvalor]][kennethvalor-url]
-[![cityofbayawan][cityofbayawan]][cityofbayawan-url]
-[![marysalva][marysalva]][marysalva-url]
-[![timeseariver][timeseariver]][timeseariver-url]
-[![jeanalyn][jeanalyn]][jeanalyn-url]
-[![marlondeposoy][marlondeposoy]][marlondeposoy-url]
+License
+-------
+AdminLTE is an open source project by [Almsaeed Studio](http://almsaeedstudio.com) that is licensed under [MIT](http://opensource.org/licenses/MIT). Almsaeed Studio
+reserves the right to change the license of future releases.
 
+Legacy Realeases
+----------------
+AdminLTE 1.x can be easily upgraded to 2.x using [this guide](http://almsaeedstudio.com/themes/AdminLTE/documentation/index.html#browsers), but if you intend to keep using AdminLTE 1.x, you can download the latest release from the [releases](https://github.com/almasaeed2010/AdminLTE/releases) section above.
 
+Change log
+----------
+**v2.0:**
 
+- Major layout bug fixes
+- Change in layout mark up
+- Added transitions to the sidebar
+- New skins and modified previous skins
+- Change in color scheme to a more complementing scheme 
+- Added footer support
+- Removed pace.js from the main app.js
+- Added support for collapsed sidebar as an initial state (add .sidebar-collapse to the body tag)
+- Added boxed layout (.layout-boxed)
+- Enhanced consistency in padding and margining
+- Updated Bootstrap to 3.3.2 
+- Fixed navbar dropdown menu on small screens positioning issues.
+- Updated Ion Icons to 2.0.0
+- Updated FontAwesome to 4.3.0
+- Added ChartJS 1.0.1
+- Removed iCheck dependency
+- Created Dashboard 2.0
+- Created new Chat widget (DirectChat)
+- Added transitions to DirectChat
+- Added contacts pane to DirectChat
+- Changed .right-side to .content-wrapper
+- Changed .navbar-right to .navbar-custom-menu
+- Removed unused files
+- Updated lockscreen style (HTML markup changed!)
+- Updated Login & Registration pages (HTML markup changed!)
+- Updated buttons style.
+- Enhanced border-radius consistency
+- Added mailbox: inbox, read, and compose pages
+- Bootstrap & jQuery are now hosted locally
+- Created documentation.
 
+**ver 1.2:**
 
+- Fixed the sidebar scroll issue when using the fixed layout.
+- Added [Bootstrap Social Buttons](http://lipis.github.io/bootstrap-social/ "Bootstrap Social") plugin.
+- Fixed RequireJS bug. Thanks to [StaticSphere](https://github.com/StaticSphere "github user"). 
 
+**ver 1.1:**
 
-[1]: https://samuelbetio.github.io/storyofmylife
-[2]: #index-version
-[3]: #readmemd-version
-[4]: #license
-[5]: #rss-version
-[6]: #full-version
-[7]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.0.3
-[8]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.4
-[9]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.1
-[10]: https://github.com/samuelbetio/storyofmylife/releases/tag/v01.80.3462.5836
-[11]: https://github.com/samuelbetio/storyofmylife/releases/tag/v5.80.3462.5836
-[12]: https://github.com/samuelbetio/storyofmylife/releases/tag/v02.04.0001.0001
-[som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
-[som-url]: https://github.com/samuelbetio/storyofmylife/releases
-[samuelbetio]: https://github.com/samuelbetio.png?size=40
-[samuelbetio-url]: https://github.com/samuelbetio
-[NEWBAYAWANCITYPS]: https://github.com/NEWBAYAWANCITYPS.png?size=40
-[NEWBAYAWANCITYPS-url]: https://github.com/NEWBAYAWANCITYPS
-[Pearlton]: https://github.com/Pearlton.png?size=40
-[Pearlton-url]: https://github.com/Pearlton
-[kennethvalor]: https://github.com/kennethvalor.png?size=40
-[kennethvalor-url]: https://github.com/kennethvalor
-[cityofbayawan]: https://github.com/cityofbayawan.png?size=40
-[cityofbayawan-url]: https://github.com/cityofbayawan
-[marysalva]: https://github.com/marysalva.png?size=40
-[marysalva-url]: https://github.com/marysalva
-[timeseariver]: https://github.com/timeseariver.png?size=40
-[timeseariver-url]: https://github.com/timeseariver
-[jeanalyn]: https://github.com/jeanalyn.png?size=40
-[jeanalyn-url]: https://github.com/jeanalyn
-[marlondeposoy]: https://github.com/marlondeposoy.png?size=40
-[marlondeposoy-url]: https://github.com/marlondeposoy
+- Added new skin. class: .skin-black
+- Added [pace](http://github.hubspot.com/pace/docs/welcome/ "pace") plugin.
+
+Image Credits
+-------------
+[Pixeden](http://www.pixeden.com/psd-web-elements/flat-responsive-showcase-psd)
+
+[Graphicsfuel](http://www.graphicsfuel.com/2013/02/13-high-resolution-blur-backgrounds/)
+
+[Pickaface](http://pickaface.net/)
+
+[Unsplash](https://unsplash.com/)
+
+Donations
+---------
+Donations are **greatly appreciated!**
+
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif "AdminLTE Presentation")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=629XCUSXBHCBC "Donate")
