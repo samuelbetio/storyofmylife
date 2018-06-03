@@ -10,7 +10,7 @@ By: [![storyofmylife version][som-image]][som-url]
 Update Version
 ==============
 
-|NAME Full Version              |[Index Version][2]    |:tv: [README.md Version][3]     | [LICENSE][4]   |[RSS][5] Version       |[Full Version][6]    |
+|![NAME Full Version](https://github.com/samuelbetio/storyofmylife/blob/code.svg/SBstoryofMyLife.svg)|[Index Version][2]    |:tv: [README.md Version][3]     | [LICENSE][4]   |[RSS][5] Version       |[Full Version][6]    |
 |-------------------------------|--------------------- |--------------------------------|----------------|-----------------------|---------------------|
 |Professional Bootstrap Template|[V0.0.0.3][7]         |[V0.4][8]                       |[V0.0.1][9]     |[v01.80.3462.5836][10] |[v5.80.3462.5836][11]|
 |Story Of My Life Full Version  |                      |                                |                |                       |[v02.04.0001.0001][12]|
@@ -25,9 +25,21 @@ Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-
 
 ## LICENSE
 
-## RSS Version
+## Community
 
-## Full Version
+Get updates on Story Of My Life development and chat with the project maintainers and community members.
+
+* Follow [@samuelbetio on Twitter](https://twitter.com/samuelbetio).
+* Read and subscribe to [The Official Story Of My Life Blog](http://www.facebook.com/samuelrapanabetio).
+* Join [the official Google Classroom](https://classroom.google.com/u/1/c/MTE5ODkzNjY0ODZa). Class code: **ocb3ezh**
+
+
+
+## Bugs and feature requests
+
+Have a bug or a feature request? Please first read the [issue guidelines](https://github.com/samuelbetio/storyofmylife/blob/master/CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/samuelbetio/storyofmylife/issues/new).
+
+Note that **feature requests must target [Story Of My Life Guide](https://github.com/samuelbetio/storyofmylife/tree/guide),** because Story Of My Life Guide is now in maintenance mode and is closed off to new features. This is so that we can focus our efforts on Story Of My Life Guide.
 
 
 ## :thumbsup: Contributors & Credits
