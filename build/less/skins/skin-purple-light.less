@@ -7,7 +7,7 @@
 @import "../variables.less";
 @import "../mixins.less";
 
-.skin-purple {
+.skin-purple-light {
   //Navbar
   .main-header {
     .navbar {
@@ -36,7 +36,7 @@
     }
     //Logo
     .logo {
-      .logo-variant(darken(@purple, 5%));
+      .logo-variant(@purple);
     }
 
     li.user-header {
@@ -50,5 +50,5 @@
   }
 
   //Create the sidebar skin
-  .skin-dark-sidebar(@purple);
+  .skin-light-sidebar(@purple);
 }

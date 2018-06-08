@@ -1,5 +1,5 @@
 /*
- * Skin: Purple
+ * Skin: Yellow
  * ------------
  */
 @import "../../bootstrap-less/mixins.less";
@@ -7,15 +7,15 @@
 @import "../variables.less";
 @import "../mixins.less";
 
-.skin-purple {
+.skin-yellow-light {
   //Navbar
   .main-header {
     .navbar {
-      .navbar-variant(@purple; #fff);
+      .navbar-variant(@yellow; #fff);
       .sidebar-toggle {
         color: #fff;
         &:hover {
-          background-color: darken(@purple, 5%);
+          background-color: darken(@yellow, 5%);
         }
       }
       @media (max-width: @screen-header-collapse) {
@@ -27,7 +27,7 @@
             a {
               color: #fff;
               &:hover {
-                background: darken(@purple, 5%);
+                background: darken(@yellow, 5%);
               }
             }
           }
@@ -36,11 +36,11 @@
     }
     //Logo
     .logo {
-      .logo-variant(darken(@purple, 5%));
+      .logo-variant(@yellow);
     }
 
     li.user-header {
-      background-color: @purple;
+      background-color: @yellow;
     }
   }
 
@@ -50,5 +50,5 @@
   }
 
   //Create the sidebar skin
-  .skin-dark-sidebar(@purple);
+  .skin-light-sidebar(@yellow);
 }
