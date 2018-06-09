@@ -6,13 +6,26 @@ Welcome to the
 Releases Story of My Life Version
 =================================
 
-|NAME Full Version              |[Commit] Default  |(zip) Download Default |(tar.gz) Download Default |Full Version Default         |
-|-------------------------------|------------------|-----------------------|--------------------------|-----------------------------|
-|[Story of My Life][2]          |[dc792a3][3]      |[Download][4]          |[Download][5]             |[v1.0][2]                    |
-|[Print lest][6]                |[dde337e][7]      |[Download][8]          |[Download][9]             |[v1.1][6]                    |
-|[Complete A][10]               |[c0a497c][11]     |[Download][12]         |[Download][13]            |[v1.1][10]                   |       
+|NAME Full Version              |[Commit][2] Default  |(zip) Download Default |(tar.gz) Download Default |Full Version Default      |
+|-------------------------------|---------------------|-----------------------|--------------------------|--------------------------|
+|[Story of My Life][3]          |[dc792a3][4]         |[Download][5]          |[Download][6]             |[v1.0][3]                 |
+|[Print lest][7]                |[dde337e][8]         |[Download][9]          |[Download][10]            |[v1.1][7]                 |
+|[Complete A][11]               |[c0a497c][12]        |[Download][13]         |[Download][14]            |[v1.0.0.1][11]            |       
 
-
+[1]: https://samuelbetio.github.io/storyofmylife
+[2]: https://github.com/samuelbetio/storyofmylife/commits/master
+[3]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.0
+[4]: https://github.com/samuelbetio/storyofmylife/commit/dc792a34140d6649c626cdef6c5e128434eee2eb
+[5]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.zip
+[6]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.tar.gz
+[7]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.1
+[8]: https://github.com/samuelbetio/storyofmylife/commit/dde337e0389ba96eb5cd520cc21b69bdd70fecb0
+[9]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.zip
+[10]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.tar.gz
+[11]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.0.0.1
+[12]: https://github.com/samuelbetio/storyofmylife/commit/c0a497c6c968f5c9bd7ac10afd2c7ef1cdbf28d5
+[13]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.0.1.zip
+[14]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.0.1.tar.gz
 
 
 ## :thumbsup: Contributors & Credits
@@ -28,24 +41,12 @@ Releases Story of My Life Version
 
 
 
-
-
-
-
 ![Branches](https://github.com/samuelbetio/storyofmylife/branches)
 ![Releases](https://github.com/samuelbetio/storyofmylife/releases)
 ![Contributors](https://github.com/samuelbetio/storyofmylife/graphs/contributors)
 ![MIT License](https://github.com/samuelbetio/storyofmylife/blob/master/LICENSE)
 
-[1]: https://samuelbetio.github.io/storyofmylife
-[2]: https://github.com/samuelbetio/storyofmylife/commit/dc792a34140d6649c626cdef6c5e128434eee2eb
-[3]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.zip
-[4]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.tar.gz
-[5]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.0
-[6]: https://github.com/samuelbetio/storyofmylife/commit/dde337e0389ba96eb5cd520cc21b69bdd70fecb0
-[7]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.zip
-[8]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.tar.gz
-[9]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.1
+
 
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
@@ -67,4 +68,3 @@ Releases Story of My Life Version
 [jeanalyn-url]: https://github.com/jeanalyn
 [marlondeposoy]: https://github.com/marlondeposoy.png?size=40
 [marlondeposoy-url]: https://github.com/marlondeposoy
-[Commits]: https://github.com/samuelbetio/storyofmylife/commits/master
