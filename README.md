@@ -1,7 +1,79 @@
-Welcome to the
+Introduction
+============
+
+**StoryOfMyLife** -- is a fully responsive admin template. Based on **Bootstrap 3** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself. 
+
+**Download & Preview on [StoryOfMyLife](https://github.com/samuelbetio/storyofmylife/releases)**
+
+
+Installation
+------------
+There are multiple ways to install StoryOfMyLife.
+
+####Download:
+
+Download from Github or [visit Story Of My Life](https://github.com/samuelbetio/storyofmylife/releases) and download the lateset release.
+
+####Using The Command Line:
+
+**Github**
+
+- Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
+- Clone to your machine 
+```
+git clone https://github.com/YOUR_USERNAME/storyofmylife.git"
+```
+
+**Bower**
+
+```
+bower install git://github.com/samuelbetio/storyofmylife.git
+```
+
+**Composer**
+
+```
+composer require "samuelbetio/storyofmylife"
+```
+
+Documentation
+-------------
+Visit the [online documentation](https://samuelbetio.github.io/storyofmylife/documentation/index.html) for the most
+updated guide. Information will be added on a weekly basis.
+
+Browser Support
+---------------
+- IE 9+
+- Firefox (latest)
+- Chrome (latest)
+- Safari (latest)
+- Opera (latest)
+
+Contribution
+------------
+Contribution are always **welcome and recommended**! Here is how:
+
+- Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
+- Clone to your machine ```git clone https://github.com/YOUR_USERNAME/storyofmylife.git"
+- Make your changes
+- Create a pull request
+
+#### Contribution Requirements:
+
+- When you contribute, you agree to give a non-exclusive license to [Story Of My Life][0] to use that contribution in any context as we (Story Of My Life) see appropriate.
+- If you use content provided by another party, it must be appropriately licensed using an [open source](http://opensource.org/licenses) license.
+- Contributions are only accepted through Github pull requests.
+- Finally, contributed code must work in all supported browsers (see above for browser support).
+
+License
+-------
+storyofmylife is an open source project by [Samuel Rapana Betio][0] that is licensed under [MIT](http://opensource.org/licenses/MIT). Samuel Rapana Betio
+reserves the right to change the license of future releases.
+
+
+
 [Story Of My Life][1]
 =====================
-
 
 Releases Story of My Life Version
 =================================
@@ -31,7 +103,7 @@ Releases Story of My Life Version
 [![marlondeposoy][marlondeposoy]][marlondeposoy-url]
 
 
-
+[0]: https://github.com/samuelbetio/
 [1]: https://samuelbetio.github.io/storyofmylife
 [2]: https://github.com/samuelbetio/storyofmylife/commits/master
 [3]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.0
