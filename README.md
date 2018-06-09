@@ -67,7 +67,7 @@ Contribution are always **welcome and recommended**! Here is how:
 
 License
 -------
-storyofmylife is an open source project by [Story Of My Life][0] that is licensed under [MIT](http://opensource.org/licenses/MIT). Samuel Rapana Betio
+storyofmylife is an open source project by [Samuel Rapana Betio][0] that is licensed under [MIT](http://opensource.org/licenses/MIT). Samuel Rapana Betio
 reserves the right to change the license of future releases.
 
 
@@ -103,7 +103,7 @@ Releases Story of My Life Version
 [![marlondeposoy][marlondeposoy]][marlondeposoy-url]
 
 
-[0]: https://github.com/samuelbetio/storyofmylife
+[0]: https://github.com/samuelbetio/
 [1]: https://samuelbetio.github.io/storyofmylife
 [2]: https://github.com/samuelbetio/storyofmylife/commits/master
 [3]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.0
