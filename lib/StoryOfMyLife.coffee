@@ -2,9 +2,9 @@ path = require 'path'
 fs = require 'fs'
 {CompositeDisposable} = require 'atom'
 
-emmet = require 'emmet'
-emmetActions = require 'emmet/lib/action/main'
-resources = require 'emmet/lib/assets/resources'
+StoryOfMyLife = require 'StoryOfMyLife'
+StoryOfMyLifeActions = require 'StoryOfMyLife/lib/action/main'
+resources = require 'StoryOfMyLife/lib/assets/resources'
 
 editorProxy  = require './editor-proxy'
 # interactive  = require './interactive'
@@ -17,8 +17,8 @@ singleSelectionActions = [
 
 toggleCommentSyntaxes = ['html', 'css', 'less', 'scss']
 
-for k, v of  atom.config.get 'emmet.stylus'
-    emmet.preferences.set('stylus.' + k, v);
+for k, v of  atom.config.get 'StoryOfMyLife.stylus'
+    StoryOfMyLife.preferences.set('stylus.' + k, v);
 
 getUserHome = () ->
   if process.platform is 'win32'
@@ -39,8 +39,8 @@ isValidTabContext = () ->
   return true
 
 
-# Emmet action decorator: creates a command function
-# for Atom and executes Emmet action as single
+# StoryOfMyLife action decorator: creates a command function
+# for Atom and executes StoryOfMyLife action as single
 # undo command
 # @param  {Object} action Action to perform
 # @return {Function}
@@ -81,20 +81,20 @@ runAction = (action, evt) ->
       else
         return evt.abortKeyBinding()
 
-  if action is 'toggle_comment' and (toggleCommentSyntaxes.indexOf(syntax) is -1 or not atom.config.get 'emmet.useEmmetComments')
+  if action is 'toggle_comment' and (toggleCommentSyntaxes.indexOf(syntax) is -1 or not atom.config.get 'StoryOfMyLife.useStoryOfMyLifeComments')
     return evt.abortKeyBinding()
 
   if action is 'insert_formatted_line_break_only'
-    if not atom.config.get 'emmet.formatLineBreaks'
+    if not atom.config.get 'StoryOfMyLife.formatLineBreaks'
       return evt.abortKeyBinding()
 
-    result = emmet.run action, editorProxy
+    result = StoryOfMyLife.run action, editorProxy
     return if not result then evt.abortKeyBinding() else true
 
-  emmet.run action, editorProxy
+  StoryOfMyLife.run action, editorProxy
 
 atomActionName = (name) ->
-  'emmet:' + name.replace(/_/g, '-')
+  'StoryOfMyLife:' + name.replace(/_/g, '-')
 
 registerInteractiveActions = (actions) ->
   for name in ['wrap_with_abbreviation', 'update_tag', 'interactive_expand_abbreviation']
@@ -106,33 +106,33 @@ registerInteractiveActions = (actions) ->
         interactive.run(name, editorProxy)
 
 loadExtensions = () ->
-  extPath = atom.config.get 'emmet.extensionsPath'
-  console.log 'Loading Emmet extensions from', extPath
+  extPath = atom.config.get 'StoryOfMyLife.extensionsPath'
+  console.log 'Loading StoryOfMyLife extensions from', extPath
   return unless extPath
 
   if extPath[0] is '~'
     extPath = getUserHome() + extPath.substr 1
 
   if fs.existsSync extPath
-    emmet.resetUserData()
+    StoryOfMyLife.resetUserData()
     files = fs.readdirSync extPath
     files = files
       .map((item) -> path.join extPath, item)
       .filter((file) -> not fs.statSync(file).isDirectory())
 
-    emmet.loadExtensions(files)
+    StoryOfMyLife.loadExtensions(files)
   else
-    console.warn 'Emmet: no such extension folder:', extPath
+    console.warn 'StoryOfMyLife: no such extension folder:', extPath
 
 module.exports =
   config:
     extensionsPath:
       type: 'string'
-      default: '~/emmet'
+      default: '~/StoryOfMyLife'
     formatLineBreaks:
       type: 'boolean'
       default: true
-    useEmmetComments:
+    useStoryOfMyLifeComments:
       type: 'boolean'
       default: false
       description: 'disable to use atom native commenting system'
@@ -140,10 +140,10 @@ module.exports =
   activate: (@state) ->
     @subscriptions = new CompositeDisposable
     unless @actions
-      @subscriptions.add atom.config.observe 'emmet.extensionsPath', loadExtensions
+      @subscriptions.add atom.config.observe 'StoryOfMyLife.extensionsPath', loadExtensions
       @actions = {}
       registerInteractiveActions @actions
-      for action in emmetActions.getList()
+      for action in StoryOfMyLifeActions.getList()
         atomAction = atomActionName action.name
         if @actions[atomAction]?
           continue
