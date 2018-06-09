@@ -11,7 +11,7 @@ Releases Story of My Life Version
 |[Story of My Life][3]          |[dc792a3][4]         |[Download][5]          |[Download][6]             |v1.0                 |
 |[Print lest][7]                |[dde337e][8]         |[Download][9]          |[Download][10]            |v1.1                 |
 |[Complete A][11]               |[c0a497c][12]        |[Download][13]         |[Download][14]            |v1.0.0.1             |       
-
+|[Unlink][15]                   |[d1ae91f][16]        |[Download][17]         |[Download][18]            |v1.1.0.0             |
 
 
 - [Branches](https://github.com/samuelbetio/storyofmylife/branches)
@@ -46,7 +46,10 @@ Releases Story of My Life Version
 [12]: https://github.com/samuelbetio/storyofmylife/commit/c0a497c6c968f5c9bd7ac10afd2c7ef1cdbf28d5
 [13]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.0.1.zip
 [14]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.0.1.tar.gz
-
+[15]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.1.0.0
+[16]: https://github.com/samuelbetio/storyofmylife/commit/d1ae91fb9b636e67697c399e03e1b8ef35023003
+[17]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.0.0.zip
+[18]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.0.0.tar.gz
 
 
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
