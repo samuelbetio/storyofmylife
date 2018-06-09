@@ -43,7 +43,7 @@ If you want to make StoryOfMyLife expand abbreviations with Tab key for other sy
 
 Replace `YOUR GRAMMAR HERE` with actual grammar attribute value. The easiest way to get grammar name of currently opened editor is to open DevTools and find corresponding `<atom-text-editor>` element: it will contain `data-grammar` attribute with value you need. For example, for HTML syntax it’s a `text html basic`.
 
-You can add as many sections as you like for different syntaxes. Note that default snippets will no longer work, but you can add [your own snippets in StoryOfMyLife](http://docs.StoryOfMyLife.io/customization/).
+You can add as many sections as you like for different syntaxes. Note that default snippets will no longer work, but you can add [your own snippets in StoryOfMyLife](https://samuelbetio.github.io/storyofmylife/).
 
 ## Default Keybindings
 
@@ -81,7 +81,7 @@ All actions and their keyboard shortcuts are available under Packages > StoryOfM
 
 ## Extensions support
 
-You can easily [extend](http://docs.StoryOfMyLife.io/customization/) StoryOfMyLife with new actions and filters or customize existing ones. In Preferences > StoryOfMyLife, set Extensions path to folder with StoryOfMyLife extensions. By default, it’s `~/StoryOfMyLife`, e.g. `StoryOfMyLife` folder in your system HOME folder.
+You can easily [extend](https://samuelbetio.github.io/storyofmylife/) StoryOfMyLife with new actions and filters or customize existing ones. In Preferences > StoryOfMyLife, set Extensions path to folder with StoryOfMyLife extensions. By default, it’s `~/StoryOfMyLife`, e.g. `StoryOfMyLife` folder in your system HOME folder.
 
 
 Introduction
