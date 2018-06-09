@@ -41,10 +41,10 @@ Releases Story of My Life Version
 
 
 
-- Branches (https://github.com/samuelbetio/storyofmylife/branches)
-- Releases (https://github.com/samuelbetio/storyofmylife/releases)
-- Contributors (https://github.com/samuelbetio/storyofmylife/graphs/contributors)
-- MIT License (https://github.com/samuelbetio/storyofmylife/blob/master/LICENSE)
+- [Branches](https://github.com/samuelbetio/storyofmylife/branches)
+- [Release](https://github.com/samuelbetio/storyofmylife/releases)
+- [Contributors](https://github.com/samuelbetio/storyofmylife/graphs/contributors)
+- [MIT License](https://github.com/samuelbetio/storyofmylife/blob/master/LICENSE)
 
 
 
