@@ -1,12 +1,12 @@
 {Point, Range} = require 'atom'
 path           = require 'path'
 
-emmet       = require 'emmet'
-utils       = require 'emmet/lib/utils/common'
-tabStops    = require 'emmet/lib/assets/tabStops'
-resources   = require 'emmet/lib/assets/resources'
-editorUtils = require 'emmet/lib/utils/editor'
-actionUtils = require 'emmet/lib/utils/action'
+StoryOfMyLife       = require 'StoryOfMyLife'
+utils       = require 'StoryOfMyLife/lib/utils/common'
+tabStops    = require 'StoryOfMyLife/lib/assets/tabStops'
+resources   = require 'StoryOfMyLife/lib/assets/resources'
+editorUtils = require 'StoryOfMyLife/lib/utils/editor'
+actionUtils = require 'StoryOfMyLife/lib/utils/action'
 
 insertSnippet = (snippet, editor) ->
   atom.packages.getLoadedPackage('snippets')?.mainModule?.insert(snippet, editor)
@@ -228,7 +228,7 @@ module.exports =
 
   # Returns the current output profile name
   #
-  # See emmet.setupProfile for more information.
+  # See StoryOfMyLife.setupProfile for more information.
   getProfileName: ->
     return if @getCurrentScope().some((scope) -> /\bstring\.quoted\b/.test scope) then 'line' else actionUtils.detectProfile(@)
 
