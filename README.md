@@ -6,24 +6,13 @@ Welcome to the
 Releases Story of My Life Version
 =================================
 
-|NAME Full Version              |Commit Default    |:tv: [README.md Version][3] Default     | [LICENSE][4] Default  |[RSS][5] Version Default      |[Full Version][6] Default    |
-|-------------------------------|--------------------- |--------------------------------|----------------|-----------------------|---------------------|
-|Professional Bootstrap Template|[V0.0.0.3][7]         |[V0.4][8]                       |[V0.0.1][9]     |[v01.80.3462.5836][10] |[v5.80.3462.5836][11]|
-|Story Of My Life Full Version  |                      |                                |                |                       |[v02.04.0001.0001][12]|
-|                               |                      |                                |                |                       |                     |
+|NAME Full Version              |Commit Default    |(zip) Download Default |(tar.gz) Download Default |Full Version Default         |
+|-------------------------------|------------------|-----------------------|--------------------------|-----------------------------|
+|     Story of My Life          |[dc792a3][2]      |[Download][3]          |[Download][4]             |[v1.0][5]                    |
+|     Print lest                |[dde337e][6]      |[Download][7]          |[Download][8]             |[v1.1][9]                    |
+|                               |                  |                       |                          |                             |       
 
 
-
-## Index Version
-Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-ang v0+.0+.0+.#ang full version nga update
-
-## README.md Version
-
-## LICENSE
-
-## RSS Version
-
-## Full Version
 
 
 ## :thumbsup: Contributors & Credits
@@ -42,19 +31,22 @@ Ang pag-update sa index gamit ang version v0.0.0.#ang version nga gi-update pag-
 
 
 
+![Commits](https://github.com/samuelbetio/storyofmylife/commits/master)
+![Branches](https://github.com/samuelbetio/storyofmylife/branches)
+![Releases](https://github.com/samuelbetio/storyofmylife/releases)
+![Contributors](https://github.com/samuelbetio/storyofmylife/graphs/contributors)
+![MIT License](https://github.com/samuelbetio/storyofmylife/blob/master/LICENSE)
 
 [1]: https://samuelbetio.github.io/storyofmylife
-[2]: #index-version
-[3]: #readmemd-version
-[4]: #license
-[5]: #rss-version
-[6]: #full-version
-[7]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.0.3
-[8]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.4
-[9]: https://github.com/samuelbetio/storyofmylife/releases/tag/v0.0.1
-[10]: https://github.com/samuelbetio/storyofmylife/releases/tag/v01.80.3462.5836
-[11]: https://github.com/samuelbetio/storyofmylife/releases/tag/v5.80.3462.5836
-[12]: https://github.com/samuelbetio/storyofmylife/releases/tag/v02.04.0001.0001
+[2]: https://github.com/samuelbetio/storyofmylife/commit/dc792a34140d6649c626cdef6c5e128434eee2eb
+[3]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.zip
+[4]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.tar.gz
+[5]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.0
+[6]: https://github.com/samuelbetio/storyofmylife/commit/dde337e0389ba96eb5cd520cc21b69bdd70fecb0
+[7]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.zip
+[8]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.tar.gz
+[9]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.1
+
 [som-image]: https://github.com/samuelbetio/storyofmylife/blob/master/assets/img/logo.png
 [som-url]: https://github.com/samuelbetio/storyofmylife/releases
 [samuelbetio]: https://github.com/samuelbetio.png?size=40
