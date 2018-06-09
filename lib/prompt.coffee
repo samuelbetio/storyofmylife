@@ -9,9 +9,9 @@ class PromptView extends View
 	@attach: -> new PromptView
 
 	@content: ->
-		@div class: 'emmet-prompt tool-panel panel-bottom', =>
-			# @label class: 'emmet-prompt__label', outlet: 'label'
-			@div class: 'emmet-prompt__input', =>
+		@div class: 'StoryOfMyLife-prompt tool-panel panel-bottom', =>
+			# @label class: 'StoryOfMyLife-prompt__label', outlet: 'label'
+			@div class: 'StoryOfMyLife-prompt__input', =>
 				@subview 'panelInput', new TextEditorView(mini: true)
 
 	initialize: () ->
