@@ -73,7 +73,7 @@ reserves the right to change the license of future releases.
 
 
 [Story Of My Life][1]
-
+=====================
 
 Releases Story of My Life Version
 =================================
