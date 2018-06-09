@@ -3,12 +3,8 @@ Welcome to the
 =====================
 
 
-By: [![storyofmylife version][som-image]][som-url]
-==================================================
-
-
-Update Version
-==============
+Releases Story of My Life Version
+=================================
 
 |NAME Full Version              |[Index Version][2] Default    |:tv: [README.md Version][3] Default     | [LICENSE][4] Default  |[RSS][5] Version Default      |[Full Version][6] Default    |
 |-------------------------------|--------------------- |--------------------------------|----------------|-----------------------|---------------------|
