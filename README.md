@@ -6,11 +6,11 @@ Welcome to the
 Releases Story of My Life Version
 =================================
 
-|NAME Full Version              |Commit Default    |(zip) Download Default |(tar.gz) Download Default |Full Version Default         |
+|NAME Full Version              |[Commit] Default  |(zip) Download Default |(tar.gz) Download Default |Full Version Default         |
 |-------------------------------|------------------|-----------------------|--------------------------|-----------------------------|
-|     Story of My Life          |[dc792a3][2]      |[Download][3]          |[Download][4]             |[v1.0][5]                    |
-|     Print lest                |[dde337e][6]      |[Download][7]          |[Download][8]             |[v1.1][9]                    |
-|                               |                  |                       |                          |                             |       
+|[Story of My Life][2]          |[dc792a3][3]      |[Download][4]          |[Download][5]             |[v1.0][2]                    |
+|[Print lest][6]                |[dde337e][7]      |[Download][8]          |[Download][9]             |[v1.1][6]                    |
+|[Complete A][10]               |[c0a497c][11]     |[Download][12]         |[Download][13]            |[v1.1][10]                   |       
 
 
 
@@ -31,7 +31,7 @@ Releases Story of My Life Version
 
 
 
-![Commits](https://github.com/samuelbetio/storyofmylife/commits/master)
+
 ![Branches](https://github.com/samuelbetio/storyofmylife/branches)
 ![Releases](https://github.com/samuelbetio/storyofmylife/releases)
 ![Contributors](https://github.com/samuelbetio/storyofmylife/graphs/contributors)
@@ -67,3 +67,4 @@ Releases Story of My Life Version
 [jeanalyn-url]: https://github.com/jeanalyn
 [marlondeposoy]: https://github.com/marlondeposoy.png?size=40
 [marlondeposoy-url]: https://github.com/marlondeposoy
+[Commits]: https://github.com/samuelbetio/storyofmylife/commits/master
