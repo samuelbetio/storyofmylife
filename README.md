@@ -12,21 +12,12 @@ Releases Story of My Life Version
 |[Print lest][7]                |[dde337e][8]         |[Download][9]          |[Download][10]            |v1.1                 |
 |[Complete A][11]               |[c0a497c][12]        |[Download][13]         |[Download][14]            |v1.0.0.1             |       
 
-[1]: https://samuelbetio.github.io/storyofmylife
-[2]: https://github.com/samuelbetio/storyofmylife/commits/master
-[3]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.0
-[4]: https://github.com/samuelbetio/storyofmylife/commit/dc792a34140d6649c626cdef6c5e128434eee2eb
-[5]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.zip
-[6]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.tar.gz
-[7]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.1
-[8]: https://github.com/samuelbetio/storyofmylife/commit/dde337e0389ba96eb5cd520cc21b69bdd70fecb0
-[9]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.zip
-[10]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.tar.gz
-[11]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.0.0.1
-[12]: https://github.com/samuelbetio/storyofmylife/commit/c0a497c6c968f5c9bd7ac10afd2c7ef1cdbf28d5
-[13]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.0.1.zip
-[14]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.0.1.tar.gz
 
+
+- [Branches](https://github.com/samuelbetio/storyofmylife/branches)
+- [Release](https://github.com/samuelbetio/storyofmylife/releases)
+- [Contributors](https://github.com/samuelbetio/storyofmylife/graphs/contributors)
+- [MIT License](https://raw.githubusercontent.com/samuelbetio/storyofmylife/master/LICENSE)
 
 ## :thumbsup: Contributors & Credits
 [![NEWBAYAWANCITYPS][NEWBAYAWANCITYPS]][NEWBAYAWANCITYPS-url]
@@ -41,10 +32,20 @@ Releases Story of My Life Version
 
 
 
-- [Branches](https://github.com/samuelbetio/storyofmylife/branches)
-- [Release](https://github.com/samuelbetio/storyofmylife/releases)
-- [Contributors](https://github.com/samuelbetio/storyofmylife/graphs/contributors)
-- [MIT License](https://github.com/samuelbetio/storyofmylife/blob/master/LICENSE)
+[1]: https://samuelbetio.github.io/storyofmylife
+[2]: https://github.com/samuelbetio/storyofmylife/commits/master
+[3]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.0
+[4]: https://github.com/samuelbetio/storyofmylife/commit/dc792a34140d6649c626cdef6c5e128434eee2eb
+[5]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.zip
+[6]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.tar.gz
+[7]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.1
+[8]: https://github.com/samuelbetio/storyofmylife/commit/dde337e0389ba96eb5cd520cc21b69bdd70fecb0
+[9]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.zip
+[10]: https://github.com/samuelbetio/storyofmylife/archive/v1.1.tar.gz
+[11]: https://github.com/samuelbetio/storyofmylife/releases/tag/v1.0.0.1
+[12]: https://github.com/samuelbetio/storyofmylife/commit/c0a497c6c968f5c9bd7ac10afd2c7ef1cdbf28d5
+[13]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.0.1.zip
+[14]: https://github.com/samuelbetio/storyofmylife/archive/v1.0.0.1.tar.gz
 
 
 
