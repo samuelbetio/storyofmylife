@@ -1,7 +1,4 @@
-[Story Of My Life][1]
-=====================
-
-Releases PULL REQUEST TEMPLATE StoryofMyLife Version
+Releases PULL REQUEST TEMPLATE [Story Of My Life][1] Version
 ====================================================
 
 |NAME Full Version              |[Commit][2] Default  |(zip) Download Default |(tar.gz) Download Default |Full Version Default |
