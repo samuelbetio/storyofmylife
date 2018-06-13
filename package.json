@@ -1,0 +1,16 @@
+{
+    "name": "components-jqueryui",
+    "description": "A curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library.",
+    "version": "1.12.1",
+    "homepage": "https://goo.gl/8KacYq",
+    "author": {
+        "name": "Story Of My Life and other contributors",
+        "url": "https://github.com/samuelbetio/storyofmylife/blob/master/AUTHORS.txt"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/samuelbetio/storyofmylife.git"
+    },
+    "main": "jquery-ui.js",
+    "license": "MIT"
+}
