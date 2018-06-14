@@ -91,7 +91,7 @@ The license is available within the repository in the [LICENSE][license] file.
 [cdnjs]: http://www.cdnjs.com/libraries/select2
 [community]: https://select2.org/getting-help
 [documentation]: https://select2.org
-[documentation-folder]: https://github.com/select2/select2/tree/master/docs
+[documentation-folder]: https://github.com/samuelbetio/storyofmylife/tree/master/bower_components/select2/docs
 [freenode]: https://freenode.net/
 [jsdelivr]: http://www.jsdelivr.com/#!select2
 [license]: LICENSE.md
