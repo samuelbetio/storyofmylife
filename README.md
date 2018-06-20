@@ -146,16 +146,3 @@ Releases Story of My Life Version
 [marlondeposoy-url]: https://github.com/marlondeposoy
 
 
-<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCUB3efezLeGqKK5nQ8DHgV86EkvnV6fgk",
-    authDomain: "samuelbetio-beb97.firebaseapp.com",
-    databaseURL: "https://samuelbetio-beb97.firebaseio.com",
-    projectId: "samuelbetio-beb97",
-    storageBucket: "samuelbetio-beb97.appspot.com",
-    messagingSenderId: "338109472207"
-  };
-  firebase.initializeApp(config);
-</script>
