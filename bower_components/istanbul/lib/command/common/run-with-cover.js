@@ -16,6 +16,7 @@ var Module = require('module'),
     formatOption = require('../../util/help-formatter').formatOption,
     hook = require('../../hook'),
     Report = require('../../report'),
+    resolve = require('resolve'),
     DEFAULT_REPORT_FORMAT = 'lcov';
 
 function usage(arg0, command) {
@@ -25,6 +26,7 @@ function usage(arg0, command) {
             formatOption('-x <exclude-pattern> [-x <exclude-pattern>]', 'one or more fileset patterns e.g. "**/vendor/**"'),
             formatOption('--[no-]default-excludes', 'apply default excludes [ **/node_modules/**, **/test/**, **/tests/** ], defaults to true'),
             formatOption('--hook-run-in-context', 'hook vm.runInThisContext in addition to require (supports RequireJS), defaults to false'),
+            formatOption('--post-require-hook <file> | <module>', 'JS module that exports a function for post-require processing'),
             formatOption('--report <report-type>', 'report type, one of html, lcov, lcovonly, none, defaults to lcov (= lcov.info + HTML)'),
             formatOption('--dir <report-dir>', 'report directory, defaults to ./coverage'),
             formatOption('--print <type>', 'type of report to print to console, one of summary (default), detail, both or none'),
@@ -45,7 +47,8 @@ function run(args, commandName, enableHooks, callback) {
             'default-excludes': Boolean,
             print: String,
             'self-test': Boolean,
-            'hook-run-in-context': Boolean
+            'hook-run-in-context': Boolean,
+            'post-require-hook': String
         },
         opts = nopt(config, { v : '--verbose' }, args, 0),
         cmdAndArgs = opts.argv.remain,
@@ -118,11 +121,30 @@ function run(args, commandName, enableHooks, callback) {
                 var coverageVar = '$$cov_' + new Date().getTime() + '$$',
                     instrumenter = new Instrumenter({ coverageVariable: coverageVar }),
                     transformer = instrumenter.instrumentSync.bind(instrumenter),
-                    hookOpts = { verbose: opts.verbose };
+                    hookOpts = { verbose: opts.verbose },
+                    postRequireHook = opts['post-require-hook'],
+                    postLoadHookFile;
 
-                if (opts.yui) { //EXPERIMENTAL code: do not rely on this in anyway until the docs say it is allowed
-                    hookOpts.postLoadHook = require('../../util/yui-load-hook').getPostLoadHook(matchFn, transformer, opts.verbose);
+                if (postRequireHook) {
+                    postLoadHookFile = path.resolve(postRequireHook);
+                } else if (opts.yui) { //EXPERIMENTAL code: do not rely on this in anyway until the docs say it is allowed
+                    postLoadHookFile = path.resolve(__dirname, '../../util/yui-load-hook');
                 }
+
+                if (postRequireHook) {
+                    if (!existsSync(postLoadHookFile)) { //assume it is a module name and resolve it
+                        try {
+                            postLoadHookFile = resolve.sync(postRequireHook, { basedir: process.cwd() });
+                        } catch (ex) {
+                            if (opts.verbose) { console.error('Unable to resolve [' + postRequireHook + '] as a node module'); }
+                        }
+                    }
+                }
+                if (postLoadHookFile) {
+                    if (opts.verbose) { console.log('Use post-load-hook: ' + postLoadHookFile); }
+                    hookOpts.postLoadHook = require(postLoadHookFile)(matchFn, transformer, opts.verbose);
+                }
+
                 if (opts['self-test']) {
                     hook.unloadRequireCache(matchFn);
                 }
@@ -144,13 +166,13 @@ function run(args, commandName, enableHooks, callback) {
                     //important: there is no event loop at this point
                     //everything that happens in this exit handler MUST be synchronous
                     mkdirp.sync(reportingDir); //yes, do this again since some test runners could clean the dir initially created
-                    console.log('=============================================================================');
-                    console.log('Writing coverage object [' + file + ']');
+                    console.error('=============================================================================');
+                    console.error('Writing coverage object [' + file + ']');
                     fs.writeFileSync(file, JSON.stringify(cov), 'utf8');
                     collector = new Collector();
                     collector.add(cov);
-                    console.log('Writing coverage reports at [' + reportingDir + ']');
-                    console.log('=============================================================================');
+                    console.error('Writing coverage reports at [' + reportingDir + ']');
+                    console.error('=============================================================================');
                     reports.forEach(function (report) {
                         report.writeReport(collector, true);
                     });

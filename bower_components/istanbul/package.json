@@ -1,6 +1,6 @@
 {
     "name": "istanbul",
-    "version": "0.1.27",
+    "version": "0.1.32",
     "description": "Yet another JS code coverage tool that computes statement, line, function and branch coverage with module loader hooks to transparently add coverage when running tests. Supports all JS coverage use cases including unit tests, server side functional tests and browser tests. Built for scale",
     "keywords": [ "coverage", "code coverage", "JS code coverage", "JS coverage" ],
     "author": "Krishnan Anantheswaran <kananthmail-github@yahoo.com>",
@@ -9,11 +9,12 @@
         "Martin Cooper <mfncooper@gmail.com>",
         "Dav Glass <davglass@gmail.com>",
         "nowamasa <nowamasa@gmail.com>",
-        "Miller Medeiros <contact@millermedeiros.com>"
+        "Miller Medeiros <contact@millermedeiros.com>",
+        "Daniel Perez Alvarez <unindented@gmail.com>"
     ],
     "preferGlobal": true,
     "scripts": {
-        "pretest": "jshint --config ./node_modules/yui-lint/jshint.json lib/*js lib/command/*js lib/report/*js lib/store/*js lib/util/*js",
+        "pretest": "jshint --config ./node_modules/yui-lint/jshint.json lib/*js lib/command/*js lib/report/*js lib/store/*js lib/util/*js test/*js test/instrumentation/*js test/cli/*js test/other/*js",
         "test": "test/run.js",
 	    "posttest": "node ./lib/cli.js check-coverage --statements 95 --branches 80",
         "docs": "npm install yuidocjs && node node_modules/yuidocjs/lib/cli.js ."
@@ -31,7 +32,8 @@
         "which": "1.0.x",
         "async": "0.1.x",
         "abbrev": "1.0.x",
-        "wordwrap": "0.0.x"
+        "wordwrap": "0.0.x",
+        "resolve": "0.2.x"
     },
     "devDependencies": {
         "rimraf": "*",
