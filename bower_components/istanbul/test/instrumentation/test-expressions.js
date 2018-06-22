@@ -3,6 +3,7 @@ var helper = require('../helper'),
     code,
     verifier;
 
+/*jshint maxlen: 500 */
 module.exports = {
     "with a simple expression": {
         setUp: function (cb) {
@@ -47,6 +48,21 @@ module.exports = {
         },
         "should cover line, both branches and return true": function (test) {
             verifier.verify(test, [ 3 ], true, { lines: { 1: 1, 2: 1 }, branches: { 1: [ 1, 1, 0 ]}, functions: {}, statements: { '1': 1, '2': 1 } });
+            test.done();
+        }
+    },
+    "with an array expression with empty positions": {
+        setUp: function (cb) {
+            code = [
+                'var x = [, , args[0], ];',
+                'output = x.indexOf(args[0]) === x.length - 1;'
+            ];
+            verifier = helper.verifier(__filename, code);
+            cb();
+        },
+
+        "should not barf in any way": function (test) {
+            verifier.verify(test, [ 5 ], true, { lines: { 1: 1, 2: 1 }, branches: {}, functions: {}, statements: { '1': 1, '2': 1 } });
             test.done();
         }
     }

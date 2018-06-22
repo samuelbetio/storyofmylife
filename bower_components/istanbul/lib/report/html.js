@@ -422,8 +422,8 @@ Report.mix(HtmlReport, {
             indexFile = path.resolve(dir, 'index.html'),
             childFile;
         if (this.opts.verbose) { console.error('Writing ' + indexFile); }
-        writer.writeFile(indexFile, function () {
-            that.writeIndexPage(writer, node);
+        writer.writeFile(indexFile, function (contentWriter) {
+            that.writeIndexPage(contentWriter, node);
         });
         node.children.forEach(function (child) {
             if (child.kind === 'dir') {
@@ -431,8 +431,8 @@ Report.mix(HtmlReport, {
             } else {
                 childFile = path.resolve(dir, child.relativeName + '.html');
                 if (that.opts.verbose) { console.error('Writing ' + childFile); }
-                writer.writeFile(childFile, function () {
-                    that.writeDetailPage(writer, child, collector.fileCoverageFor(child.fullPath()));
+                writer.writeFile(childFile, function (contentWriter) {
+                    that.writeDetailPage(contentWriter, child, collector.fileCoverageFor(child.fullPath()));
                 });
             }
         });
@@ -497,10 +497,16 @@ Report.mix(HtmlReport, {
         });
         tree = summarizer.getTreeSummary();
         fs.readdirSync(path.resolve(__dirname, '..', 'vendor')).forEach(function (f) {
-            if (opts.verbose) {
-                console.log('Write asset: ' + path.resolve(dir, f));
+            var resolvedSource = path.resolve(__dirname, '..', 'vendor', f),
+                resolvedDestination = path.resolve(dir, f),
+                stat = fs.statSync(resolvedSource);
+
+            if (stat.isFile()) {
+                if (opts.verbose) {
+                    console.log('Write asset: ' + resolvedDestination);
+                }
+                writer.copyFile(resolvedSource, resolvedDestination);
             }
-            writer.copyFile(path.resolve(__dirname, '..', 'vendor', f), path.resolve(dir, f));
         });
         //console.log(JSON.stringify(tree.root, undefined, 4));
         this.writeFiles(writer, tree.root, dir, collector);

@@ -1,7 +1,6 @@
 /*jslint nomen: true */
 var path = require('path'),
     fs = require('fs'),
-    util = require('util'),
     cp = require('child_process'),
     Module = require('module'),
     originalLoader = Module._extensions['.js'],
@@ -12,6 +11,7 @@ var path = require('path'),
     EXCLUDES = [ '**/node_modules/**', '**/test/**', '**/yui-load-hook.js'],
     COVER_VAR = '$$selfcover$$',
     seq = 0,
+    verbose = false,
     OPTS = {
     };
 
@@ -55,6 +55,9 @@ var path = require('path'),
  *
  */
 
+function setVerbose(flag) {
+    verbose = flag;
+}
 function setOpts(userOpts) {
     Object.keys(userOpts).forEach(function (k) { OPTS[k] = userOpts[k]; });
 }
@@ -76,10 +79,12 @@ function runCommand(command, args, envVars, callback) {
                     return item.match(pat);
                 });
                 if (filtered.length === 0) {
-                    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-                    console.log('Could not find: ' + pat + ' in:');
-                    console.log(array.join('\n'));
-                    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+                    if (verbose) {
+                        console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+                        console.log('Could not find: ' + pat + ' in:');
+                        console.log(array.join('\n'));
+                        console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+                    }
                 }
                 return filtered.length > 0;
             };
@@ -117,11 +122,15 @@ function runCommand(command, args, envVars, callback) {
     handle.stderr.setEncoding('utf8');
     handle.stdout.on('data', function (data) {
         out += data;
-        process.stdout.write(data);
+        if (verbose) {
+            process.stdout.write(data);
+        }
     });
     handle.stderr.on('data', function (data) {
         err += data;
-        process.stderr.write(data);
+        if (verbose) {
+            process.stderr.write(data);
+        }
     });
     handle.on('exit', function (exitCode) {
         setTimeout(function () {
@@ -185,6 +194,7 @@ function customHook(lazyHook, callback) {
 }
 
 module.exports = {
+    setVerbose: setVerbose,
     runCommand: runCommand,
     resetOpts: resetOpts,
     setOpts: setOpts
