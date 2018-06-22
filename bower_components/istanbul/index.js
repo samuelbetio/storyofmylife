@@ -3,18 +3,25 @@ Copyright (c) 2012, Yahoo! Inc.  All rights reserved.
 Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
 */
 
+/**
+ * provides access to the key libraries in istanbul so you can write
+ * your own tools using `istanbul` as a library.
+ *
+ * @module istanbul
+ */
+
 /*jslint nomen: true */
 var path = require('path'),
+    fs = require('fs'),
     Store = require('./lib/store'),
     Report = require('./lib/report'),
     meta = require('./lib/util/meta');
 
-//register our standard plugins
+//register our standard plaugins
 require('./lib/register-plugins');
 
 /**
- * the top-level API for `istanbul`. provides access to the key libraries in
- * istanbul so you can write your own tools using `istanbul` as a library.
+ * the top-level API for `istanbul`.
  *
  * Usage
  * -----
@@ -22,66 +29,43 @@ require('./lib/register-plugins');
  *      var istanbul = require('istanbul');
  *
  *
- * @class Istanbul
- * @static
- * @module main
- * @main main
+ * @class API
  */
 
 module.exports = {
     /**
      * the Instrumenter class.
-     * @property Instrumenter
-     * @type Instrumenter
+     * @property {Instrumenter} Instrumenter
      * @static
      */
     Instrumenter: require('./lib/instrumenter'),
     /**
      * the Store class.
-     * @property  Store
-     * @type Store
+     * @property {Store} Store
      * @static
      */
     Store: Store,
     /**
      * the Collector class
-     * @property  Collector
-     * @type Collector
+     * @property {Collector} Collector
      * @static
      */
     Collector: require('./lib/collector'),
     /**
      * the hook module
-     * @property hook
-     * @type Hook
+     * @property {Hook} hook
      * @static
      */
     hook: require('./lib/hook'),
     /**
      * the Report class
-     * @property Report
-     * @type Report
+     * @property {Report} Report
      * @static
      */
     Report: Report,
     /**
-     * the config module
-     * @property config
-     * @type Config
-     * @static
-     */
-    config: require('./lib/config'),
-    /**
-     * the Reporter class
-     * @property Reporter
-     * @type Reporter
-     * @static
-     */
-    Reporter: require('./lib/reporter'),
-    /**
      * utility for processing coverage objects
-     * @property utils
-     * @type ObjectUtils
+     * @property {ObjectUtils} utils
      * @static
      */
     utils: require('./lib/object-utils'),
@@ -93,7 +77,7 @@ module.exports = {
      * When no options are passed, the match function is one that matches all JS
      * files under the current working directory except ones under `node_modules`
      *
-     * Match patterns are `ant`-style patterns processed using the `glob` library.
+     * Match patterns are `ant`-style patterns processed using the `fileset` library.
      * Examples not provided due to limitations in putting asterisks inside
      * jsdoc comments. Please refer to tests under `test/other/test-matcher.js`
      * for examples.
@@ -116,38 +100,16 @@ module.exports = {
     matcherFor: require('./lib/util/file-matcher').matcherFor,
     /**
      * the version of the library
-     * @property VERSION
-     * @type String
+     * @property {String} VERSION
      * @static
      */
     VERSION: meta.VERSION,
-    /**
-     * the abstract Writer class
-     * @property Writer
-     * @type Writer
-     * @static
-     */
-    Writer: require('./lib/util/writer').Writer,
-    /**
-     * the abstract ContentWriter class
-     * @property ContentWriter
-     * @type ContentWriter
-     * @static
-     */
-    ContentWriter: require('./lib/util/writer').ContentWriter,
-    /**
-     * the concrete FileWriter class
-     * @property FileWriter
-     * @type FileWriter
-     * @static
-     */
-    FileWriter: require('./lib/util/file-writer'),
     //undocumented
-    _yuiLoadHook: require('./lib/util/yui-load-hook'),
+    _yuiLoadHook: require('./lib/util/yui-load-hook').getPostLoadHook,
     //undocumented
     TreeSummarizer: require('./lib/util/tree-summarizer'),
     //undocumented
-    assetsDir: path.resolve(__dirname, 'lib', 'assets')
+    assetsDir: path.resolve(__dirname, 'lib', 'vendor')
 };
 
 

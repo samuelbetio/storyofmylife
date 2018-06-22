@@ -35,9 +35,8 @@ var Factory = require('../util/factory'),
  *
  * @class Store
  * @constructor
- * @module store
+ * @protected
  * @param {Object} options Optional. The options supported by a specific store implementation.
- * @main store
  */
 function Store(/* options */) {}
 

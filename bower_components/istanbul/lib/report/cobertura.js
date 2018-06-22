@@ -4,9 +4,8 @@
  */
 
 var path = require('path'),
-    util = require('util'),
     Report = require('./index'),
-    FileWriter = require('../util/file-writer'),
+    Writer = require('../util/file-writer'),
     TreeSummarizer = require('../util/tree-summarizer'),
     utils = require('../object-utils');
 
@@ -20,7 +19,6 @@ var path = require('path'),
  *      var report = require('istanbul').Report.create('cobertura');
  *
  * @class CoberturaReport
- * @module report
  * @extends Report
  * @constructor
  * @param {Object} opts optional
@@ -29,14 +27,11 @@ var path = require('path'),
 function CoberturaReport(opts) {
     Report.call(this);
     opts = opts || {};
-    this.projectRoot = process.cwd();
-    this.dir = opts.dir || this.projectRoot;
-    this.file = opts.file || this.getDefaultConfig().file;
-    this.opts = opts;
+    this.dir = opts.dir || process.cwd();
+    this.file = opts.file || 'cobertura-coverage.xml';
 }
 
 CoberturaReport.TYPE = 'cobertura';
-util.inherits(CoberturaReport, Report);
 
 function asJavaPackage(node) {
     return node.displayShortName().
@@ -77,9 +72,7 @@ function branchCoverageByLine(fileCoverage) {
     return ret;
 }
 
-function addClassStats(node, fileCoverage, writer, projectRoot) {
-    fileCoverage = utils.incrementIgnoredTotals(fileCoverage);
-
+function addClassStats(node, fileCoverage, writer) {
     var metrics = node.metrics,
         branchByLine = branchCoverageByLine(fileCoverage),
         fnMap,
@@ -87,7 +80,7 @@ function addClassStats(node, fileCoverage, writer, projectRoot) {
 
     writer.println('\t\t<class' +
         attr('name', asClassName(node)) +
-        attr('filename', path.relative(projectRoot, node.fullPath())) +
+        attr('filename', node.fullPath()) +
         attr('line-rate', metrics.lines.pct / 100.0) +
         attr('branch-rate', metrics.branches.pct / 100.0) +
         '>');
@@ -97,27 +90,11 @@ function addClassStats(node, fileCoverage, writer, projectRoot) {
     Object.keys(fnMap).forEach(function (k) {
         var name = fnMap[k].name,
             hits = fileCoverage.f[k];
-
-        writer.println(
-            '\t\t\t<method' +
+        writer.println('\t\t\t<method' +
             attr('name', name) +
             attr('hits', hits) +
             attr('signature', '()V') + //fake out a no-args void return
-            '>'
-        );
-
-        //Add the function definition line and hits so that jenkins cobertura plugin records method hits
-        writer.println(
-            '\t\t\t\t<lines>' +
-             '<line' +
-            attr('number', fnMap[k].line) +
-            attr('hits', fileCoverage.f[k]) +
-            '/>' +
-            '</lines>'
-        );
-
-        writer.println('\t\t\t</method>');
-
+            ' />');
     });
     writer.println('\t\t</methods>');
 
@@ -143,7 +120,7 @@ function addClassStats(node, fileCoverage, writer, projectRoot) {
     writer.println('\t\t</class>');
 }
 
-function walk(node, collector, writer, level, projectRoot) {
+function walk(node, collector, writer, level) {
     var metrics;
     if (level === 0) {
         metrics = node.metrics;
@@ -158,9 +135,7 @@ function walk(node, collector, writer, level, projectRoot) {
             attr('branch-rate', metrics.branches.pct / 100.0) +
             attr('timestamp', Date.now()) +
             'complexity="0" version="0.1">');
-        writer.println('<sources>');
-        writer.println('\t<source>' + projectRoot + '</source>');
-        writer.println('</sources>');
+        writer.println('<sources />');
         writer.println('<packages>');
     }
     if (node.packageMetrics) {
@@ -173,14 +148,14 @@ function walk(node, collector, writer, level, projectRoot) {
         writer.println('\t<classes>');
         node.children.filter(function (child) { return child.kind !== 'dir'; }).
             forEach(function (child) {
-                addClassStats(child, collector.fileCoverageFor(child.fullPath()), writer, projectRoot);
+                addClassStats(child, collector.fileCoverageFor(child.fullPath()), writer);
             });
         writer.println('\t</classes>');
         writer.println('\t</package>');
     }
     node.children.filter(function (child) { return child.kind === 'dir'; }).
         forEach(function (child) {
-            walk(child, collector, writer, level + 1, projectRoot);
+            walk(child, collector, writer, level + 1);
         });
 
     if (level === 0) {
@@ -190,18 +165,10 @@ function walk(node, collector, writer, level, projectRoot) {
 }
 
 Report.mix(CoberturaReport, {
-    synopsis: function () {
-        return 'XML coverage report that can be consumed by the cobertura tool';
-    },
-    getDefaultConfig: function () {
-        return { file: 'cobertura-coverage.xml' };
-    },
     writeReport: function (collector, sync) {
         var summarizer = new TreeSummarizer(),
             outputFile = path.join(this.dir, this.file),
-            writer = this.opts.writer || new FileWriter(sync),
-            projectRoot = this.projectRoot,
-            that = this,
+            writer = new Writer(sync),
             tree,
             root;
 
@@ -210,10 +177,8 @@ Report.mix(CoberturaReport, {
         });
         tree = summarizer.getTreeSummary();
         root = tree.root;
-        writer.on('done', function () { that.emit('done'); });
-        writer.writeFile(outputFile, function (contentWriter) {
-            walk(root, collector, contentWriter, 0, projectRoot);
-            writer.done();
+        writer.writeFile(outputFile, function () {
+            walk(root, collector, writer, 0);
         });
     }
 });

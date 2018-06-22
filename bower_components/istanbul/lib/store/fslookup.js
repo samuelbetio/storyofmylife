@@ -22,7 +22,6 @@ var util = require('util'),
  *
  * @class LookupStore
  * @extends Store
- * @module store
  * @constructor
  */
 function LookupStore(opts) {

@@ -29,20 +29,17 @@
  *      var foo = require('foo'); //will now print foo's module path to console
  *
  * @class Hook
- * @module main
  */
-var path = require('path'),
-    fs = require('fs'),
+var fs = require('fs'),
     Module = require('module'),
     vm = require('vm'),
-    originalLoaders = {},
-    originalCreateScript = vm.createScript,
-    originalRunInThisContext = vm.runInThisContext;
+    originalLoader = Module._extensions['.js'],
+    originalCreateScript = vm.createScript;
 
 function transformFn(matcher, transformer, verbose) {
 
     return function (code, filename) {
-        var shouldHook = typeof filename === 'string' && matcher(path.resolve(filename)),
+        var shouldHook = matcher(filename),
             transformed,
             changed = false;
 
@@ -85,34 +82,24 @@ function unloadRequireCache(matcher) {
  *  from where the code was loaded. Should return the transformed code.
  * @param options {Object} options Optional.
  * @param {Boolean} [options.verbose] write a line to standard error every time the transformer is called
- * @param {Function} [options.postLoadHook] a function that is called with the name of the file being
- *  required. This is called after the require is processed irrespective of whether it was transformed.
  */
 function hookRequire(matcher, transformer, options) {
     options = options || {};
-    var extensions,
-        fn = transformFn(matcher, transformer, options.verbose),
+    var fn = transformFn(matcher, transformer, options.verbose),
         postLoadHook = options.postLoadHook &&
             typeof options.postLoadHook === 'function' ? options.postLoadHook : null;
 
-    extensions = options.extensions || ['.js'];
-
-    extensions.forEach(function(ext){
-        if (!(ext in originalLoaders)) {
-            originalLoaders[ext] = Module._extensions[ext] || Module._extensions['.js'];
+    Module._extensions['.js'] = function (module, filename) {
+        var ret = fn(fs.readFileSync(filename, 'utf8'), filename);
+        if (ret.changed) {
+            module._compile(ret.code, filename);
+        } else {
+            originalLoader(module, filename);
         }
-        Module._extensions[ext] = function (module, filename) {
-            var ret = fn(fs.readFileSync(filename, 'utf8'), filename);
-            if (ret.changed) {
-                module._compile(ret.code, filename);
-            } else {
-                originalLoaders[ext](module, filename);
-            }
-            if (postLoadHook) {
-                postLoadHook(filename);
-            }
-        };
-    });
+        if (postLoadHook) {
+            postLoadHook(filename);
+        }
+    };
 }
 /**
  * unhook `require` to restore it to its original state.
@@ -120,9 +107,7 @@ function hookRequire(matcher, transformer, options) {
  * @static
  */
 function unhookRequire() {
-    Object.keys(originalLoaders).forEach(function(ext) {
-        Module._extensions[ext] = originalLoaders[ext];
-    });
+    Module._extensions['.js'] = originalLoader;
 }
 /**
  * hooks `vm.createScript` to return transformed code out of which a `Script` object will be created.
@@ -154,44 +139,11 @@ function unhookCreateScript() {
     vm.createScript = originalCreateScript;
 }
 
-
-/**
- * hooks `vm.runInThisContext` to return transformed code.
- * @method hookRunInThisContext
- * @static
- * @param matcher {Function(filePath)} a function that is called with the filename passed to `vm.createScript`
- *  Should return a truthy value when transformations need to be applied to the code, a falsy value otherwise
- * @param transformer {Function(code, filePath)} a function called with the original code and the filename passed to
- *  `vm.createScript`. Should return the transformed code.
- * @param options {Object} options Optional.
- * @param {Boolean} [options.verbose] write a line to standard error every time the transformer is called
- */
-function hookRunInThisContext(matcher, transformer, opts) {
-    opts = opts || {};
-    var fn = transformFn(matcher, transformer, opts.verbose);
-    vm.runInThisContext = function (code, file) {
-        var ret = fn(code, file);
-        return originalRunInThisContext(ret.code, file);
-    };
-}
-
-/**
- * unhooks vm.runInThisContext, restoring it to its original state.
- * @method unhookRunInThisContext
- * @static
- */
-function unhookRunInThisContext() {
-    vm.runInThisContext = originalRunInThisContext;
-}
-
-
 module.exports = {
     hookRequire: hookRequire,
     unhookRequire: unhookRequire,
     hookCreateScript: hookCreateScript,
     unhookCreateScript: unhookCreateScript,
-    hookRunInThisContext : hookRunInThisContext,
-    unhookRunInThisContext : unhookRunInThisContext,
     unloadRequireCache: unloadRequireCache
 };
 

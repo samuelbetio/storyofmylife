@@ -3,9 +3,7 @@
  Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
  */
 
-var async = require('async'),
-    glob = require('glob'),
-    fs = require('fs'),
+var fileset = require('fileset'),
     path = require('path'),
     seq = 0;
 
@@ -19,7 +17,6 @@ function filesFor(options, callback) {
     var root = options.root,
         includes = options.includes,
         excludes = options.excludes,
-        realpath = options.realpath,
         relative = options.relative,
         opts;
 
@@ -27,23 +24,15 @@ function filesFor(options, callback) {
     includes = includes && Array.isArray(includes) ? includes : [ '**/*.js' ];
     excludes = excludes && Array.isArray(excludes) ? excludes : [ '**/node_modules/**' ];
 
-    opts = { cwd: root, nodir: true, ignore: excludes };
+    opts = { cwd: root };
     seq += 1;
     opts['x' + seq + new Date().getTime()] = true; //cache buster for minimatch cache bug
-    glob(includes.join(' '), opts, function (err, files) {
+    fileset(includes.join(' '), excludes.join(' '), opts, function (err, files) {
         if (err) { return callback(err); }
-        if (relative) { return callback(err, files); }
-
-        if (!realpath) {
+        if (!relative) {
             files = files.map(function (file) { return path.resolve(root, file); });
-            return callback(err, files);
         }
-
-        var realPathCache = module.constructor._realpathCache || {};
-
-        async.map(files, function (file, done) {
-            fs.realpath(path.resolve(root, file), realPathCache, done);
-        }, callback);
+        callback(err, files);
     });
 }
 
@@ -55,17 +44,12 @@ function matcherFor(options, callback) {
     }
     options = options || {};
     options.relative = false; //force absolute paths
-    options.realpath = true; //force real paths (to match Node.js module paths)
 
     filesFor(options, function (err, files) {
-        var fileMap = {},
-            matchFn;
+        var fileMap = {};
         if (err) { return callback(err); }
         files.forEach(function (file) { fileMap[file] = true; });
-
-        matchFn = function (file) { return fileMap[file]; };
-        matchFn.files = Object.keys(fileMap);
-        return callback(null, matchFn);
+        return callback(null, function (file) { return fileMap[file]; });
     });
 }
 

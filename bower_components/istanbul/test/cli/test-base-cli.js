@@ -1,5 +1,6 @@
 /*jslint nomen: true */
-var helper = require('../cli-helper');
+var path = require('path'),
+    helper = require('../cli-helper');
 
 module.exports = {
     setUp: function (cb) {
@@ -33,13 +34,6 @@ module.exports = {
             test.ok(!results.succeeded());
             test.ok(!results.grepError(/Try "istanbul help" for usage/));
             test.ok(results.grepError(/ENOENT/));
-            test.done();
-        });
-    },
-    "should provide configuration help": function (test) {
-        helper.runCommand('help', [ 'config' ], function (results) {
-            test.ok(results.succeeded());
-            test.ok(results.grepError(/Configuring istanbul/));
             test.done();
         });
     }

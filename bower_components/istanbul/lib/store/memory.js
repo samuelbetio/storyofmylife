@@ -17,7 +17,6 @@ var util = require('util'),
  *
  * @class MemoryStore
  * @extends Store
- * @module store
  * @constructor
  */
 function MemoryStore() {

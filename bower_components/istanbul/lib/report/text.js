@@ -5,17 +5,14 @@
 
 var path = require('path'),
     mkdirp = require('mkdirp'),
-    util = require('util'),
     fs = require('fs'),
-    defaults = require('./common/defaults'),
     Report = require('./index'),
     TreeSummarizer = require('../util/tree-summarizer'),
     utils = require('../object-utils'),
-    PCT_COLS = 9,
-    MISSING_COL = 15,
-    TAB_SIZE = 1,
+    PCT_COLS = 10,
+    TAB_SIZE = 3,
     DELIM = ' |',
-    COL_DELIM = '-|';
+    COL_DELIM = '-+';
 
 /**
  * a `Report` implementation that produces text output in a detailed table.
@@ -27,12 +24,11 @@ var path = require('path'),
  *
  * @class TextReport
  * @extends Report
- * @module report
  * @constructor
  * @param {Object} opts optional
  * @param {String} [opts.dir] the directory in which to the text coverage report will be written, when writing to a file
  * @param {String} [opts.file] the filename for the report. When omitted, the report is written to console
- * @param {Number} [opts.maxCols] the max column width of the report. By default, the width of the report is adjusted based on the length of the paths
+ * @param {Number} [opts.maxcols] the max column width of the report. By default, the width of the report is adjusted based on the length of the paths
  *              to be reported.
  */
 function TextReport(opts) {
@@ -42,53 +38,48 @@ function TextReport(opts) {
     this.file = opts.file;
     this.summary = opts.summary;
     this.maxCols = opts.maxCols || 0;
-    this.watermarks = opts.watermarks || defaults.watermarks();
 }
 
 TextReport.TYPE = 'text';
-util.inherits(TextReport, Report);
 
-function padding(num, ch) {
+function padding(num, char) {
     var str = '',
         i;
-    ch = ch || ' ';
+    char = char || ' ';
     for (i = 0; i < num; i += 1) {
-        str += ch;
+        str += char;
     }
     return str;
 }
 
-function fill(str, width, right, tabs, clazz) {
+function fill(str, width, right, tabs) {
     tabs = tabs || 0;
     str = String(str);
-
     var leadingSpaces = tabs * TAB_SIZE,
         remaining = width - leadingSpaces,
         leader = padding(leadingSpaces),
         fmtStr = '',
-        fillStr,
-        strlen = str.length;
+        fillStr;
 
     if (remaining > 0) {
-        if (remaining >= strlen) {
-            fillStr = padding(remaining - strlen);
+        if (remaining >= str.length) {
+            fillStr = padding(remaining - str.length);
             fmtStr = right ? fillStr + str : str + fillStr;
         } else {
-            fmtStr = str.substring(strlen - remaining);
+            fmtStr = str.substring(str.length - remaining);
             fmtStr = '... ' + fmtStr.substring(4);
         }
     }
-
-    fmtStr = defaults.colorize(fmtStr, clazz);
     return leader + fmtStr;
+
 }
 
-function formatName(name, maxCols, level, clazz) {
-    return fill(name, maxCols, false, level, clazz);
+function formatName(name, maxCols, level) {
+    return fill(name, maxCols, false, level);
 }
 
-function formatPct(pct, clazz, width) {
-    return fill(pct, width || PCT_COLS, true, 0, clazz);
+function formatPct(pct) {
+    return fill(pct, PCT_COLS, true, 0);
 }
 
 function nodeName(node) {
@@ -99,44 +90,25 @@ function tableHeader(maxNameCols) {
     var elements = [];
     elements.push(formatName('File', maxNameCols, 0));
     elements.push(formatPct('% Stmts'));
-    elements.push(formatPct('% Branch'));
+    elements.push(formatPct('% Branches'));
     elements.push(formatPct('% Funcs'));
     elements.push(formatPct('% Lines'));
-    elements.push(formatPct('Uncovered Lines', undefined, MISSING_COL));
     return elements.join(' |') + ' |';
 }
 
-function collectMissingLines(kind, linesCovered) {
-  var missingLines = [];
-
-  if (kind !== 'file') {
-      return [];
-  }
-
-  Object.keys(linesCovered).forEach(function (key) {
-      if (!linesCovered[key]) {
-          missingLines.push(key);
-      }
-  });
-
-  return missingLines;
-}
-
-function tableRow(node, maxNameCols, level, watermarks) {
+function tableRow(node, maxNameCols, level) {
     var name = nodeName(node),
         statements = node.metrics.statements.pct,
         branches = node.metrics.branches.pct,
         functions = node.metrics.functions.pct,
         lines = node.metrics.lines.pct,
-        missingLines = collectMissingLines(node.kind, node.metrics.linesCovered),
         elements = [];
 
-    elements.push(formatName(name, maxNameCols, level, defaults.classFor('statements', node.metrics, watermarks)));
-    elements.push(formatPct(statements, defaults.classFor('statements', node.metrics, watermarks)));
-    elements.push(formatPct(branches, defaults.classFor('branches', node.metrics, watermarks)));
-    elements.push(formatPct(functions, defaults.classFor('functions', node.metrics, watermarks)));
-    elements.push(formatPct(lines, defaults.classFor('lines', node.metrics, watermarks)));
-    elements.push(formatPct(missingLines.join(','), 'low', MISSING_COL));
+    elements.push(formatName(name, maxNameCols, level));
+    elements.push(formatPct(statements));
+    elements.push(formatPct(branches));
+    elements.push(formatPct(functions));
+    elements.push(formatPct(lines));
 
     return elements.join(DELIM) + DELIM;
 }
@@ -164,11 +136,10 @@ function makeLine(nameWidth) {
     elements.push(pct);
     elements.push(pct);
     elements.push(pct);
-    elements.push(padding(MISSING_COL, '-'));
     return elements.join(COL_DELIM) + COL_DELIM;
 }
 
-function walk(node, nameWidth, array, level, watermarks) {
+function walk(node, nameWidth, array, level) {
     var line;
     if (level === 0) {
         line = makeLine(nameWidth);
@@ -176,39 +147,31 @@ function walk(node, nameWidth, array, level, watermarks) {
         array.push(tableHeader(nameWidth));
         array.push(line);
     } else {
-        array.push(tableRow(node, nameWidth, level, watermarks));
+        array.push(tableRow(node, nameWidth, level));
     }
     node.children.forEach(function (child) {
-        walk(child, nameWidth, array, level + 1, watermarks);
+        walk(child, nameWidth, array, level + 1);
     });
     if (level === 0) {
         array.push(line);
-        array.push(tableRow(node, nameWidth, level, watermarks));
+        array.push(tableRow(node, nameWidth, level));
         array.push(line);
     }
 }
 
 Report.mix(TextReport, {
-    synopsis: function () {
-        return 'text report that prints a coverage line for every file, typically to console';
-    },
-    getDefaultConfig: function () {
-        return { file: null, maxCols: 0 };
-    },
     writeReport: function (collector /*, sync */) {
         var summarizer = new TreeSummarizer(),
             tree,
             root,
             nameWidth,
-            statsWidth = 4 * (PCT_COLS + 2) + MISSING_COL,
+            statsWidth = 4 * ( PCT_COLS + 2),
             maxRemaining,
             strings = [],
             text;
 
         collector.files().forEach(function (key) {
-            summarizer.addFileCoverageSummary(key, utils.summarizeFileCoverage(
-                collector.fileCoverageFor(key)
-            ));
+            summarizer.addFileCoverageSummary(key, utils.summarizeFileCoverage(collector.fileCoverageFor(key)));
         });
         tree = summarizer.getTreeSummary();
         root = tree.root;
@@ -219,7 +182,7 @@ Report.mix(TextReport, {
                 nameWidth = maxRemaining;
             }
         }
-        walk(root, nameWidth, strings, 0, this.watermarks);
+        walk(root, nameWidth, strings, 0);
         text = strings.join('\n') + '\n';
         if (this.file) {
             mkdirp.sync(this.dir);
@@ -227,7 +190,6 @@ Report.mix(TextReport, {
         } else {
             console.log(text);
         }
-        this.emit('done');
     }
 });
 

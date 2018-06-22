@@ -2,7 +2,7 @@
  Copyright (c) 2012, Yahoo! Inc.  All rights reserved.
  Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
  */
-"use strict";
+
 var MemoryStore = require('./store/memory'),
     utils = require('./object-utils');
 
@@ -43,7 +43,6 @@ var MemoryStore = require('./store/memory'),
  *      var finalCoverage = collector.getFinalCoverage();
  *
  * @class Collector
- * @module main
  * @constructor
  * @param {Object} options Optional. Configuration options.
  * @param {Store} options.store - an implementation of `Store` to use for temporary

@@ -33,7 +33,6 @@
  * to this module's exports.
  *
  * @class ObjectUtils
- * @module main
  * @static
  */
 (function (isNode) {
@@ -59,7 +58,6 @@
                 var line = statementMap[st].start.line,
                     count = statements[st],
                     prevVal = lineMap[line];
-                if (count === 0 && statementMap[st].skip) { count = 1; }
                 if (typeof prevVal === 'undefined' || prevVal < count) {
                     lineMap[line] = count;
                 }
@@ -100,20 +98,14 @@
         }
     }
 
-    function computeSimpleTotals(fileCoverage, property, mapProperty) {
+    function computeSimpleTotals(fileCoverage, property) {
         var stats = fileCoverage[property],
-            map = mapProperty ? fileCoverage[mapProperty] : null,
-            ret = { total: 0, covered: 0, skipped: 0 };
+            ret = { total: 0, covered: 0 };
 
         Object.keys(stats).forEach(function (key) {
-            var covered = !!stats[key],
-                skipped = map && map[key].skip;
             ret.total += 1;
-            if (covered || skipped) {
+            if (stats[key]) {
                 ret.covered += 1;
-            }
-            if (!covered && skipped) {
-                ret.skipped += 1;
             }
         });
         ret.pct = percent(ret.covered, ret.total);
@@ -122,26 +114,13 @@
 
     function computeBranchTotals(fileCoverage) {
         var stats = fileCoverage.b,
-            branchMap = fileCoverage.branchMap,
-            ret = { total: 0, covered: 0, skipped: 0 };
+            ret = { total: 0, covered: 0 };
 
         Object.keys(stats).forEach(function (key) {
             var branches = stats[key],
-                map = branchMap[key],
-                covered,
-                skipped,
-                i;
-            for (i = 0; i < branches.length; i += 1) {
-                covered = branches[i] > 0;
-                skipped = map.locations && map.locations[i] && map.locations[i].skip;
-                if (covered || skipped) {
-                    ret.covered += 1;
-                }
-                if (!covered && skipped) {
-                    ret.skipped += 1;
-                }
-            }
+                covered = branches.filter(function (num) { return num > 0; });
             ret.total += branches.length;
+            ret.covered += covered.length;
         });
         ret.pct = percent(ret.covered, ret.total);
         return ret;
@@ -155,7 +134,6 @@
      *          statements: statementMetrics,
      *          functions: functionMetrics,
      *          branches: branchMetrics
-     *          linesCovered: lineCoveredCount
      *      }
      *
      *  Each individual metric object looks as follows:
@@ -175,28 +153,23 @@
             lines: {
                 total: 0,
                 covered: 0,
-                skipped: 0,
                 pct: 'Unknown'
             },
             statements: {
                 total: 0,
                 covered: 0,
-                skipped: 0,
                 pct: 'Unknown'
             },
             functions: {
                 total: 0,
                 covered: 0,
-                skipped: 0,
                 pct: 'Unknown'
             },
             branches: {
                 total: 0,
                 covered: 0,
-                skipped: 0,
                 pct: 'Unknown'
-            },
-            linesCovered: {}
+            }
         };
     }
     /**
@@ -212,10 +185,9 @@
         var ret = blankSummary();
         addDerivedInfoForFile(fileCoverage);
         ret.lines = computeSimpleTotals(fileCoverage, 'l');
-        ret.functions = computeSimpleTotals(fileCoverage, 'f', 'fnMap');
-        ret.statements = computeSimpleTotals(fileCoverage, 's', 'statementMap');
+        ret.functions = computeSimpleTotals(fileCoverage, 'f');
+        ret.statements = computeSimpleTotals(fileCoverage, 's');
         ret.branches = computeBranchTotals(fileCoverage);
-        ret.linesCovered = fileCoverage.l;
         return ret;
     }
     /**
@@ -270,16 +242,6 @@
                     keys.forEach(function (key) {
                         ret[key].total += obj[key].total;
                         ret[key].covered += obj[key].covered;
-                        ret[key].skipped += obj[key].skipped;
-                    });
-
-                    // keep track of all lines we have coverage for.
-                    Object.keys(obj.linesCovered).forEach(function (key) {
-                        if (!ret.linesCovered[key]) {
-                            ret.linesCovered[key] = obj.linesCovered[key];
-                        } else {
-                            ret.linesCovered[key] += obj.linesCovered[key];
-                        }
                     });
                 }
             };
@@ -358,51 +320,6 @@
         return ret;
     }
 
-    /**
-     * Creates new file coverage object with incremented hits count
-     * on skipped statements, branches and functions
-     *
-     * @method incrementIgnoredTotals
-     * @static
-     * @param {Object} cov File coverage object
-     * @return {Object} New file coverage object
-     */
-    function incrementIgnoredTotals(cov) {
-        //TODO: This may be slow in the browser and may break in older browsers
-        //      Look into using a library that works in Node and the browser
-        var fileCoverage = JSON.parse(JSON.stringify(cov));
-
-        [
-            {mapKey: 'statementMap', hitsKey: 's'},
-            {mapKey: 'branchMap', hitsKey: 'b'},
-            {mapKey: 'fnMap', hitsKey: 'f'}
-        ].forEach(function (keys) {
-            Object.keys(fileCoverage[keys.mapKey])
-                .forEach(function (key) {
-                    var map = fileCoverage[keys.mapKey][key];
-                    var hits = fileCoverage[keys.hitsKey];
-
-                    if (keys.mapKey === 'branchMap') {
-                        var locations = map.locations;
-
-                        locations.forEach(function (location, index) {
-                            if (hits[key][index] === 0 && location.skip) {
-                                hits[key][index] = 1;
-                            }
-                        });
-
-                        return;
-                    }
-
-                    if (hits[key] === 0 && map.skip) {
-                        hits[key] = 1;
-                    }
-                });
-            });
-
-        return fileCoverage;
-    }
-
     var exportables = {
         addDerivedInfo: addDerivedInfo,
         addDerivedInfoForFile: addDerivedInfoForFile,
@@ -412,14 +329,13 @@
         summarizeCoverage: summarizeCoverage,
         mergeFileCoverage: mergeFileCoverage,
         mergeSummaryObjects: mergeSummaryObjects,
-        toYUICoverage: toYUICoverage,
-        incrementIgnoredTotals: incrementIgnoredTotals
+        toYUICoverage: toYUICoverage
     };
 
-    /* istanbul ignore else: windows */
     if (isNode) {
         module.exports = exportables;
     } else {
         window.coverageUtils = exportables;
     }
 }(typeof module !== 'undefined' && typeof module.exports !== 'undefined' && typeof exports !== 'undefined'));
+

@@ -97,7 +97,7 @@ TreeSummary.prototype = {
             seen[key] = node;
             nodes.push(node);
             parentPath = path.dirname(key) + SEP;
-            if (parentPath === SEP + SEP || parentPath === '.' + SEP) {
+            if (parentPath === SEP + SEP) {
                 parentPath = SEP + '__root__' + SEP;
             }
             parent = seen[parentPath];
@@ -141,7 +141,7 @@ TreeSummary.prototype = {
             node.name = node.name.substring(1);
         }
         if (parent) {
-            if (parent.name !== '__root__' + SEP) {
+            if (parent.name !== '__root__/') {
                 node.relativeName = node.name.substring(parent.name.length);
             } else {
                 node.relativeName = node.name;

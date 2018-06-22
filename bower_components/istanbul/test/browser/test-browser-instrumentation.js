@@ -10,6 +10,7 @@ var which = require('which'),
     ROOT = path.resolve(__dirname, '..', '..', 'lib'),
     common = require('../common'),
     filesToInstrument,
+    server,
     exited,
     cp;
 
@@ -49,12 +50,12 @@ module.exports = {
             test.done();
             return;
         }
-        var server,
-            port = 9000,
-            finalFn = function () {
-                if (server) { server.close(); }
-                if (!cp.exited) { cp.kill(); }
-            };
+        var finalFn = function () {
+            if (server) { server.close(); }
+            if (!cp.exited) { cp.kill(); }
+        },
+            server,
+            port = 9000;
         try {
             console.log('Start server');
             server = require('./support/server').create(port, process.env.SELF_COVER ? instrumenter : null, ROOT);

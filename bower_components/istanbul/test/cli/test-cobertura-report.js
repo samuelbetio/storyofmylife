@@ -10,14 +10,16 @@ var path = require('path'),
     runCover = helper.runCommand.bind(null, COVER_COMMAND),
     Reporter = require('../../lib/report/cobertura'),
     Collector = require('../../lib/collector'),
-    existsSync = fs.existsSync || path.existsSync;
+    existsSync = fs.existsSync || path.existsSync,
+    filename,
+    cov;
 
 module.exports = {
     setUp: function (cb) {
         rimraf.sync(OUTPUT_DIR);
         mkdirp.sync(OUTPUT_DIR);
         helper.resetOpts();
-        runCover([ 'test/run.js', '--report', 'none' ], function (/* results */) {
+        runCover([ 'test/run.js', '--report', 'none' ], function (results) {
             cb();
         });
     },
@@ -30,7 +32,8 @@ module.exports = {
             reportFile = path.resolve(OUTPUT_DIR, 'cobertura-coverage.xml'),
             reporter = new Reporter({ dir: OUTPUT_DIR }),
             obj,
-            collector = new Collector();
+            collector = new Collector(),
+            numFiles;
 
         obj = JSON.parse(fs.readFileSync(file, 'utf8'));
         collector.add(obj);

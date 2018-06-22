@@ -10,14 +10,16 @@ var path = require('path'),
     runCover = helper.runCommand.bind(null, COVER_COMMAND),
     Reporter = require('../../lib/report/html'),
     Collector = require('../../lib/collector'),
-    existsSync = fs.existsSync || path.existsSync;
+    existsSync = fs.existsSync || path.existsSync,
+    filename,
+    cov;
 
 module.exports = {
     setUp: function (cb) {
         rimraf.sync(OUTPUT_DIR);
         mkdirp.sync(OUTPUT_DIR);
         helper.resetOpts();
-        runCover([ 'test/run.js', '--report', 'none' ], function (/* results */) {
+        runCover([ 'test/run.js', '--report', 'none' ], function (results) {
             cb();
         });
     },
@@ -73,105 +75,6 @@ module.exports = {
         test.done();
     },
 
-    "should test files written with Unix Line Endings (LF)": function (test) {
-        var barPath = path.resolve(DIR, 'lib', 'bar.js'),
-            oldBar = fs.readFileSync(barPath, 'utf8'),
-            eol = /(\r?\n|\r)/g,
-            newBar = oldBar.replace(eol, "\n"),
-            file = path.resolve(OUTPUT_DIR, 'coverage.json'),
-            htmlReport = path.resolve(process.cwd(), 'html-report'),
-            reporter = new Reporter(),
-            obj,
-            collector = new Collector(),
-            fileFor = function () {
-                var args = Array.prototype.slice.call(arguments);
-                args.unshift(htmlReport);
-                return path.resolve.apply(null, args);
-            };
-
-        fs.writeFileSync(barPath, newBar);
-        obj = JSON.parse(fs.readFileSync(file, 'utf8'));
-        collector.add(obj);
-        try {
-            reporter.writeReport(collector, true);
-        } catch(err) {
-            test.ok(false);
-        } finally {
-            fs.writeFileSync(barPath, oldBar);
-        }
-        test.ok(existsSync(htmlReport));
-        test.ok(existsSync(fileFor('index.html')));
-        test.ok(existsSync(fileFor('lib', 'bar.js.html')));
-        test.ok(fs.readFileSync(fileFor('lib', 'bar.js.html'), 'utf8') !== '');
-        test.done();
-    },
-
-    "should test files written with Windows Line Endings (CRLF)": function (test) {
-        var barPath = path.resolve(DIR, 'lib', 'bar.js'),
-            oldBar = fs.readFileSync(barPath, 'utf8'),
-            eol = /(\r?\n|\r)/g,
-            newBar = oldBar.replace(eol, "\r\n"),
-            file = path.resolve(OUTPUT_DIR, 'coverage.json'),
-            htmlReport = path.resolve(process.cwd(), 'html-report'),
-            reporter = new Reporter(),
-            obj,
-            collector = new Collector(),
-            fileFor = function () {
-                var args = Array.prototype.slice.call(arguments);
-                args.unshift(htmlReport);
-                return path.resolve.apply(null, args);
-            };
-
-        fs.writeFileSync(barPath, newBar);
-        obj = JSON.parse(fs.readFileSync(file, 'utf8'));
-        collector.add(obj);
-        try {
-            reporter.writeReport(collector, true);
-        } catch(err) {
-            test.ok(false);
-        } finally {
-            fs.writeFileSync(barPath, oldBar);
-        }
-        test.ok(existsSync(htmlReport));
-        test.ok(existsSync(fileFor('index.html')));
-        test.ok(existsSync(fileFor('lib', 'bar.js.html')));
-        test.ok(fs.readFileSync(fileFor('lib', 'bar.js.html'), 'utf8') !== '');
-        test.done();
-    },
-
-    "should test files written with Macintosh Line Endings (CR)": function (test) {
-        var barPath = path.resolve(DIR, 'lib', 'bar.js'),
-            oldBar = fs.readFileSync(barPath, 'utf8'),
-            eol = /(\r?\n|\r)/g,
-            newBar = oldBar.replace(eol, "\r"),
-            file = path.resolve(OUTPUT_DIR, 'coverage.json'),
-            htmlReport = path.resolve(process.cwd(), 'html-report'),
-            reporter = new Reporter(),
-            obj,
-            collector = new Collector(),
-            fileFor = function () {
-                var args = Array.prototype.slice.call(arguments);
-                args.unshift(htmlReport);
-                return path.resolve.apply(null, args);
-            };
-
-        fs.writeFileSync(barPath, newBar);
-        obj = JSON.parse(fs.readFileSync(file, 'utf8'));
-        collector.add(obj);
-        try {
-            reporter.writeReport(collector, true);
-        } catch(err) {
-            test.ok(false);
-        } finally {
-            fs.writeFileSync(barPath, oldBar);
-        }
-        test.ok(existsSync(htmlReport));
-        test.ok(existsSync(fileFor('index.html')));
-        test.ok(existsSync(fileFor('lib', 'bar.js.html')));
-        test.ok(fs.readFileSync(fileFor('lib', 'bar.js.html'), 'utf8') !== '');
-        test.done();
-    },
-
     "should test files written when code packed into coverage object": function (test) {
         var file = path.resolve(OUTPUT_DIR, 'coverage.json'),
             htmlReport = path.resolve(OUTPUT_DIR),
@@ -199,7 +102,7 @@ module.exports = {
             obj[k].code = code;
             obj[k].path = mangled;
             copy[mangled] = obj[k];
-            test.ok(mangled !== k); //verify something _did_ get mangled
+            test.ok(mangled != k); //verify something _did_ get mangled
             test.ok(copy[mangled].code);
         });
         collector.add(copy);
@@ -219,106 +122,6 @@ module.exports = {
         console.error('Figure out a way to run meaningful tests for HTML report contents');
         test.ok(1);
         test.done();
-    },
-
-    "should generate proper ancestorHref when path separator is \\" : function(test) {
-        var pathSep = path.sep,
-            reporter = new Reporter(),
-            node, result;
-
-        path.sep = '\\';
-        node = {
-            parent: {
-                relativeName: 'lib\\util\\',
-                parent: {
-                    relativeName: '',
-                    parent: null
-                }
-            },
-            relativeName: 'generate-names-mangled.js'
-        };
-
-        result = reporter.standardLinkMapper().ancestorHref(node, 2);
-
-        test.ok(result === '../../');
-
-        path.sep = pathSep;
-        test.done();
-    },
-
-    "should generate proper ancestorHref for files using linux paths when path separator is \\" : function(test) {
-        var pathSep = path.sep,
-            reporter = new Reporter(),
-            node, result;
-
-        path.sep = '\\';
-        node = {
-            parent: {
-                relativeName: 'lib/util/',
-                parent: {
-                    relativeName: '',
-                    parent: null
-                }
-            },
-            relativeName: 'generate-names-mangled.js'
-        };
-
-        result = reporter.standardLinkMapper().ancestorHref(node, 2);
-
-        test.ok(result === '../../');
-
-        path.sep = pathSep;
-        test.done();
-    },
-
-    "should generate proper ancestorHref when path separator is /" : function(test) {
-        var pathSep = path.sep,
-            reporter = new Reporter(),
-            node, result;
-
-        path.sep = '/';
-        node = {
-            parent: {
-                relativeName: 'lib/util/',
-                parent: {
-                    relativeName: '',
-                    parent: null
-                }
-            },
-            relativeName: 'generate-names-mangled.js'
-        };
-
-        result = reporter.standardLinkMapper().ancestorHref(node, 2);
-
-        test.ok(result === '../../');
-
-        path.sep = pathSep;
-        test.done();
-    },
-
-    "should ignore . parts in dir generating ancestorHref" : function(test) {
-        var pathSep = path.sep,
-            reporter = new Reporter(),
-            node, result;
-
-        path.sep = '/';
-
-        node = {
-            parent: {
-                relativeName: 'lib/./util/',
-                parent: {
-                    relativeName: '',
-                    parent: null
-                }
-            },
-            relativeName: './generate-names-mangled.js'
-        };
-
-        result = reporter.standardLinkMapper().ancestorHref(node, 2);
-
-        test.ok(result === '../../');
-
-        path.sep = pathSep;
-        test.done();
     }
 };
+

@@ -18,13 +18,13 @@ Command.prototype = {
     type: function () {
         return this.constructor.TYPE;
     },
-    synopsis: /* istanbul ignore next: base method */ function () {
+    synopsis: function () {
         return "the developer has not written a one-line summary of the " + this.type() + " command";
     },
-    usage: /* istanbul ignore next: base method */ function () {
+    usage: function () {
         console.error("the developer has not provided a usage for the " + this.type() + " command");
     },
-    run: /* istanbul ignore next: abstract method */ function (args, callback) {
+    run: function (args, callback) {
         return callback(new Error("run: must be overridden for the " + this.type() + " command"));
     }
 };

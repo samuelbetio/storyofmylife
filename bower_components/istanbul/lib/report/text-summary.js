@@ -4,9 +4,7 @@
  */
 
 var path = require('path'),
-    util = require('util'),
     mkdirp = require('mkdirp'),
-    defaults = require('./common/defaults'),
     fs = require('fs'),
     utils = require('../object-utils'),
     Report = require('./index');
@@ -21,7 +19,6 @@ var path = require('path'),
  *
  * @class TextSummaryReport
  * @extends Report
- * @module report
  * @constructor
  * @param {Object} opts optional
  * @param {String} [opts.dir] the directory in which to the text coverage report will be written, when writing to a file
@@ -32,39 +29,22 @@ function TextSummaryReport(opts) {
     opts = opts || {};
     this.dir = opts.dir || process.cwd();
     this.file = opts.file;
-    this.watermarks = opts.watermarks || defaults.watermarks();
 }
 
 TextSummaryReport.TYPE = 'text-summary';
-util.inherits(TextSummaryReport, Report);
 
-function lineForKey(summary, key, watermarks) {
-    var metrics = summary[key],
-        skipped,
-        result,
-        clazz = defaults.classFor(key, summary, watermarks);
+function lineForKey(summary, key) {
+    var metrics = summary[key];
     key = key.substring(0, 1).toUpperCase() + key.substring(1);
     if (key.length < 12) { key += '                   '.substring(0, 12 - key.length); }
-    result = [ key , ':', metrics.pct + '%', '(', metrics.covered + '/' + metrics.total, ')'].join(' ');
-    skipped = metrics.skipped;
-    if (skipped > 0) {
-        result += ', ' + skipped + ' ignored';
-    }
-    return defaults.colorize(result, clazz);
+    return [ key , ':', metrics.pct + '%', '(', metrics.covered + '/' + metrics.total, ')'].join(' ');
 }
 
 Report.mix(TextSummaryReport, {
-    synopsis: function () {
-        return 'text report that prints a coverage summary across all files, typically to console';
-    },
-    getDefaultConfig: function () {
-        return { file: null };
-    },
     writeReport: function (collector /*, sync */) {
         var summaries = [],
             finalSummary,
             lines = [],
-            watermarks = this.watermarks,
             text;
         collector.files().forEach(function (file) {
             summaries.push(utils.summarizeFileCoverage(collector.fileCoverageFor(file)));
@@ -73,10 +53,10 @@ Report.mix(TextSummaryReport, {
         lines.push('');
         lines.push('=============================== Coverage summary ===============================');
         lines.push.apply(lines, [
-            lineForKey(finalSummary, 'statements', watermarks),
-            lineForKey(finalSummary, 'branches', watermarks),
-            lineForKey(finalSummary, 'functions', watermarks),
-            lineForKey(finalSummary, 'lines', watermarks)
+            lineForKey(finalSummary, 'statements'),
+            lineForKey(finalSummary, 'branches'),
+            lineForKey(finalSummary, 'functions'),
+            lineForKey(finalSummary, 'lines')
         ]);
         lines.push('================================================================================');
         text = lines.join('\n');
@@ -86,7 +66,6 @@ Report.mix(TextSummaryReport, {
         } else {
             console.log(text);
         }
-        this.emit('done');
     }
 });
 
