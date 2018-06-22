@@ -1,6 +1,6 @@
 /*jslint nomen: true */
 var path = require('path'),
-    glob = require('glob'),
+    fileset = require('fileset'),
     root = path.resolve(__dirname, 'data', 'matcher'),
     src = '../../lib/util/file-matcher.js',
     fileMatcher = require(src),
@@ -9,7 +9,7 @@ var path = require('path'),
 module.exports = {
     setUp: function (cb) {
         if (!allFiles) {
-            glob('**/*.js', { cwd: root}, function (err, files) {
+            fileset('**/*.js', '', { cwd: root}, function (err, files) {
                 allFiles = files.map(function (file) { return path.resolve(root, file); });
                 cb();
             });
@@ -64,9 +64,6 @@ module.exports = {
     "should ignore node_modules": function (test) {
         fileMatcher.matcherFor({ root: root }, function (err, matchFn) {
             test.ok(!err);
-            test.ok(matchFn.files);
-            test.deepEqual(allFiles.filter(function (f) { return !f.match(/node_modules/); }).sort(),
-                matchFn.files.sort());
             allFiles.forEach(function (file) {
                 var shouldMatch = file.indexOf('file.js') < 0;
                 if (shouldMatch) {

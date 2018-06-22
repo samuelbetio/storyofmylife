@@ -1,6 +1,7 @@
 /*jslint nomen: true */
 var path = require('path'),
     fs = require('fs'),
+    util = require('util'),
     cp = require('child_process'),
     Module = require('module'),
     originalLoader = Module._extensions['.js'],
@@ -11,7 +12,6 @@ var path = require('path'),
     EXCLUDES = [ '**/node_modules/**', '**/test/**', '**/yui-load-hook.js'],
     COVER_VAR = '$$selfcover$$',
     seq = 0,
-    verbose = false,
     OPTS = {
     };
 
@@ -36,13 +36,13 @@ var path = require('path'),
  *  3. In the child process,
  *      a. hooks the module loader to set up coverage for our library code
  *      b. Ensures that the `hook` module is not loaded until all this happens
- *         so that the hook module sees _our_ module loader hook as the original
- *         loader. This ensures that our hook will be used to instrument this
- *         library's code. Note that the hook set up by the `cover` command that
- *         is executed only instruments the modules of the sample test library.
- *      c. Calls Module.runMain on the command that it was asked to invoke
- *      d. Sets up an exit handler to write the coverage information for our
- *         library calls
+  *         so that the hook module sees _our_ module loader hook as the original
+  *         loader. This ensures that our hook will be used to instrument this
+  *         library's code. Note that the hook set up by the `cover` command that
+  *         is executed only instruments the modules of the sample test library.
+  *     c. Calls Module.runMain on the command that it was asked to invoke
+  *     d. Sets up an exit handler to write the coverage information for our
+  *         library calls
  *   4. The exit handler is also set up in special ways because in order to
  *      instrument the `cover` command's exit handler, our exit handler has
  *      to be added later so as to be able to track coverage for the cover
@@ -55,9 +55,6 @@ var path = require('path'),
  *
  */
 
-function setVerbose(flag) {
-    verbose = flag;
-}
 function setOpts(userOpts) {
     Object.keys(userOpts).forEach(function (k) { OPTS[k] = userOpts[k]; });
 }
@@ -73,19 +70,16 @@ function runCommand(command, args, envVars, callback) {
         handle,
         out = '',
         err = '',
-        exitCode = 1,
         grepper = function (array) {
             return function (pat) {
                 var filtered = array.filter(function (item) {
                     return item.match(pat);
                 });
                 if (filtered.length === 0) {
-                    if (verbose) {
-                        console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-                        console.log('Could not find: ' + pat + ' in:');
-                        console.log(array.join('\n'));
-                        console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-                    }
+                    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+                    console.log('Could not find: ' + pat + ' in:');
+                    console.log(array.join('\n'));
+                    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
                 }
                 return filtered.length > 0;
             };
@@ -123,28 +117,25 @@ function runCommand(command, args, envVars, callback) {
     handle.stderr.setEncoding('utf8');
     handle.stdout.on('data', function (data) {
         out += data;
-        if (verbose) {
-            process.stdout.write(data);
-        }
+        process.stdout.write(data);
     });
     handle.stderr.on('data', function (data) {
         err += data;
-        if (verbose) {
-            process.stderr.write(data);
-        }
+        process.stderr.write(data);
     });
-    handle.on('close', function (code) {
-        exitCode = code;
-        out = out.split(/\r?\n/);
-        err = err.split(/\r?\n/);
-        callback({
-            succeeded: function () { return exitCode === 0; },
-            exitCode: exitCode,
-            stdout: function () { return out; },
-            stderr: function () { return err; },
-            grepOutput: grepper(out),
-            grepError: grepper(err)
-        });
+    handle.on('exit', function (exitCode) {
+        setTimeout(function () {
+            out = out.split(/\r?\n/);
+            err = err.split(/\r?\n/);
+            callback({
+                succeeded: function () { return exitCode === 0; },
+                exitCode: exitCode,
+                stdout: function () { return out; },
+                stderr: function () { return err; },
+                grepOutput: grepper(out),
+                grepError: grepper(err)
+            });
+        }, 100);
     });
 }
 
@@ -194,7 +185,6 @@ function customHook(lazyHook, callback) {
 }
 
 module.exports = {
-    setVerbose: setVerbose,
     runCommand: runCommand,
     resetOpts: resetOpts,
     setOpts: setOpts

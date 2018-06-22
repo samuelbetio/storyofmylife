@@ -1,4 +1,5 @@
 /*jslint nomen: true */
+/*global __coverage__ */
 var Instrumenter = require('../lib/instrumenter'),
     vm = require('vm'),
     NO_OP = function () {},
@@ -57,11 +58,6 @@ Verifier.prototype = {
         return global[this.coverageVariable];
     },
 
-    getFileCoverage: function () {
-        var cov = this.getCoverage();
-        return cov[Object.keys(cov)[0]];
-    },
-
     verifyError: function (test) {
         test.ok(this.err && typeof this.err === 'object', 'Error should be an object');
     },
@@ -78,19 +74,15 @@ function setup(file, codeArray, opts) {
     opts.debug = opts.debug || process.env.DEBUG;
 
     var expectError = opts.expectError,
-        //exercise the case where RE substitutions for the preamble have $ signs
-        coverageVariable = typeof opts.coverageVariable === 'undefined' ? '$$coverage$$' : opts.coverageVariable,
+        coverageVariable = typeof opts.coverageVariable === 'undefined' ? '$$coverage$$' : opts.coverageVariable, //exercise the case where RE substitutions for the preamble have $ signs
         ps = opts.embedSource || false,
-        pc = opts.preserveComments || false,
         verifier,
         cover = new Instrumenter({
             debug: opts.debug,
             walkDebug: opts.walkDebug,
             noAutoWrap: opts.noAutoWrap,
             coverageVariable: coverageVariable,
-            embedSource: ps,
-            preserveComments: pc,
-            esModules: opts.esModules
+            embedSource: ps
         }),
         args = [ codeArray.join("\n")],
         callback = function (err, generated) {
@@ -104,19 +96,12 @@ function setup(file, codeArray, opts) {
                 }
                 return;
             }
-
-            // `export`/`import` cannot be wrapped inside a function.
-            // For our purposes, simply remove the `export` from export declarations.
-            if ( opts.esModules ) {
-                generated = generated.replace(/export (var|function|let|const)/g, '$1');
-            }
-
             var wrappedCode = '(function (args) { var output;\n' + generated + '\nreturn output;\n})',
-                fn;
+                fn,
+                output;
             global[coverageVariable] = undefined;
             fn = vm.runInThisContext(wrappedCode, __filename);
-            verifier = new Verifier({ debug: opts.debug, file: file, fn: fn, code: codeArray,
-                generatedCode: generated, coverageVariable: coverageVariable });
+            verifier = new Verifier({ debug: opts.debug, file: file, fn: fn, code: codeArray, generatedCode: generated, coverageVariable: coverageVariable });
             if (opts.debug) {
                 console.log('================== Original ============================================');
                 console.log(annotatedCode(codeArray));

@@ -3,7 +3,6 @@ var helper = require('../helper'),
     code,
     verifier;
 
-/*jshint maxlen: 500 */
 module.exports = {
     "with a simple while": {
         setUp: function (cb) {

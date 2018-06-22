@@ -24,6 +24,7 @@ function usage(arg0, command) {
             formatOption('--root <path> ', 'the root path to look for files to instrument, defaults to .'),
             formatOption('-x <exclude-pattern> [-x <exclude-pattern>]', 'one or more fileset patterns e.g. "**/vendor/**"'),
             formatOption('--[no-]default-excludes', 'apply default excludes [ **/node_modules/**, **/test/**, **/tests/** ], defaults to true'),
+            formatOption('--hook-run-in-context', 'hook vm.runInThisContext in addition to require (supports RequireJS), defaults to false'),
             formatOption('--report <report-type>', 'report type, one of html, lcov, lcovonly, none, defaults to lcov (= lcov.info + HTML)'),
             formatOption('--dir <report-dir>', 'report directory, defaults to ./coverage'),
             formatOption('--print <type>', 'type of report to print to console, one of summary (default), detail, both or none'),
@@ -43,7 +44,8 @@ function run(args, commandName, enableHooks, callback) {
             yui: Boolean,
             'default-excludes': Boolean,
             print: String,
-            'self-test': Boolean
+            'self-test': Boolean,
+            'hook-run-in-context': Boolean
         },
         opts = nopt(config, { v : '--verbose' }, args, 0),
         cmdAndArgs = opts.argv.remain,
@@ -123,6 +125,10 @@ function run(args, commandName, enableHooks, callback) {
                 }
                 if (opts['self-test']) {
                     hook.unloadRequireCache(matchFn);
+                }
+                // runInThisContext is used by RequireJS [issue #23]
+                if (opts['hook-run-in-context']) {
+                    hook.hookRunInThisContext(matchFn, transformer, hookOpts);
                 }
                 hook.hookRequire(matchFn, transformer, hookOpts);
                 process.once('exit', function () {

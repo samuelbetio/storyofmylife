@@ -1,6 +1,7 @@
 /*jslint nomen: true */
 var helper = require('../helper'),
     Instrumenter = require('../../lib/instrumenter'),
+    path = require('path'),
     code,
     verifier;
 
@@ -21,27 +22,6 @@ module.exports = {
         },
         "should cover line and other branch": function (test) {
             verifier.verify(test, [ 1 ], "undef", { lines: { 1: 1, 2: 1 }, branches: { 1: [ 0, 1 ]}, functions: {}, statements: { 1: 1, 2: 1 } });
-            test.done();
-        }
-    },
-    "with a metaproperty": {
-        setUp: function (cb) {
-            code = [
-                'class FooClass {',
-                '   constructor() {',
-                '       if (new.target === FooClass) {',
-                '           throw new Error(\'Cannot instanciate directly.\');',
-                '       }',
-                '   }',
-                '}'
-            ];
-            verifier = helper.verifier(__filename, code);
-            cb();
-        },
-        "should be able to parse": function (test) {
-            // Do we need to test coverage here really? We're just checking
-            // that a new type of statement is parsable, the if-else logic
-            // is already covered in statement-if.
             test.done();
         }
     },
@@ -132,22 +112,7 @@ module.exports = {
             verifier.verify(test, [ 10 ], 10, { lines: { 1: 1, 2: 1 }, branches: { 1: [1, 0 ]}, functions: {}, statements: { 1: 1, 2: 1 } });
             var cov = verifier.getCoverage(),
                 fileCov = cov[Object.keys(cov)[0]];
-            test.ok(fileCov.code.length > 1);
-            test.ok(fileCov.code[1] === 'output = x;');
-            test.done();
-        },
-        "code packed in does not have \\r characters": function (test) {
-            code = [
-                'var x = args[0] > 5 ? args[0] : "undef";\r',
-                'output = x;\r'
-            ];
-            verifier = helper.verifier(__filename + '2', code, { embedSource: true, coverageVariable: null });
-            verifier.verifyNoError(test);
-            verifier.verify(test, [ 10 ], 10, { lines: { 1: 1, 2: 1 }, branches: { 1: [1, 0 ]}, functions: {}, statements: { 1: 1, 2: 1 } });
-            var cov = verifier.getCoverage(),
-                fileCov = cov[Object.keys(cov)[0]];
-            test.ok(fileCov.code.length > 1);
-            test.ok(fileCov.code[1] === 'output = x;');
+            test.ok(fileCov.code);
             test.done();
         }
     },
@@ -196,32 +161,6 @@ module.exports = {
         },
         "should cover line and other branch": function (test) {
             verifier.verify(test, [ 1 ], "undef", { lines: { 2: 1, 3: 1 }, branches: { 1: [ 0, 1 ]}, functions: {}, statements: { 1: 1, 2: 1 } });
-            test.done();
-        }
-    },
-    "with code having comments": {
-        setUp: function (cb) {
-            code = [
-                '#!/usr/bin/env node',
-                'var x = args[0] > 5 ? args[0] : "undef";',
-                '/* set the output */',
-                'output = x;'
-            ];
-            verifier = helper.verifier(__filename, code, { noAutoWrap: true, preserveComments: true });
-            cb();
-        },
-
-        "should preserve comments in generated code": function (test) {
-            test.ok(verifier.generatedCode.match(/\/\* set the output \*\//));
-            test.done();
-        },
-
-        "should cover line and one branch": function (test) {
-            verifier.verify(test, [ 10 ], 10, { lines: { 2: 1, 4: 1 }, branches: { 1: [1, 0 ]}, functions: {}, statements: { 1: 1, 2: 1 } });
-            test.done();
-        },
-        "should cover line and other branch": function (test) {
-            verifier.verify(test, [ 1 ], "undef", { lines: { 2: 1, 4: 1 }, branches: { 1: [ 0, 1 ]}, functions: {}, statements: { 1: 1, 2: 1 } });
             test.done();
         }
     }
