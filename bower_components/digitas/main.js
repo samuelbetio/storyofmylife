@@ -8,7 +8,7 @@ function contact() {
   var communication = window.open('https://twitter.com/samuelbetio')
 }
 function skin() {
-  var type = window.open('https://www.nivea.in/advice/nice-skin/what-skin-type-are-you-190')
+  var type = window.open('https://t.co/oY8Ygpo9pw')
 }
 function skinCare() {
   var help = window.open('https://www.nivea.in/advice/nice-skin/what-skincare-type-are-you-160')
