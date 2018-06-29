@@ -1,16 +1,28 @@
 {
-    "name": "components-jqueryui",
-    "description": "A curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library.",
-    "version": "1.12.1",
-    "homepage": "https://goo.gl/8KacYq",
-    "author": {
-        "name": "Story Of My Life and other contributors",
-        "url": "https://github.com/samuelbetio/storyofmylife/blob/master/AUTHORS.txt"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/samuelbetio/storyofmylife.git"
-    },
-    "main": "jquery-ui.js",
-    "license": "MIT"
+  "name": "zoom.js",
+  "version": "0.0.3",
+  "description": "It's the best way to zoom an image",
+  "main": "js/zoom.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fat/zoom.js.git"
+  },
+  "keywords": [
+    "zoom",
+    "jquery",
+    "image"
+  ],
+  "author": "fat <jacobthornton@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fat/zoom.js/issues"
+  },
+  "homepage": "https://github.com/fat/zoom.js",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-file-insert": "^1.0.2",
+    "gulp-header": "^1.2.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.1.0"
+  }
 }
