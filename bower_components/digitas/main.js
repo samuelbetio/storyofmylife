@@ -5,7 +5,7 @@ document.getElementById('bottomLeft').onclick=sunscreen
 document.getElementById('bottomMid').onclick=creme
 document.getElementById('bottomRight').onclick=secret
 function contact() {
-  var communication = window.open('https://www.nivea.in/about-us/contact')
+  var communication = window.open('https://twitter.com/samuelbetio')
 }
 function skin() {
   var type = window.open('https://www.nivea.in/advice/nice-skin/what-skin-type-are-you-190')
