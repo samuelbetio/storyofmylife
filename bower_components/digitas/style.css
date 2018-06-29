@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Exo');
+@import url('https://fonts.googleapis.com/css?family=Exo|Frank+Ruhl+Libre');
+.tile{
+  border: black;
+  float: left;
+  height: 300px;
+  width: 400px;
+  position: relative;
+  cursor: pointer;
+}
+.tile:active{
+  box-shadow: 0 5px #666;
+}
+#topLeft{
+  background-color: #000080;
+  color: white;
+}
+#topMid{
+  background-image: url("d-pics/face.jpg");
+  background-size: cover;
+}
+#topRight{
+  color: white;
+  background-image: url("d-pics/nourishing.jpg");
+  background-size: cover;
+}
+#bottomLeft{
+  background-image: url("d-pics/frisbee.jpg");
+  background-size: cover;
+}
+#bottomMid{
+  background-image: url("d-pics/creme.jpg");
+  background-size: cover;
+}
+#bottomRight{
+  background-image: url("d-pics/skin.jpg");
+  background-size: cover;
+}
+#topMid, #bottomLeft, #bottomMid, #bottomRight{
+  color: #000080;
+}
+.title{
+  font-family: 'Exo', sans-serif;
+  text-align: center;
+}
+.body{
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 15px;
+  text-align: center;
+}
+.more{
+  text-transform: uppercase;
+  font-family: 'Exo', sans-serif;
+  text-align: center;
+  background-color:#000080;
+  color: white;
+  padding: 5px 12px;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  border: none;
+}
+.mail{
+  position: absolute;
+  height: 50px;
+  width:50px;
+  right: 20px;
+  bottom: 20px;
+}
+.more:hover{
+  background-color: #0000FF;
+  cursor: pointer;
+}
+.more:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+@media(min-width: 300px) and (max-width: 860px){
+  .tiles{
+  width: 95%;
+  height: auto;
+}
+}
