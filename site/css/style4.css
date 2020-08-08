@@ -1,0 +1,81 @@
+.view {
+	-webkit-perspective: 1050px;
+	-moz-perspective: 1050px;
+	-o-perspective: 1050px;
+	-ms-perspective: 1050px;
+	perspective: 1050px;
+}
+
+.view div {
+	-webkit-transition: all 150ms ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.view:hover .s3{
+	-webkit-transform: translate3d(59px,0,0) rotate3d(0,1,0,-55deg);
+	-moz-transform: translate3d(59px,0,0) rotate3d(0,1,0,-55deg);
+	-o-transform: translate3d(59px,0,0) rotate3d(0,1,0,-55deg);
+	-ms-transform: translate3d(59px,0,0) rotate3d(0,1,0,-55deg);
+	transform: translate3d(59px,0,0) rotate3d(0,1,0,-55deg);
+}
+
+.view:hover .s4{
+	-webkit-transform: translate3d(59px,0,0) rotate3d(0,1,0,110deg);
+	-moz-transform: translate3d(59px,0,0) rotate3d(0,1,0,110deg);
+	-o-transform: translate3d(59px,0,0) rotate3d(0,1,0,110deg);
+	-ms-transform: translate3d(59px,0,0) rotate3d(0,1,0,110deg);
+	transform: translate3d(59px,0,0) rotate3d(0,1,0,110deg);
+}
+
+.view:hover .s5{
+	-webkit-transform: translate3d(59px,0,0) rotate3d(0,1,0,-110deg);
+	-moz-transform: translate3d(59px,0,0) rotate3d(0,1,0,-110deg);
+	-o-transform: translate3d(59px,0,0) rotate3d(0,1,0,-110deg);
+	-ms-transform: translate3d(59px,0,0) rotate3d(0,1,0,-110deg);
+	transform: translate3d(59px,0,0) rotate3d(0,1,0,-110deg);
+}
+
+.view .s2 > .overlay {
+	background: -moz-linear-gradient(right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
+	background: -webkit-linear-gradient(right, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%);
+	background: -o-linear-gradient(right, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%);
+	background: -ms-linear-gradient(right, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%);
+	background: linear-gradient(right, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%);
+}
+
+.view .s3 > .overlay {
+	background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.2) 100%);
+	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.2) 100%);
+	background: -o-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.2) 100%);
+	background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.2) 100%);
+	background: linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.2) 100%);
+}
+
+.view .s4 > .overlay {
+	background: -moz-linear-gradient(right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+	background: -webkit-linear-gradient(right, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.2) 100%);
+	background: -o-linear-gradient(right, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 100%);
+	background: -ms-linear-gradient(right, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 100%);
+	background: linear-gradient(right, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 100%);
+}
+
+.view .s5 > .overlay {
+	background: -moz-linear-gradient(left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+	background: -webkit-linear-gradient(left, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%);
+	background: -o-linear-gradient(left, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%);
+	background: -ms-linear-gradient(left, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%);
+	background: linear-gradient(left, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%);
+}
+
+.view div.view-back{
+	background: #0a0a0a;
+	background: -moz-linear-gradient(left, #0a0a0a 0%, #666666 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0a0a0a), color-stop(100%,#666666));
+	background: -webkit-linear-gradient(left, #0a0a0a 0%,#666666 100%);
+	background: -o-linear-gradient(left, #0a0a0a 0%,#666666 100%);
+	background: -ms-linear-gradient(left, #0a0a0a 0%,#666666 100%);
+	background: linear-gradient(left, #0a0a0a 0%,#666666 100%);
+}
